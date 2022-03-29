@@ -1,1 +1,2 @@
-# progr2-python
+# Python pro data 1
+Výukové materiály k jednodennímu Czechitas workshopu Python pro data 1.
