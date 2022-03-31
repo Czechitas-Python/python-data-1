@@ -1,6 +1,7 @@
+## Vizualizace
 V této lekci si ukážeme, jak zobrazovat různé druhy grafů pomocí modulu `matplotlib`. Také si představíme Jupyter notebook, díky kterému budeme schopni vytvářet hezké reporty z našich datových analýz.
 
-## První graf
+### První graf
 
 Modul `matplotlib` nabízí ohromné množství možností pro vizualizaci dat. My zde probereme jen naprosté základy, aby nám lekce nenarostla to olbřímích rozměrů.
 
@@ -54,7 +55,7 @@ plt.show()
 
 Protože možností a parametrů je opravdu hodně, vyplatí se číst [oficiální dokumentaci](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.plot.html) a projít si nějaký vhodný tutoriál na internetu například přímo [ten oficiální](https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html) k vizualizaci v Pandas.
 
-## Typy grafů
+### Typy grafů
 
 Typ grafu, který chceme zobrazit, se v metodě `plot` specifikuje pomocí argumentu `type`. Sloupcový graf pohybů na účtu
 
@@ -68,7 +69,7 @@ Základní typy grafů, které se hojně používají mohou být například tyt
 
 Výběr vhodného typu vizualizace se odvíjí od toho, jaká data zobrazujeme. Rady, jak vybrat vhodný typ vizualizace, najdete třeba [v tomto článku](https://blog.hubspot.com/marketing/types-of-graphs-for-data-visualization).
 
-## Histogramy
+### Histogramy
 
 Histogram je důležitý typ grafu, který nám umožňuje zobrazit četnost hodnot z nějakého datasetu. Následující seznam obsahuje výšku 64 náhodných mužů v České republice, měřeno v centimetrech.
 
@@ -105,7 +106,7 @@ plt.show()
 
 ![Histogram výšek s přihrádkami](assets/vysky-muzi-bins.png)
 
-## Krabicový graf
+### Krabicový graf
 
 Krabicový graf graficky znázorňuje medián a kvartily naměřených hodnot. Můžeme si jej vyzkoušet na výškách mužů.
 
@@ -148,7 +149,7 @@ plt.show()
 - hura-na-hory
 ]]]
 
-## Jupyter Notebook
+### Jupyter Notebook
 
 Na úplný závěr našeho kurzu se naučíme pracovat s Jupyter notebookem. Je to webové prostředí, ve kterém můžete vytvářet hezky učesané reporty z vašich datových analýz. Jupyter musíme nejprve nainstalovat.
 

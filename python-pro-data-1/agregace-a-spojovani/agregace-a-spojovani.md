@@ -1,6 +1,8 @@
+## Agregace a spojování
+
 V předchozí lekci jsme si ukázali, jak v `pandas` vytváříme `DataFrame` a jak z něj můžeme vybírat data pomocí různých způsobů dotazování. Nyní se posuneme o kus dále a ukážeme si, jak můžeme s `DataFrame` dělat složitější operace jako je filtrování chybějících hodnot, spojování a agregace.
 
-## Maturita
+### Maturita
 
 Abychom měli nějaký praktický příklad k procvičování, použijeme fiktivní data z výsledků maturitních zkoušek během jednoho týdne na nějakém menším gymnáziu. Maturita se odehrává ve třech místnostech: U202, U203 a U302. Máme tedy tři tabulky dat, z každé místnosti jednu. Níže si můžete prohlédnout příklad tabulky z místnosti U202. Všechny tabulky jsou ke stažení zde: [u202.csv](assets/u202.csv), [u203.csv](assets/u203.csv), [u302.csv](assets/u302.csv).
 
@@ -36,7 +38,7 @@ open("u302.csv", "wb").write(r.content)
 |12 |Biologie        |4     |st |
 |10 |Dějepis         |5     |st |
 
-## Práce s chybějícími hodnotami
+### Práce s chybějícími hodnotami
 
 V praxi se poměrně často setkáme s tím, že v datovém setu některé hodnoty chybí. Můžeme si například všimnout, že v tabulce U202 dvěma studentům chybí známka. To znamená, že se studenti k maturitě nedostavili. Na takové případy je třeba být připraven.
 
@@ -49,7 +51,7 @@ V `pandas`, ale i obecně v datové analýze, je možné se s chybějícími dat
 
 Důležité je mít na paměti, že vyřazením některých řádků může dojít ke zkreslení výsledků analýzy!
 
-### Odstranění neúplných řádků
+#### Odstranění neúplných řádků
 
 Předpokládejme, že jsme si ověřili, že data chybí skutečně pouze u studentů, kteří z daného předmětu nematurovali. Protože nás budou zajímat především statistiky jednotlivých předmětů, můžeme prázdné řádky vynechat, protože označují zkoušky, které ve skutečnosti neproběhly.
 
@@ -101,7 +103,7 @@ Další užitečné metody na práci s chybějícími hodnotami najdeme na DataF
 1. `dropna(axis=1)` odstraní všechny sloupce, které obsahují chybějící data.
 1. `fillna(x)` nahradí všechna chybějící data a hodnoty hodnotou x.
 
-## Spojení dat
+### Spojení dat
 
 Nyní bychom chtěli všechny tři naše tabulky spojit do jedné. Nejprve si ukážeme, jak spojit tabulky **pod sebe**. Výsledná tabulka tedy bude mít stále **tři sloupce** a **počet řádků bude odpovídat součtu počtu řádků všech tří tabulek**. V SQL používáme pro danou operaci klíčové slovo `UNION`.
 
@@ -142,7 +144,7 @@ maturita.to_csv('maturita.csv', index=False)
 
 Výslednou tabulku si můžete stáhnout jako soubor [maturita.csv](assets/maturita.csv).
 
-## Propojení dat
+### Propojení dat
 
 Pandas však umí `DataFrame` také propojit, což odpovídá SQL příkazu `JOIN`. Nyní si ukážeme, jak na to. U výsledné tabulky je důležité, že bude mít **více sloupců**, počet řádků závisí na konkrétním typu operace a na samotných datech, jak ještě uvidíme.
 
@@ -274,7 +276,7 @@ Poslední nepříjemností, na kterou se podíváme, je to, že sloupce `jmeno` 
 ```pycon
 novy_propojeny_df = novy_propojeny_df.rename(columns={'jmeno_x': 'jmeno', 'jmeno_y': 'predseda'})
 ```
-## Agregace
+### Agregace
 
 Z databází známe kromě UNION a JOIN také operaci GROUP BY. V Pandas ji provedeme tak, že pomocí metody `groupby` vyrobíme z `DataFrame` speciální objekt `DataFrameGroupBy`. Dejme tomu, že chceme grupovat podle sloupečku `mistnost`.
 
@@ -331,7 +333,7 @@ Zuzka     80
 Name: Částka v korunách, dtype: int64
 ```
 
-### Čtení na doma: Více různých agregací
+#### Čtení na doma: Více různých agregací
 
 Pokud chceme provést více různých agregací, použijeme metodu `agg`. Metodě `agg` vložíme jako parametr slovník, kde klíčem je název sloupce, pro který počítáme agregaci, a hodnotou je řetězec nebo seznam řetězců se jmény agregací, které chceme provést. Například u maturity chceme zjistit, jestli student prospěl, prospěl s vyznamenáním nebo neprospěl. K tomu potřebujeme funkci `max()` (pětka znamená, že student neuspěl a trojka znamená, že nemůže získat vyznamenání) a funkci `mean()` (abychom zjistili, zda je průměr známek menší než 1.5).
 
@@ -341,7 +343,7 @@ maturita.groupby("cisloStudenta").agg({"znamka": ["max", "mean"]})
 
 K určení výsledku studenta bychom ještě potřebovali nový sloupec, jehož hodnota bude určena na základě podmínky, což si ukážeme níže.
 
-## Počítané sloupce
+### Počítané sloupce
 
 Občas je užitečné přidat nový sloupec, který obsahuje hodnotu vypočtenou na základě hodnot ostatních sloupců. Vraťme se například k naší tabulce s údaji o státech ve světě. Máme informaci o rozloze a počtu obyvatel, mohli bychom tedy přidal sloupec s hodnotou hustoty zalidnění (počet obyvatel na 1 km čtvereční), který získáme vydělením počtu obyvatel rozlohou země.
 
@@ -360,7 +362,7 @@ staty["population_density"] = staty["population"] / staty["area"]
 
 **Poznámka:** `pandas` nás neupozorní, pokud sloupec již existuje, musíme si tedy dát pozor, abychom nepřepsali nějaký existující sloupec.
 
-### Čtení na doma: Podmíněný sloupec
+#### Čtení na doma: Podmíněný sloupec
 
 Občas chceme do výpočtu zapracovat i podmínku. Ve skutečnosti je podmínka to poslední, co nám chybělo k vyřešení našeho problému s finančním vypořádání spolubydlících pomocí `pandas`. Náš výpočet se skládá z pěti kroků.
 
@@ -389,7 +391,7 @@ Zuzka  dostane  162.166667
 
 Srovnej si toto řešení s tím, které jsme si ukazovali na úvodním workshopu. Zdá se ti jednodušší?
 
-## Řazení
+### Řazení
 
 Data řadíme poměrně často. U běžeckého závodu nás zajímají ti nejrychlejší běžci, u položek v e-shopu ty nejlépe hodnocené, u projektu zase chceme vidět úkoly s nejbližším deadline. Abychom tyto hodnoty získali, musíme data seřadit. Ve světě databází pro to používáme klíčová slova `ORDER BY`, v `pandas` nám poslouží metoda `sort_values`. Jako její první parametr zadáváme sloupec (nebo seznam sloupců), podle kterého (kterých) řadíme.
 
