@@ -143,28 +143,3 @@ plt.show()
 
 ![Krabicový graf muži vs ženy](assets/vysky-muzi-zeny-box.png)
 
-[[[ excs Cvičení
-- hazeni-kostkami
-- call-centrum
-- hura-na-hory
-]]]
-
-### Jupyter Notebook
-
-Na úplný závěr našeho kurzu se naučíme pracovat s Jupyter notebookem. Je to webové prostředí, ve kterém můžete vytvářet hezky učesané reporty z vašich datových analýz. Jupyter musíme nejprve nainstalovat.
-
-```shell
-$ pip3 install jupyter
-```
-
-Pod Windows jako obvykle stačí
-
-```shell
-$ py -m pip install jupyter
-```
-
-Nyní si někde na disku vytvoříme složku, ve které budeme skladovat naše Jupyter notebooky. V terminálu se přesuneme do této složky a napíšeme
-
-```shell
-jupyter notebook
-```
