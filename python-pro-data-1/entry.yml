@@ -1,0 +1,9 @@
+title: Python pro data 1
+lead: Základní kapitoly
+lessons:
+  - instalace
+  - datova-analyza
+  - nacteni-dat
+  - zakladni-dotazy
+  - agregace-a-spojovani
+  - vizualizace
