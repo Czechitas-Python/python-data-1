@@ -1,0 +1,5 @@
+title: Načtení dat
+lead: Pojďme načíst data do pandas a podívat se na ně
+sections:
+  - nacteni-dat
+  - excs

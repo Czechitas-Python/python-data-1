@@ -1,6 +1,8 @@
+## Načtení dat
+
 Než s daty začneme pracovat, musíme si je nejprve načíst.
 
-## Základní práce s DataFrame
+### Základní práce s DataFrame
 
 V Pandas většinou pracujeme s datovou strukturou zvanou `DataFrame`. Je to tabulková datová struktura a funguje podobně jako tabulka v Excelu nebo v databázi. Můžeme jej považovat za další datový typ vedle slovníků a seznamů. `DataFrame` obsahuje data ve sloupcích, kde každý sloupec může mít různý datový typ, tedy například číslo, desetinné číslo, řetězec, pravdivostní hodnota a jiné.
 
@@ -22,7 +24,7 @@ Abychom si práci s DataFrame vyzkoušeli, vrátíme se k naší tabulce se sezn
 | Pavla   | 2020-06-13 | Máslo            |                  50 |
 | Ondra   | 2020-07-25 | Káva             |                 300 |
 
-### Načítání dat
+#### Načítání dat
 
 Tabulku výše si můžete stáhnout ve [formátu CSV](assets/nakupy.csv). Důležité je, že si soubor musíš uložit nebo zkopírovat do **stejného adresáře**, v jakém právě pracuješ ve Visual Studiu! To si ověříš pomocí příkazu `dir` ve Windows nebo `ls` v MacOS nebo Linuxu. Tento příkaz ti vypíše obsah aktuální adresáře. V přehledu souborů bys měla vidět soubor `nakupy.csv`.
 
@@ -59,7 +61,7 @@ Všimni si, že `pandas` nám přidal nový sloupec s číslem řádku. Jedná s
 
 Pandas nabízí kromě funkce `read_csv()` také funkci pro čtení formátu JSON `read_json()` nebo dokonce funkci pro čtení přímo Excelových tabulek `read_excel()`.
 
-### Základní informace o tabulce
+#### Základní informace o tabulce
 
 Jakmile máme tabulku načtenou, budeme o ní chtít vědět nějaké úplně základní údaje. K tomu nám pomůže metoda `info()`, která vrací souhrnné informace o celé tabulce: názvy sloupců, datové typy, počet neprázdných hodnot atd.
 
@@ -101,7 +103,7 @@ Názvy všech sloupců pak z vlastnosti `columns`:
 Index(['Jméno', 'Datum', 'Věc', 'Částka v korunách'], dtype='object')
 ```
 
-## Index
+### Index
 
 Jak už víme, v `pandas` má každý řádek přiřazený index. Jako index můžeme zvolit některý ze sloupců. Pokud však tabulku načteme bez toho, abychom specifikovali index, `pandas` nám vytvoří **číselný index** automaticky. Je to něco podobného jako číslování řádků v Excelu.
 
@@ -167,7 +169,7 @@ Nevýhodou postupu je, že si musíme předem zjistit, jak kolik řádků máme.
 'Jirko'
 ```
 
-### Začátek a konec jinak
+#### Začátek a konec jinak
 
 Na prvních a posledních několik řádků se chceme podívat často, hlavně v případě, když moc dobře neznáme strukturu dat. Kromě funkce `iloc`, z níž se ti možná už začala točit hlava, k tomu ještě můžeme použít funkce `head` a `tail`.
 
@@ -193,7 +195,7 @@ Na prvních a posledních několik řádků se chceme podívat často, hlavně v
 10  Ondra  2020-07-25            Káva                300
 ```
 
-### Sloupce
+#### Sloupce
 
 Kromě řádků si často chceme vybrat jen některé sloupce, protože mnoho tabulek obsahuje spoustu různých informací a ne všechny nás musejí zajímat. Čísla sloupců zadáváme jako druhý parametr funkce `iloc`.
 
@@ -238,7 +240,3 @@ Pokud bys chtěla vidět všechny řádky, jako první parametr napiš pouze dvo
 9   Pavla                 50
 10  Ondra                300
 ```
-
-[[[ excs Cvičení
-- nabidky
-]]]
