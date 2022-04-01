@@ -2,7 +2,7 @@
 
 V této části si zkusíme napas nějaké základní dotazy na naše data. `pandas` umožňují napsat dotazy podobně jako jazyk SQL, k práci ale jeho znalost vůbec ne potřebujeme.
 
-Tentokrát si vyzkoušíme načíst data ze souboru ve formátu JSON. Konkrétně budeme pracovat s daty o státech světa, která jsou stažená ze služby [restcountries](https://restcountries.eu/). Data si můžeš [stáhnout zde](assets/staty.json). Opět platí, že si je musíš stáhnout do adresáře, kde máš právě otevřený terminál!
+Tentokrát si vyzkoušíme načíst data ze souboru ve formátu JSON. Konkrétně budeme pracovat s daty o státech světa, která jsou stažená ze služby [restcountries](https://restcountries.com/). Data si můžeš [stáhnout zde](assets/staty.json). Opět platí, že si je musíš stáhnout do adresáře, kde máš právě otevřený terminál!
 
 ### Indexy
 
@@ -208,7 +208,7 @@ Pitcairn                                              56    47.00
 South Georgia and the South Sandwich Islands          30      NaN
 ```
 
-Tento podivný zápis má ve skutečnosti svoji logiku. My jsme v našem polotovaru získali sloupec, kde máme 250 hodnotu typu `bool`. `pandas` teď jednoduše udělají to, že vypíšou ty řádky řádky, kde má náš polotovar hodnotu `True` a ty, které mají hodnotu `False`, před námi skryjí.
+Tento podivný zápis má ve skutečnosti svoji logiku. My jsme v našem polotovaru získali sloupec, kde máme 250 hodnot typu `bool`. `pandas` teď jednoduše udělají to, že vypíšou ty řádky řádky, kde má náš polotovar hodnotu `True` a ty, které mají hodnotu `False`, před námi skryjí.
 
 V tabulce vidíme několik států a kromě Holy See (tj. Vatikánu) jsme o nich asi ani nikdy neslyšeli. V některých řádcích vidíme hodnotu `NaN`. To značí, že pro daný řádek hodnotu nemáme, pro některé státy tedy nemáme zadanou rozlohu. Měli bychom si tedy rozmyslet, zda s takovými státy v nějaké analýze vůbec pracovat.
 

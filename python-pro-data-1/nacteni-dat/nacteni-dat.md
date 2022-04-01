@@ -89,7 +89,7 @@ Počet řádků a sloupců můžeme získat z vlastnosti `shape`:
 
 **Poznámka:** Pokud znáš základy objektově orientovaného programování, pak věz, že `info` je ve skutečnosti funkce třídy `DataFrame`. 
 
-`pandas` nám vrací výsledky v sekvenci, která se jmenuje `tuple`. Nás stačí vědět, že si z ní data můžeme načíst stejně jako ze seznamu. Na prvním místě je vždy počet řádků a na druhém počet sloupců. Pokud by nás třeba zajímal jen počet řádků, napíšeme: 
+`pandas` nám vrací výsledky v sekvenci, která se jmenuje `tuple`. Nám stačí vědět, že si z ní data můžeme načíst stejně jako ze seznamu. Na prvním místě je vždy počet řádků a na druhém počet sloupců. Pokud by nás třeba zajímal jen počet řádků, napíšeme: 
 
 ```pycon
 >>> nakupy.shape[0]
