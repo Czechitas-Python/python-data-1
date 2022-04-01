@@ -33,7 +33,7 @@ ucet.plot()
 plt.show()
 ```
 
-![Graf pohybů](assets/prirustky.png)
+::fig[Graf pohybů]{src=assets/prirustky.png}
 
 Užitečnější by mohlo být zobrazit graf zůstatků
 
@@ -42,7 +42,7 @@ ucet.cumsum().plot()
 plt.show()
 ```
 
-![Graf zůstatků](assets/zustatky.png)
+::fig[Graf zůstatků]{src=assets/zustatky.png}
 
 Nyní si s grafem můžeme vyhrát podle chuti a nastavit jeho vzezření přesně tak, jak potřebujeme. Metoda `plot` na sériích obsahuje nepřeberné možnosti nastavení. Například takto vyrobíme z pohybů na účtu sloupcový graf s mřížkou ve žluté barvě.
 
@@ -51,7 +51,7 @@ ucet.plot(kind='bar', color='yellow', grid=True)
 plt.show()
 ```
 
-![Sloupcový graf zůstatků](assets/sloupce.png)
+::fig[Sloupcový graf zůstatků]{src=assets/sloupce.png}
 
 Protože možností a parametrů je opravdu hodně, vyplatí se číst [oficiální dokumentaci](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.plot.html) a projít si nějaký vhodný tutoriál na internetu například přímo [ten oficiální](https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html) k vizualizaci v Pandas.
 
@@ -93,7 +93,7 @@ muzi.hist()
 plt.show()
 ```
 
-![Histogram výšek](assets/vysky-muzi.png)
+::fig[Histogram výšek]{src=assets/vysky-muzi.png}
 
 Histogram si pro přehlednost můžeme rozdělit do <term cs="přihrádek" en="bins"> po pěti centimetrech
 
@@ -104,7 +104,7 @@ muzi.hist(bins=[
 plt.show()
 ```
 
-![Histogram výšek s přihrádkami](assets/vysky-muzi-bins.png)
+::fig[Histogram výšek s přihrádkami]{src=assets/vysky-muzi-bins.png}
 
 ### Krabicový graf
 
@@ -115,7 +115,7 @@ muzi.plot(kind='box', whis=[0, 100])
 plt.show()
 ```
 
-![Krabicový graf muži](assets/vysky-muzi-box.png)
+::fig[Krabicový graf muži]{src=assets/vysky-muzi-box.png}
 
 Krabicové grafy jsou užitečné především pro porovnání dvou různých měření. Přidejme si druhou datovou sadu představující naměřené výšky žen
 
@@ -141,5 +141,5 @@ vysky.plot(kind='box', whis=[0, 100])
 plt.show()
 ```
 
-![Krabicový graf muži vs ženy](assets/vysky-muzi-zeny-box.png)
+::fig[Krabicový graf muži vs ženy]{src=assets/vysky-muzi-zeny-box.png}
 
