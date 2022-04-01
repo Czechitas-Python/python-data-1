@@ -404,7 +404,3 @@ Metoda `sort_values` standardně řadí vzestupně. Chceme-li řadit sestupně, 
 ```pycon
 staty.sort_values(by="population", ascending=False)
 ```
-
-[[[ excs Cvičení
-- studenti
-]]]
