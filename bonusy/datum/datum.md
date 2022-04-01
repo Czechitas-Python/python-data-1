@@ -1,6 +1,8 @@
+## Datum a čas
+
 Data patří k základním datovým typům a provázejí nás celý život. Každý máme své datum narození, datum, kdy jsme šli poprvé do školy atd. Data jsou však záludná v tom, že je můžeme zapsat v různých formátech. Pojďme se podívat, jak data v různých formátech zpracovat a jak je naopak vypsat.
 
-## Vytvoření data
+### Vytvoření data
 
 K práci s daty potřebujeme modul `datetime`, který je základní součástí Pythonu, takže jej nemusíme instalovat. Stačí jej importovat.
 
@@ -35,7 +37,7 @@ Pokud by nás zajímalo, jaký den v týdnu Apollo startovalo, můžeme použít
 3
 ```
 
-### Formátování
+#### Formátování
 
 Hodnotu aktuální proměnné můžeme vypsat na obrazovku pomocí funkce `print()`. Ta vypíše datum v tzv. ISO formátu (jako oddělovač data a času je použita mezera).
 
@@ -73,7 +75,7 @@ Pokud chceme datum vypsat ve vlastním formátu, použijeme funkci `strftime()`.
 '16. 07. 1969, 14:32'
 ```
 
-### Čtení data z výstupu
+#### Čtení data z výstupu
 
 Bohužel data často získáváme jako řetězce (např. z CSV souborů, ze vstupů od uživatele atd.). Abychom s ním mohli pracovat, musíme si ho převést na typ `datetime`. 
 
@@ -89,7 +91,7 @@ Takové štěstí ale často nemáme, protože řada programů ukládá datum ve
 >>> apolloPristani = datetime.strptime("21. 7. 1969, 18:54", "%d. %m. %Y, %H:%M")
 ```
 
-### Počítání s daty
+#### Počítání s daty
 
 Často s daty potřebujeme počítat. Pokud například víme, kdy závodník proběhl startem a cílem, můžeme spočítat, kolik času strávil na trati. Dvě data od sebe můžeme jednoduše odečíst. Zkusme si spočítat, jak dlouho trvala mise Apollo.
 
@@ -101,19 +103,19 @@ Takové štěstí ale často nemáme, protože řada programů ukládá datum ve
 
 Výsledek je hodnota typu `timedelta`.
 
-## Cvičení
+### Cvičení
 
-### Převod času
+#### Převod času
 
 V proměnné `apolloStart` máme uložený datum a čas startu Apolla 11. Vypiš datum na obrazovku ve formátu, na který jsou zvyklí Američané, tj. na první místo napiš měsíc, dále den a nakonec rok, jako oddělovače použij lomítka. Čas vypisovat nemusíš.
 
-### Čas od startu
+#### Čas od startu
 
 Satelit Solar Orbiter, který má za cíl pozorování Slunce, odstartoval 10. února 2020 v 5:03. Ulož si hodnotu startu do proměnné.
 
 - Který den v týdnu Solar Orbiter odstartoval?
 - Spočítej, kolik času od jeho startu uplynulo.
 
-### Doprava večeře
+#### Doprava večeře
 
 Zákazník si objednal večeři na webu dovážkové služby 13. listopadu 2020 v 19:47. Víme, že převzetí objednávky restaurací v průměru trvá 8 minut a 35 sekund, příprava jídla trvá 30 minut a doprava jídla k zákazníkovi 25 minut a 30 sekund. Kdy očekáváme, že jídlo dorazí zákazníkovi?
