@@ -316,15 +316,15 @@ Zkusme si nyní opačný postup, převedeme si seznam seznamů (což je jiný z�
 
 ```pycon
 znamky = [
-  ['Petr', 2],
-  ['Roman', 1],
-  ['Jitka', 3],
-  ['Zuzana', 5],
-  ['Ondřej', 2],
-  ['Julie', 2],
-  ['Karel', 4],
-  ['Anna', 1],
-  ['Eva', 1]
+    ['Petr', 2],
+    ['Roman', 1],
+    ['Jitka', 3],
+    ['Zuzana', 5],
+    ['Ondřej', 2],
+    ['Julie', 2],
+    ['Karel', 4],
+    ['Anna', 1],
+    ['Eva', 1]
 ]
 ```
 
@@ -333,7 +333,7 @@ Naším úkolem bylo spočítat průměrnou známku. K tomu jsme použili cyklus
 ```py
 soucet = 0
 for radek in znamky:
-  soucet = soucet + radek[1]
+    soucet = soucet + radek[1]
 prumer = soucet / len(znamky)
 ```
 
@@ -354,17 +354,17 @@ Pokud jsi absolvovala Úvod do programování v Pythonu 2, znáš již též slo
 
 ```pycon
 nakupy = [
-  {"person": "Petr", "item": "Prací prášek", "value": 399},
-  {"person": "Ondra", "item": "Savo", "value": 80},
-  {"person": "Petr", "item": "Toaletní papír", "value": 65},
-  {"person": "Libor", "item": "Pivo", "value": 124},
-  {"person": "Petr", "item": "Pytel na odpadky", "value": 75},
-  {"person": "Míša", "item": "Utěrky na nádobí", "value": 130},
-  {"person": "Ondra", "item": "Toaletní papír", "value": 120},
-  {"person": "Míša", "item": "Pečící papír", "value": 30},
-  {"person": "Zuzka", "item": "Savo", "value": 80},
-  {"person": "Pavla", "item": "Máslo", "value": 50},
-  {"person": "Ondra", "item": "Káva", "value": 300}
+    {"person": "Petr", "item": "Prací prášek", "value": 399},
+    {"person": "Ondra", "item": "Savo", "value": 80},
+    {"person": "Petr", "item": "Toaletní papír", "value": 65},
+    {"person": "Libor", "item": "Pivo", "value": 124},
+    {"person": "Petr", "item": "Pytel na odpadky", "value": 75},
+    {"person": "Míša", "item": "Utěrky na nádobí", "value": 130},
+    {"person": "Ondra", "item": "Toaletní papír", "value": 120},
+    {"person": "Míša", "item": "Pečící papír", "value": 30},
+    {"person": "Zuzka", "item": "Savo", "value": 80},
+    {"person": "Pavla", "item": "Máslo", "value": 50},
+    {"person": "Ondra", "item": "Káva", "value": 300}
 ]
 ```
 
