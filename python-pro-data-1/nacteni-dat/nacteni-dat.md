@@ -103,7 +103,68 @@ Názvy všech sloupců pak z vlastnosti `columns`:
 Index(['Jméno', 'Datum', 'Věc', 'Částka v korunách'], dtype='object')
 ```
 
-### Index
+
+### Výběr sloupců
+
+V některých případech nás jako první při práci s daty napadne nějak si data zjednodušit. Například budeme chtít v DataFrame vybrat pouze některé sloupce, a to co nás nezajímá, můžeme zahodit.
+
+K tomu použijeme výběr sloupců pomocí hranatých závorek. Zápis připomíná práci se seznamy - hranatou závorku napíšeme přímo za název proměnné, kde máme uložený `DataFrame`, a do ní vepíšeme název sloupce, který nás zajímá.
+
+```
+>>> nakupy['Věc']
+0         Prací prášek
+1                 Savo
+2       Toaletní papír
+3                 Pivo
+4     Pytel na odpadky
+5     Utěrky na nádobí
+6       Toaletní papír
+7         Pečící papír
+8                 Savo
+9                Máslo
+10                Káva
+Name: Věc, dtype: object
+```
+
+Zde je důležité říct, že pokud vybíráme pouze jeden sloupec, vrátí se nám takzvaná **Série** (`Series`), což je jiný datový typ než DataFrame. Sérii si představme jako jednorozměrnou tabulku.
+
+Pro výběr více sloupců musíme do indexace DataFrame vložit seznam s názvy sloupců.
+
+```
+>>> nakupy[['Jméno', 'Částka v korunách']]
+    Jméno  Částka v korunách
+0    Petr                399
+1   Ondra                 80
+2    Petr                 65
+3   Libor                124
+4    Petr                 75
+5    Míša                130
+6   Ondra                120
+7    Míša                 30
+8   Zuzka                 80
+9   Pavla                 50
+10  Ondra                300
+```
+
+Tady se nám již vrátil datový typ DataFrame. Tohoto triku můžeme využít, když chceme získat pouze jeden sloupec, ale nechceme ho v datovém typu Série, ale jako DataFrame.
+
+```
+>>> nakupy[['Věc']]
+                 Věc
+0       Prací prášek
+1               Savo
+2     Toaletní papír
+3               Pivo
+4   Pytel na odpadky
+5   Utěrky na nádobí
+6     Toaletní papír
+7       Pečící papír
+8               Savo
+9              Máslo
+10              Káva
+```
+
+### Výběr řádků pomocí čísla řádku
 
 Jak už víme, v `pandas` má každý řádek přiřazený index. Jako index můžeme zvolit některý ze sloupců. Pokud však tabulku načteme bez toho, abychom specifikovali index, `pandas` nám vytvoří **číselný index** automaticky. Je to něco podobného jako číslování řádků v Excelu.
 
@@ -120,7 +181,7 @@ Věc                        Pivo
 Name: 3, dtype: object
 ```
 
-Všimni si, že když jsme chtěli pouze jeden řádek, vypsal se nám výsledek jinak orientovaný, než když jsme chtěli řádků více. Je to proto, že pokud vybíráme pouze jeden řádek, vrátí nám takzvanou **sérii** (`Series`), což je jiný datový typ než DataFrame.
+Všimni si, že když jsme chtěli pouze jeden řádek, vypsal se nám výsledek jinak orientovaný. Výběr jednoho řádku nám vrátí Sérii stejně jako v případě výběru jediného sloupce. Pohled na tento řádek pak máme orientovaný na výšku.
 
 Metoda `iloc[]` umožňuje pro výběr řádků použít rozsah ve formátu `od:do`. K tomu používáme **dvojtečku**. Před dvojtečku píšeme první řádek, který chceme vypsat a za dvojtečku první řádek, který již vy výpisu nebude. Pokud tedy například napíšeme `nakupy.iloc[3:5]`, získáme řádky s indexy 3 a 4, ale už ne řádek s indexem 5.
 
@@ -161,13 +222,6 @@ Nevýhodou postupu je, že si musíme předem zjistit, jak kolik řádků máme.
 10  Ondra  2020-07-25   Káva                300
 ```
 
-**Tip:** Trik s dvojtečkou funguje i u sekvencí. Můžeme jej použít třeba na řetězce.
-
-```pycon
->>> pozdrav = "Ahoj Jirko" 
->>> pozdrav[-5:] 
-'Jirko'
-```
 
 #### Začátek a konec jinak
 
@@ -195,7 +249,7 @@ Na prvních a posledních několik řádků se chceme podívat často, hlavně v
 10  Ondra  2020-07-25            Káva                300
 ```
 
-#### Sloupce
+#### Výběr řádků a sloupců podle čísla
 
 Kromě řádků si často chceme vybrat jen některé sloupce, protože mnoho tabulek obsahuje spoustu různých informací a ne všechny nás musejí zajímat. Čísla sloupců zadáváme jako druhý parametr funkce `iloc`.
 
