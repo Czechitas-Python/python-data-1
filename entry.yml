@@ -3,4 +3,5 @@ lead: Úvod do zpracování dat v Pythonu
 image: python-data.svg
 chapters:
   - python-pro-data-1
+  - ziskavani-dat
   - bonusy
