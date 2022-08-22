@@ -103,19 +103,7 @@ Takové štěstí ale často nemáme, protože řada programů ukládá datum ve
 
 Výsledek je hodnota typu `timedelta`.
 
-### Cvičení
-
-#### Převod času
-
-V proměnné `apolloStart` máme uložený datum a čas startu Apolla 11. Vypiš datum na obrazovku ve formátu, na který jsou zvyklí Američané, tj. na první místo napiš měsíc, dále den a nakonec rok, jako oddělovače použij lomítka. Čas vypisovat nemusíš.
-
-#### Čas od startu
-
-Satelit Solar Orbiter, který má za cíl pozorování Slunce, odstartoval 10. února 2020 v 5:03. Ulož si hodnotu startu do proměnné.
-
-- Který den v týdnu Solar Orbiter odstartoval?
-- Spočítej, kolik času od jeho startu uplynulo.
-
-#### Doprava večeře
-
-Zákazník si objednal večeři na webu dovážkové služby 13. listopadu 2020 v 19:47. Víme, že převzetí objednávky restaurací v průměru trvá 8 minut a 35 sekund, příprava jídla trvá 30 minut a doprava jídla k zákazníkovi 25 minut a 30 sekund. Kdy očekáváme, že jídlo dorazí zákazníkovi?
+## Cvičení: Datum a čas
+::exc[excs>prevod-casu]
+::exc[excs>cas-od-startu]
+::exc[excs>doprava-vecere]
