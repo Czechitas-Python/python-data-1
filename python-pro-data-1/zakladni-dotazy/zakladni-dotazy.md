@@ -224,8 +224,8 @@ Pokud chceme, aby musely být splněny obě podmínky, vložíme mezi ně symbol
 Obě tyto podmínky napíšeme do závorek a vložíme mezi ně symbol `&`. Následně použijeme již známé hranaté závorky, které přidáme hned za proměnnou `staty`.
 
 ```pycon
->>> lidnateEvropskeStaty = staty[(staty["population"] > 20000000) & (staty["region"] == "Europe")]
->>> lidnateEvropskeStaty["population"]
+>>> lidnate_evropske_staty = staty[(staty["population"] > 20000000) & (staty["region"] == "Europe")]
+>>> lidnate_evropske_staty["population"]
 name
 France                                                   66710000
 Germany                                                  81770900
@@ -297,16 +297,16 @@ Ukraine                       UA        UKR        Kiev  Europe  Eastern Europe 
 K takovému převodu na seznam nám poslouží kombinace funkcí `to_numpy` a `tolist`. Převod totiž neprovádíme přímo, ale jako mezikrok jej převedeme na pole modulu `numpy`.
 
 ```pycon
->>> statyList = staty.to_numpy().tolist() 
->>> statyList[0] 
+>>> staty_list = staty.to_numpy().tolist() 
+>>> staty_list[0] 
 ['Kabul', 'Asia', 'Southern Asia', 27657145, 652230.0, 27.8]
 ```
 
 Ve výsledných seznamech nám chybí názvy států. Potíž je v tom, že index se v Pandas nebere jako součást dat. Pokud chceme index vrátit do původního stavu a mít ho jako automaticky generovaná čísla řádků, můžeme použít metodu `reset_index`. S její pomocí pak už dokážeme dostat z DataFramu čistá data takto
 
 ```pycon
->>> statyList = staty.reset_index().to_numpy().tolist() 
->>> statyList[0]
+>>> staty_list = staty.reset_index().to_numpy().tolist() 
+>>> staty_list[0]
 ['Afghanistan', 'Kabul', 'Asia', 'Southern Asia', 27657145, 652230.0, 27.8]
 ```
 

@@ -373,10 +373,10 @@ Občas chceme do výpočtu zapracovat i podmínku. Ve skutečnosti je podmínka 
 ```pycon
 nakupy = pandas.read_csv('nakupy.csv')
 nakupy_celkem = nakupy.groupby("Jméno")[["Částka v korunách"]].sum()
-prumernaHodnota = nakupy_celkem["Částka v korunách"].mean()
+prumerna_hodnota = nakupy_celkem["Částka v korunách"].mean()
 import numpy
-nakupy_celkem["Operace"] = numpy.where(nakupy_celkem["Částka v korunách"] > prumernaHodnota, "má dáti", "dostane")
-nakupy_celkem["Kolik"] = abs(nakupy_celkem["Částka v korunách"] - prumernaHodnota)
+nakupy_celkem["Operace"] = numpy.where(nakupy_celkem["Částka v korunách"] > prumerna_hodnota, "má dáti", "dostane")
+nakupy_celkem["Kolik"] = abs(nakupy_celkem["Částka v korunách"] - prumerna_hodnota)
 print(nakupy_celkem[["Operace", "Kolik"]])
 
        Operace       Kolik
