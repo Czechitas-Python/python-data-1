@@ -7,9 +7,9 @@ print(apollo_start.strftime("%#m/%d/%Y"))
 #- ("%m/%d/%Y") muzu pouzit # pro dani nuly pryc
 
 #-------------------- Cas od startu ----------------------#
-soStart = datetime(2020, 2, 10, 5, 3)
-soStart.weekday()
-uplynulo = datetime.now() - soStart
+so_start = datetime(2020, 2, 10, 5, 3)
+so_start.weekday()
+uplynulo = datetime.now() - so_start
 print(uplynulo)
 
 #-------------------- Doprava Vecere ----------------------#

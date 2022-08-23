@@ -24,16 +24,16 @@ Nejjednodušší způsob, jak datum vytvořit, je pomocí funkce `datetime`. Té
 Zkusme si vytvořit proměnnou, která bude reprezentovat start Apolla 11.
 
 ```pycon
->>> apolloStart = datetime(1969, 7, 16, 14, 32)
->>> print(apolloStart)
+>>> apollo_start = datetime(1969, 7, 16, 14, 32)
+>>> print(apollo_start)
 ```
 
 Pokud by nás zajímalo, jaký den v týdnu Apollo startovalo, můžeme použít funkci `weekday()` nebo `isoweekday()`. Pozor, je mezi nimi rozdíl. Obě číslují od pondělí, funkce `weekday()` však čísluje od 0 a funkce `isoweekday()` od 1.
 
 ```pycon
->>> apolloStart.weekday()
+>>> apollo_start.weekday()
 2
->>> apolloStart.isoweekday() 
+>>> apollo_start.isoweekday() 
 3
 ```
 
@@ -42,14 +42,14 @@ Pokud by nás zajímalo, jaký den v týdnu Apollo startovalo, můžeme použít
 Hodnotu aktuální proměnné můžeme vypsat na obrazovku pomocí funkce `print()`. Ta vypíše datum v tzv. ISO formátu (jako oddělovač data a času je použita mezera).
 
 ```pycon
->>> print(apolloStart)
+>>> print(apollo_start)
 1969-07-16 14:32:00
 ```
 
 Standardně je jako oddělovač použit symbol `T`. Stoprocentně autentický zápis v ISO formátu získáme pomocí funkce `isoformat()`.
 
 ```pycon
->>> apolloStart.isoformat()
+>>> apollo_start.isoformat()
 '1969-07-16T14:32:00'
 ```
 
@@ -71,7 +71,7 @@ Pokud chceme datum vypsat ve vlastním formátu, použijeme funkci `strftime()`.
  Zkusme si třeba vypsat datum startu Apolla 11 v našem středoevropském formátu.
 
 ```pycon
->>> apolloStart.strftime("%d. %m. %Y, %H:%M")            
+>>> apollo_start.strftime("%d. %m. %Y, %H:%M")            
 '16. 07. 1969, 14:32'
 ```
 
@@ -82,13 +82,13 @@ Bohužel data často získáváme jako řetězce (např. z CSV souborů, ze vstu
 Pokud jsou data v ISO formátu, máme vyhráno. Je možné použít funkci `fromisoformat()`, které stačí zadat řetězec a ona se již o vše postará.
 
 ```pycon
->>> apolloPristani = datetime.fromisoformat("1969-07-21T18:54:00")
+>>> apollo_pristani = datetime.fromisoformat("1969-07-21T18:54:00")
 ```
 
 Takové štěstí ale často nemáme, protože řada programů ukládá datum ve formátu, který má nastavený aktuální uživatel. K načtení pak použijeme funkci `strptime()`, které zadáme formát data a času, se kterým máme tu čest.
 
 ```pycon
->>> apolloPristani = datetime.strptime("21. 7. 1969, 18:54", "%d. %m. %Y, %H:%M")
+>>> apollo_pristani = datetime.strptime("21. 7. 1969, 18:54", "%d. %m. %Y, %H:%M")
 ```
 
 #### Počítání s daty
@@ -96,8 +96,8 @@ Takové štěstí ale často nemáme, protože řada programů ukládá datum ve
 Často s daty potřebujeme počítat. Pokud například víme, kdy závodník proběhl startem a cílem, můžeme spočítat, kolik času strávil na trati. Dvě data od sebe můžeme jednoduše odečíst. Zkusme si spočítat, jak dlouho trvala mise Apollo.
 
 ```pycon
->>> delkaMise = apolloPristani - apolloStart
->>> print(delkaMise)
+>>> delka_mise = apollo_pristani - apollo_start
+>>> print(delka_mise)
 5 days, 4:22:00
 ```
 
