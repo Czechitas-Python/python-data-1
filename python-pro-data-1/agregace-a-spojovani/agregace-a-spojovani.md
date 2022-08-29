@@ -6,18 +6,14 @@ V předchozí lekci jsme si ukázali, jak v `pandas` vytváříme `DataFrame` a 
 
 Abychom měli nějaký praktický příklad k procvičování, použijeme fiktivní data z výsledků maturitních zkoušek během jednoho týdne na nějakém menším gymnáziu. Maturita se odehrává ve třech místnostech: U202, U203 a U302. Máme tedy tři tabulky dat, z každé místnosti jednu. Níže si můžete prohlédnout příklad tabulky z místnosti U202. Všechny tabulky jsou ke stažení zde: [u202.csv](assets/u202.csv), [u203.csv](assets/u203.csv), [u302.csv](assets/u302.csv).
 
-Pomocí příkazů níže si můžeš soubory stáhnout s využitím modulu `requests`.
+Funkce `read_csv()` knihovny `pandas` umí stáhnout CSV soubor rovnou z internetu.
 
 ```pycon
-import requests
+import pandas
 
-r = requests.get("https://kodim.cz/czechitas/progr2-python/python-pro-data-1/agregace-a-spojovani/assets/u202.csv")
-open("u202.csv", "wb").write(r.content)
-r = requests.get("https://kodim.cz/czechitas/progr2-python/python-pro-data-1/agregace-a-spojovani/assets/u203.csv")
-open("u203.csv", "wb").write(r.content)
-r = requests.get("https://kodim.cz/czechitas/progr2-python/python-pro-data-1/agregace-a-spojovani/assets/u302.csv")
-open("u302.csv", "wb").write(r.content)
-
+u202 = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/u202.csv")
+u203 = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/u203.csv")
+u302 = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/u302.csv")
 ```
 
 |cisloStudenta |predmet         |znamka|den|
@@ -44,7 +40,7 @@ V praxi se poměrně často setkáme s tím, že v datovém setu některé hodno
 
 V `pandas`, ale i obecně v datové analýze, je možné se s chybějícími daty vypořádat různými způsoby:
 
-1. Nejlepší je vždy ověření, proč údaje chybí (např. u poskytovatele dat) a pokud je to možné, zajistit jejich doplnění. 
+1. Nejlepší je vždy ověření, proč údaje chybí (např. u poskytovatele dat) a pokud je to možné, zajistit jejich doplnění.
 1. Nahradit chybějící hodnoty jinými hodnotami.
 1. Odstranit všechny řádky s chybějícími daty z datového setu.
 1. Vyčlenit je do separátního datasetu a zpracovat je zvlášť.
@@ -55,20 +51,20 @@ Důležité je mít na paměti, že vyřazením některých řádků může doj�
 
 Předpokládejme, že jsme si ověřili, že data chybí skutečně pouze u studentů, kteří z daného předmětu nematurovali. Protože nás budou zajímat především statistiky jednotlivých předmětů, můžeme prázdné řádky vynechat, protože označují zkoušky, které ve skutečnosti neproběhly.
 
-Načtěme si nejprve naši první tabulku jako DataFrame.
+Pokud jsme tak ještě neučinili, načteme si naši první tabulku jako DataFrame.
 
 ```pycon
 import pandas
 u202 = pandas.read_csv('u202.csv')
 ```
 
-Pokud Pandas narazí na prázdnou buňku, vloží místo ní do tabulky speciální hodnotu `NaN`, se kterou už jsme se setkali.
+Pokud `pandas` narazí na prázdnou buňku, vloží místo ní do tabulky speciální hodnotu `NaN`, se kterou už jsme se setkali.
 
 Série obsahují metodu `isnull()`, která vrátí pravdivostní sérii s hodnotou `True` všude tam, kde v původní sérii chybí hodnota. Metoda `notnull()` pracuje přesně opačně. Vrátí pravdivostní sérii s hodnotami `True` všude tam, kde v původní sérii hodnota nechybí.
 
 ```pycon
 print(u202['znamka'].isnull())
- 
+
 0      True
 1     False
 2     False
@@ -121,7 +117,7 @@ Pokud chceme tyto tři DataFrame spojit do jednoho, můžeme použít funkci `co
 maturita = pandas.concat([u202, u203, u302])
 ```
 
-Pozor ale na to, že v takto vzniklém DataFrame se nám **rozbije index**, protože se prostě spojí za sebe indexy jednotlivých tabulek. Pokud chceme, aby Pandas při spojování index přepočítal, musíme nastavit hodnotu parametru `ignore_index` na `True`.
+Pozor ale na to, že v takto vzniklém DataFrame se nám **rozbije index**, protože se prostě spojí za sebe indexy jednotlivých tabulek. Pokud chceme, aby `pandas` při spojování index přepočítal, musíme nastavit hodnotu parametru `ignore_index` na `True`.
 
 ```pycon
 maturita = pandas.concat([u202, u203, u302], ignore_index=True)
@@ -146,15 +142,12 @@ Výslednou tabulku si můžete stáhnout jako soubor [maturita.csv](assets/matur
 
 ### Propojení dat
 
-Pandas však umí `DataFrame` také propojit, což odpovídá SQL příkazu `JOIN`. Nyní si ukážeme, jak na to. U výsledné tabulky je důležité, že bude mít **více sloupců**, počet řádků závisí na konkrétním typu operace a na samotných datech, jak ještě uvidíme.
+`pandas` však umí `DataFrame` také propojit, což odpovídá SQL příkazu `JOIN`. Nyní si ukážeme, jak na to. U výsledné tabulky je důležité, že bude mít **více sloupců**, počet řádků závisí na konkrétním typu operace a na samotných datech, jak ještě uvidíme.
 
 Naše výsledky byly anonymní. Pokud bychom ale chtěli vytisknout maturitní vysvědčení, potřebujeme k číslům studenta zjistit jejich jména. Jména najdeme v samostatné tabulce [studenti.csv](assets/studenti.csv). Načtěme si jej jako `DataFrame`.
 
 ```pycon
-r = requests.get("https://kodim.cz/czechitas/progr2-python/python-pro-data-1/agregace-a-spojovani/assets/studenti.csv")
-open("studenti.csv", "wb").write(r.content)
-
-studenti = pandas.read_csv('studenti.csv')
+studenti = pandas.read_csv('https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/studenti.csv')
 studenti.head()
 
    cisloStudenta             jméno
@@ -170,9 +163,9 @@ U operace `JOIN` jsou důležité dvě věci:
 - **Podle jakého sloupce** (nebo jakých sloupců) dvě různé tabulky propojujeme.
 - Co udělat v případě, že pro nějaké řádky **nemám ve druhé tabulce odpovídající hodnotu**.
 
-Propojení tabulek se v Pandas dělá pomocí funkce `merge` (dokumentaci k ní je [zde](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html)). Ve výchozím nastavení funkce `merge` provádí spojení podle sloupců, které mají shodný název. V našem případě mají oba `DataFrame` sloupec `cisloStudenta`, je tedy použit tento sloupec. Je to přesně ten sloupec, podle kterého bychom je chtěli spojit.
+Propojení tabulek se v `pandas` dělá pomocí funkce `merge` (dokumentaci k ní je [zde](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html)). Ve výchozím nastavení funkce `merge` provádí spojení podle sloupců, které mají shodný název. V našem případě mají oba `DataFrame` sloupec `cisloStudenta`, je tedy použit tento sloupec. Je to přesně ten sloupec, podle kterého bychom je chtěli spojit.
 
-Ve výchozím nastavení funkce `merge()` ponechá pouze řádky, které mají záznamy v obou tabulkách. V SQL bychom tuto operaci označili jako `INNER JOIN`. 
+Ve výchozím nastavení funkce `merge()` ponechá pouze řádky, které mají záznamy v obou tabulkách. V SQL bychom tuto operaci označili jako `INNER JOIN`.
 
 ```pycon
 propojeny_df = pandas.merge(u202, studenti)
@@ -200,10 +193,7 @@ Zde vidíme, že data jsou zřejmě v pořádku.
 Dále připojíme tabulku [predsedajici.csv](assets/predsedajici.csv), kde máme vypsané předsedy maturitních komisí. Tu si opět načteme jako `DataFrame`.
 
 ```pycon
-r = requests.get("https://kodim.cz/czechitas/progr2-python/python-pro-data-1/agregace-a-spojovani/assets/predsedajici.csv")
-open("predsedajici.csv", "wb").write(r.content)
-
-preds = pandas.read_csv('predsedajici.csv')
+preds = pandas.read_csv('https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/predsedajici.csv')
 ```
 
 Zkusme tabulky spojit jako předtím.
@@ -235,14 +225,14 @@ Zatím to vypadá dobře. Pokud se ovšem podíváme na `shape`, něco nám tady
 
 ```pycon
 print(novy_propojeny_df.shape)
-   
+
 (10, 8)
 ```
 
 Najednou máme v tabulce pouze 12 řádků, některé tedy zmizely. To znamená, že funkce `merge()` nenašla pro všechna zkoušení odpovídajícího předsedu. Jak je to možné? Zkusme nyní říct funkci `merge()`, aby nám zachovala v prvním `DataFrame` ty řádky, pro které nenajde odpovídající záznam. Této operaci se v jazyce SQL říká LEFT OUTER JOIN. My ho provede tak, že funkci `merge()` jako parametr `how` zadáme hodnotu `left`.
 
 ```pycon
-novy_propojeny_df = pandas.merge(propojeny_df, preds, on=['den'], how="outer") 
+novy_propojeny_df = pandas.merge(propojeny_df, preds, on=['den'], how="outer")
 print(novy_propojeny_df.shape)
 
 (14, 8)
@@ -278,7 +268,7 @@ novy_propojeny_df = novy_propojeny_df.rename(columns={'jmeno_x': 'jmeno', 'jmeno
 ```
 ### Agregace
 
-Z databází známe kromě UNION a JOIN také operaci GROUP BY. V Pandas ji provedeme tak, že pomocí metody `groupby` vyrobíme z `DataFrame` speciální objekt `DataFrameGroupBy`. Dejme tomu, že chceme grupovat podle sloupečku `mistnost`.
+Z databází známe kromě UNION a JOIN také operaci GROUP BY. V `pandas` ji provedeme tak, že pomocí metody `groupby` vyrobíme z `DataFrame` speciální objekt `DataFrameGroupBy`. Dejme tomu, že chceme grupovat podle sloupečku `mistnost`.
 
 ```pycon
 maturita.groupby('mistnost')
@@ -320,7 +310,7 @@ Pomocí agregací můžeme vyřešit i náš problém s nákupy. Pokud máme st�
 
 ```pycon
 nakupy = pandas.read_csv('nakupy.csv')
-nakupy_celkem = nakupy.groupby("Jméno")["Částka v korunách"].sum()  
+nakupy_celkem = nakupy.groupby("Jméno")["Částka v korunách"].sum()
 print(nakupy_celkem)
 
 Jméno

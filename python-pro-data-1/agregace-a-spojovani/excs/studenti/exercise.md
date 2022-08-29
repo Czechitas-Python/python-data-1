@@ -6,14 +6,11 @@ demand: 3
 Stáhni si datové sety, se kterými budeme pracovat v tomto cvičení: [jmena.csv](assets/jmena.csv), [studenti1.csv](assets/studenti1.csv), [studenti2.csv](assets/studenti2.csv).
 
 ```pycon
-import requests
+import pandas
 
-r = requests.get("https://kodim.cz/czechitas/progr2-python/python-pro-data-1/agregace-a-spojovani/excs/studenti/assets/jmena.csv")
-open("jmena.csv", "wb").write(r.content)
-r = requests.get("https://kodim.cz/czechitas/progr2-python/python-pro-data-1/agregace-a-spojovani/excs/studenti/assets/studenti1.csv")
-open("studenti1.csv", "wb").write(r.content)
-r = requests.get("https://kodim.cz/czechitas/progr2-python/python-pro-data-1/agregace-a-spojovani/excs/studenti/assets/studenti2.csv")
-open("studenti2.csv", "wb").write(r.content)
+jmena = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/excs/excs>studenti/jmena.csv")
+s1 = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/excs/excs>studenti/studenti1.csv")
+s2 = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/excs/excs>studenti/studenti2.csv")
 ```
 
 První set už známe z minulé lekce. Druhé dva sety obsahují seznam studentů na nějaké menší IT fakultě. Pozor, tato data nemají žádnou souvislost s výsledky maturity, které jsme procházeli během lekce. 
