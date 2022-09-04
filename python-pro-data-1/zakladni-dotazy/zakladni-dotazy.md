@@ -214,7 +214,7 @@ V tabulce vidíme několik států a kromě Holy See (tj. Vatikánu) jsme o nich
 
 #### Spojení více podmínek
 
-Často narazíme na případ, kdy chceme zkombinovat více podmínek, například chceme tržby v jedné prodejně a pro letošní rok. Při kombinaci se musíme rozhodnout, zda chceme, aby ke zobrazení řádku byly splněné obě, nebo zda stačí, aby byla splněna pouze jedna z nich (jde o princip používaný při [vícenásobných podminkách](http://nove.kodim.cz/czechitas/progr2-python/zaklady-programovani-2/podminky-2)).
+Často narazíme na případ, kdy chceme zkombinovat více podmínek, například chceme tržby v jedné prodejně a pro letošní rok. Při kombinaci se musíme rozhodnout, zda chceme, aby ke zobrazení řádku byly splněné obě, nebo zda stačí, aby byla splněna pouze jedna z nich.
 
 Pokud chceme, aby musely být splněny obě podmínky, vložíme mezi ně symbol `&`. Uvažujme dvě podmínky:
 
