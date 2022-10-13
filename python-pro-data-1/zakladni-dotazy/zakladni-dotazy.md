@@ -6,7 +6,7 @@ Tentokrát si vyzkoušíme načíst data ze souboru ve formátu JSON. Konkrétn�
 
 ### Indexy
 
-Pokud ještě nemáš otevřený Python terminál, otevři si ho. Soubor načteme pomocí funkce `read_json`, kde jako první parametr zadáme název souboru. Data jsou opět vrácena jako `DataFrame` a my si je uložíme do proměnné `staty`. U dat o státech světa však můžeme přidat jedno zlepšení. Víme, že každý stát na světě má svůj název a ten název je **unikátní** a **identifikuje ho**. Můžeme tedy tento název použít jako **index**. 
+Pokud ještě nemáš otevřený Python terminál, otevři si ho. Soubor načteme pomocí funkce `read_json`, kde jako první parametr zadáme název souboru. Data jsou opět vrácena jako `DataFrame` a my si je uložíme do proměnné `staty`. U dat o státech světa však můžeme přidat jedno zlepšení. Víme, že každý stát na světě má svůj název a ten název je **unikátní** a **identifikuje ho**. Můžeme tedy tento název použít jako **index**.
 
 **K zamyšlení:** Jaký index bychom použili pro tabulku zaměstnanců ve firmě, tabulku obcí České republice a tabulku aut v autopůjčovně? Pamatuj, že index by měl být unikátní.
 
@@ -61,7 +61,7 @@ Z názvů sloupců bychom mohli odvodit, jaké informace se v našem `DataFrame`
 K nalezení řádku pomocí indexu použijeme `loc`, která funguje obdobně jako funkce `iloc`. Oproti ní však primárně používá námi zvolené indexy, zatímco funkce `iloc` pracuje s čísly řádků. Opět platí, že používáme hranaté závorky, protože `loc` není běžná funkce.
 
 ```pycon
->>> staty.loc["Czech Republic"] 
+>>> staty.loc["Czech Republic"]
 alpha2Code                CZ
 alpha3Code               CZE
 capital               Prague
@@ -169,11 +169,11 @@ V datové analýze podmínkám rozhodně neutečeš. Podmínky jsou velmi užite
 V jazyce SQL píšeme podmínky za klíčové slovo `WHERE`, v Excelu můžeme použít funkce Filtr atd. V `pandas` používáme funkci `query`. Název této funkce si ale pamatovat nemusíš, protože namísto ní opět můžeme použít hranaté závorky.
 
  Začněme s tím, že se podíváme na nejmenší státy, které na světě jsou. Nechme si například vypsat státy, které mají méně než 1000 obyvatel. Postup si vysvětlíme ve dvou krocích.
- 
+
  Nejprve potřebujeme formulovat podmínku. Ta bude vypadat takto `staty["population"] < 1000`. V podmínce máme sloupec, na který se ptáme, a porovnání s číselnou hodnotou. Používáme nám již známý operátor menší než (`<`). Zkusme si zadat samotnou podmínku do terminálu a podívejme se na výsledek.
 
 ```pycon
->>> staty["population"] < 1000     
+>>> staty["population"] < 1000
 name
 Afghanistan          False
 Åland Islands        False
@@ -195,7 +195,7 @@ My v naší tabulce ale máme 250 států s různými počty obyvatel, proto ná
 
 ```pycon
 >>> pidistaty = staty[staty["population"] < 1000]
->>> pidistaty[["population", "area"]]  
+>>> pidistaty[["population", "area"]]
                                               population     area
 name
 Bouvet Island                                          0    49.00
