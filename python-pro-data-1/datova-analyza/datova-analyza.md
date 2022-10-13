@@ -85,7 +85,7 @@ Kromě CVS používáme další dva důležité formáty: JSON (JavaScript Objec
 
 Formát JSON ti bude povědomý, pokud už jsi v Pythonu pracoval(a) se slovníky (`dict`). Na první pohled vypadají téměř stejně. Python ti navíc jednoduše umožní data ve formátu JSON převést na slovníky a seznamy. K tomu slouží modul příhodně pojmenovaný `json`. S tímto formátem si ale hravě poradí i `pandas`.
 
-```
+```json
 [
   {
     "Jméno": "Petr",
@@ -147,7 +147,7 @@ Formát JSON ti bude povědomý, pokud už jsi v Pythonu pracoval(a) se slovník
 
 Dalším používaným formátem je XML. XML je velmi podobné HTML, tedy jazyku, kterým určujeme, jak má vypadat webová stránka.
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <nákupy>
    <nákup jméno="Petr" věc="Prací prášek">399</nákup>
@@ -178,7 +178,7 @@ U obou formátů musíme dodržovat základní pravidla, jinak bude soubor pro p
 
 Nejnovějším z formátů je YAML (YAML Ain't Markup Language), který vznikl v roce 2011. Byl vyvinut s ohledem pro snadnou čtenost člověkem.
 
-```
+```yaml
 - Jméno: Petr
   Věc: Prací prášek
   Částka v korunách: 399

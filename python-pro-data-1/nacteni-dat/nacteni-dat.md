@@ -6,7 +6,7 @@ Než s daty začneme pracovat, musíme si je nejprve načíst.
 
 V Pandas většinou pracujeme s datovou strukturou zvanou `DataFrame`. Je to tabulková datová struktura a funguje podobně jako tabulka v Excelu nebo v databázi. Můžeme jej považovat za další datový typ vedle slovníků a seznamů. `DataFrame` obsahuje data ve sloupcích, kde každý sloupec může mít různý datový typ, tedy například číslo, desetinné číslo, řetězec, pravdivostní hodnota a jiné.
 
-**Poznámka:** Pokud znáš základy objektově orientovaného programování, pak věz, že `DataFrame` je ve skutečnosti třída a my na jejím základě budeme vytvářet objekty. 
+**Poznámka:** Pokud znáš základy objektově orientovaného programování, pak věz, že `DataFrame` je ve skutečnosti třída a my na jejím základě budeme vytvářet objekty.
 
 Abychom si práci s DataFrame vyzkoušeli, vrátíme se k naší tabulce se seznamem nákupů.
 
@@ -70,12 +70,12 @@ Jakmile máme tabulku načtenou, budeme o ní chtít vědět nějaké úplně z�
 <class 'pandas.core.frame.DataFrame'>
 RangeIndex: 11 entries, 0 to 10
 Data columns (total 4 columns):
- #   Column             Non-Null Count  Dtype 
----  ------             --------------  ----- 
+ #   Column             Non-Null Count  Dtype
+---  ------             --------------  -----
  0   Jméno              11 non-null     object
  1   Datum              11 non-null     object
  2   Věc                11 non-null     object
- 3   Částka v korunách  11 non-null     int64 
+ 3   Částka v korunách  11 non-null     int64
 dtypes: int64(1), object(3)
 memory usage: 480.0+ bytes
 ```
@@ -110,7 +110,7 @@ V některých případech nás jako první při práci s daty napadne nějak si 
 
 K tomu použijeme výběr sloupců pomocí hranatých závorek. Zápis připomíná práci se seznamy - hranatou závorku napíšeme přímo za název proměnné, kde máme uložený `DataFrame`, a do ní vepíšeme název sloupce, který nás zajímá.
 
-```
+```pycon
 >>> nakupy['Věc']
 0         Prací prášek
 1                 Savo
@@ -130,7 +130,7 @@ Zde je důležité říct, že pokud vybíráme pouze jeden sloupec, vrátí se 
 
 Pro výběr více sloupců musíme do indexace DataFrame vložit seznam s názvy sloupců.
 
-```
+```pycon
 >>> nakupy[['Jméno', 'Částka v korunách']]
     Jméno  Částka v korunách
 0    Petr                399
@@ -148,7 +148,7 @@ Pro výběr více sloupců musíme do indexace DataFrame vložit seznam s názvy
 
 Tady se nám již vrátil datový typ DataFrame. Tohoto triku můžeme využít, když chceme získat pouze jeden sloupec, ale nechceme ho v datovém typu Série, ale jako DataFrame.
 
-```
+```pycon
 >>> nakupy[['Věc']]
                  Věc
 0       Prací prášek
@@ -172,8 +172,8 @@ K vybrání jednoho konkrétního řádku můžeme použít `iloc[]`. `iloc` ná
 
 Zkusme si zobrazit třeba **čtvrtý** nákup. Číslujeme tradičně od nuly, jistě tě tedy nepřekvapí, že napíšeme `nakupy.iloc[3]`.
 
-```
->>> nakupy.iloc[3] 
+```pycon
+>>> nakupy.iloc[3]
 Jméno                     Libor
 Datum                2020-03-05
 Věc                        Pivo
@@ -186,16 +186,16 @@ Všimni si, že když jsme chtěli pouze jeden řádek, vypsal se nám výsledek
 Metoda `iloc[]` umožňuje pro výběr řádků použít rozsah ve formátu `od:do`. K tomu používáme **dvojtečku**. Před dvojtečku píšeme první řádek, který chceme vypsat a za dvojtečku první řádek, který již vy výpisu nebude. Pokud tedy například napíšeme `nakupy.iloc[3:5]`, získáme řádky s indexy 3 a 4, ale už ne řádek s indexem 5.
 
 ```pycon
->>> nakupy.iloc[3:5] 
+>>> nakupy.iloc[3:5]
    Jméno       Datum               Věc  Částka v korunách
 3  Libor  2020-03-05              Pivo                124
-4   Petr  2020-03-18  Pytel na odpadky    
+4   Petr  2020-03-18  Pytel na odpadky
 ```
 
 Pokud se chceme podívat třeba na první tři řádky, nemusíme před dvojtečku psát 0, stačí napsat `iloc[:3]`.
 
 ```pycon
->>> nakupy.iloc[:3] 
+>>> nakupy.iloc[:3]
    Jméno       Datum             Věc  Částka v korunách
 0   Petr  2020-02-05    Prací prášek                399
 1  Ondra  2020-02-08            Savo                 80
@@ -205,7 +205,7 @@ Pokud se chceme podívat třeba na první tři řádky, nemusíme před dvojteč
 Podobně si můžeme nechat vypsat poslední tři řádky. Pokud víme, že řádků je 10, chceme vypsat řádky od osmého dále. Nyní se nabízí napsat číslo před dvojtečku. Píšeme tam ale 8, protože řádek, jehož číslo je před dvojtečkou, je vždy součástí výpisu.
 
 ```pycon
->>> nakupy.iloc[8:] 
+>>> nakupy.iloc[8:]
     Jméno       Datum    Věc  Částka v korunách
 8   Zuzka  2020-06-05   Savo                 80
 9   Pavla  2020-06-13  Máslo                 50
@@ -215,7 +215,7 @@ Podobně si můžeme nechat vypsat poslední tři řádky. Pokud víme, že řá
 Nevýhodou postupu je, že si musíme předem zjistit, jak kolik řádků máme. U seznamů už ale existoval trik použití záporného čísla. Ten můžeš použít i v `pandas`. Pokud napíšeš `iloc[-3:]`, získáš též poslední tři řádky.
 
 ```pycon
->>> nakupy.iloc[-3:] 
+>>> nakupy.iloc[-3:]
     Jméno       Datum    Věc  Částka v korunách
 8   Zuzka  2020-06-05   Savo                 80
 9   Pavla  2020-06-13  Máslo                 50
@@ -268,7 +268,7 @@ Name: Jméno, dtype: object
 U sloupců ale často narazíme na to, že jich chceme několik, ale ony nutně nemusí být vedle sebe. nás u nákupů asi bude nejvíce zajímat jméno a částka. Abychom dali dohromady dvě čísla, která neleží vedle sebe, můžeme použít seznam. Pro prvních pět nákupů tedy jako druhý parametr napíšeme `[0,3]`.
 
 ```pycon
->>> nakupy.iloc[:5,[0,3]] 
+>>> nakupy.iloc[:5,[0,3]]
    Jméno  Částka v korunách
 0   Petr                399
 1  Ondra                 80
@@ -280,7 +280,7 @@ U sloupců ale často narazíme na to, že jich chceme několik, ale ony nutně 
 Pokud bys chtěla vidět všechny řádky, jako první parametr napiš pouze dvojtečku.
 
 ```pycon
->>> nakupy.iloc[:,[0,3]]  
+>>> nakupy.iloc[:,[0,3]]
     Jméno  Částka v korunách
 0    Petr                399
 1   Ondra                 80
