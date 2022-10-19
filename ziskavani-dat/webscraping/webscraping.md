@@ -18,12 +18,12 @@ Ve Visual Studiu ve složce s naší ukázkovou stránkou si vytvořte program `
 
 ```py
 from requests_html import HTML
-with open('sample.html', encoding='utf-8') as soubor:
+with open('ukazka.html', encoding='utf-8') as soubor:
     obsah = soubor.read()
 html = HTML(html=obsah)
 ```
 
-Proměnná html, nyní obsahuje naši HTML stránku ve formátu, který můžeme použít k vyhledávání.
+Proměnná `html` nyní obsahuje naši HTML stránku ve formátu, který můžeme použít k vyhledávání.
 
 HTML značky můžeme vyhledávat podle jména. Takto například najdeme všechny odstavce a vypíšeme jejich text každý na nový řádek.
 
