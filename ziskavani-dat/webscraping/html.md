@@ -6,7 +6,7 @@ Web scraping je technika pomocí které můžeme strojově číst obsah webovýc
 
 ### HTML značky (tagy)
 
-V následující ukázce vidíte HTML kód celé webové stránky tak, jak by si ji stáhl prohlížeč odněkud ze server.
+V následující ukázce vidíte HTML kód celé webové stránky tak, jak by si ji stáhl prohlížeč odněkud ze serveru.
 
 ```html
 <html>
