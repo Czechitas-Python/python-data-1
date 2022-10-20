@@ -46,7 +46,7 @@ Stránka se poté v prohlížeči zobrazí nějak takto. Zatím nevypadá příl
 
 ::fig[Ukázka HTML]{src=assets/ukazka-html.png size=80}
 
-Vytvořte si na svém počítači složku `ukazka-html` a otevřete ji ve Visual Studiu. Vytvořte v této složce soubor `ukazka.html` a zkopírujte do něj výše uvedený kód a uložte. Poté tento soubor najděte v průzkumníku a dvojklikem by se vám měl otevřít ve vašem oblíbeném prohlížeči. Můžete tak zkontrolovat, že prohlížeč vaši stránku skutečně zobrazí tak, jak je uvedeno na obrázku výše.
+Vytvořte si ve Visual Studiu soubor `ukazka.html`, zkopírujte do něj výše uvedený kód a soubor uložte. Poté tento soubor najděte v průzkumníku a dvojklikem by se vám měl otevřít ve vašem oblíbeném prohlížeči. Můžete tak zkontrolovat, že prohlížeč vaši stránku skutečně zobrazí tak, jak je uvedeno na obrázku výše.
 
 V naší první webové stránce jsme viděli takzvané :term{cs="HTML značky" en="HTML tags"}. Značky se píší do špičatých závorek a většina značek má otevírací a zavírací část. Například značka `em` pro zvýraznění textu vypadá takto
 
