@@ -5,39 +5,31 @@ V této lekci si ukážeme, jak zobrazovat různé druhy grafů pomocí modulu `
 
 Modul `matplotlib` nabízí ohromné množství možností pro vizualizaci dat. My zde probereme jen naprosté základy, aby nám lekce nenarostla to olbřímích rozměrů.
 
-```pycon
-import matplotlib.pyplot as plt
-```
-
-Pokud vše proběhlo jak má, můžeme vyzkoušet zobrazit naše první data. Budou to pohyby na bankovním účtu za měsíc březen 2019.
-
-```pycon
-pohyby = [746, 52, -749, -63, 71, 958, 157, -1223, -1509, -285, -350, 728, -260, 809, -164, 243, -238, 233, -646, -82, -275, 179, 417, 149, 301, 957, -711, 376, 421, -15, -663]
-```
-
-Z těchto dat si vyrobíme Pandas sérii. Abychom byli co nejpoctivější, vyrobíme si index naší série jako objekty typu `date`
-
-```pycon
+```py
 import pandas
-import datetime
-datumy = []
-for day in range(1, 32):
-    datumy.append(datetime.date(2019, 3, day))
-ucet = pandas.Series(pohyby, index=datumy)
-```
+import matplotlib.pyplot as plt
 
-Nyní vyzkoušíme zobrazit přírůstky jako graf. Stačí napsat
+url = "https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/vizualizace/ucet.csv"
+ucet = pandas.read_csv(url, names=['datum', 'pohyb'], index_col='datum')
+print(ucet)
 
-```pycon
 ucet.plot()
 plt.show()
 ```
+
+* Importujeme si objekt `pyplot` z knihovny `matplotlib` a pojmenujeme si ho jako `plt`
+* Použijeme funkci `pandas.read_csv()`, kterou si necháme data stáhnout rovnou z internetu
+* Protože CSV soubor nemá hlavičku, musíme si sloupce sami pojmenovat a určit, který bude DataFrame index
+* Necháme si DataFrame vykreslit do podoby grafu
+* Obrázek s grafem si zobrazíme
+
+Mělo by se vám otevřít nové okno s následujícím obrázkem
 
 ::fig[Graf pohybů]{src=assets/prirustky.png}
 
 Užitečnější by mohlo být zobrazit graf zůstatků
 
-```pycon
+```py
 ucet.cumsum().plot()
 plt.show()
 ```
@@ -46,7 +38,7 @@ plt.show()
 
 Nyní si s grafem můžeme vyhrát podle chuti a nastavit jeho vzezření přesně tak, jak potřebujeme. Metoda `plot` na sériích obsahuje nepřeberné možnosti nastavení. Například takto vyrobíme z pohybů na účtu sloupcový graf s mřížkou ve žluté barvě.
 
-```pycon
+```py
 ucet.plot(kind='bar', color='yellow', grid=True)
 plt.show()
 ```
@@ -73,7 +65,7 @@ Výběr vhodného typu vizualizace se odvíjí od toho, jaká data zobrazujeme. 
 
 Histogram je důležitý typ grafu, který nám umožňuje zobrazit četnost hodnot z nějakého datasetu. Následující seznam obsahuje výšku 64 náhodných mužů v České republice, měřeno v centimetrech.
 
-```pycon
+```py
 muzi = pandas.Series([
     179.3, 183.7, 181.4, 176.0, 183.6, 184.7, 163.4, 180.3,
     167.5, 166.8, 173.5, 172.5, 173.0, 177.6, 176.0, 179.5,
@@ -88,7 +80,7 @@ muzi = pandas.Series([
 
 Pomocí histogramu zobrazíme četnosti jednotlivých hodnot.
 
-```pycon
+```py
 muzi.hist()
 plt.show()
 ```
@@ -97,7 +89,7 @@ plt.show()
 
 Histogram si pro přehlednost můžeme rozdělit do <term cs="přihrádek" en="bins"> po pěti centimetrech
 
-```pycon
+```py
 muzi.hist(bins=[
     150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 205, 210
 ])
@@ -110,7 +102,7 @@ plt.show()
 
 Krabicový graf graficky znázorňuje medián a kvartily naměřených hodnot. Můžeme si jej vyzkoušet na výškách mužů.
 
-```pycon
+```py
 muzi.plot(kind='box', whis=[0, 100])
 plt.show()
 ```
@@ -119,7 +111,7 @@ plt.show()
 
 Krabicové grafy jsou užitečné především pro porovnání dvou různých měření. Přidejme si druhou datovou sadu představující naměřené výšky žen
 
-```pycon
+```py
 zeny = pandas.Series([
     172.0, 169.0, 166.8, 164.6, 172.7, 171.5, 167.0, 167.0,
     168.3, 184.7, 166.0, 160.0, 168.8, 165.8, 173.5, 163.0,
@@ -134,7 +126,7 @@ zeny = pandas.Series([
 
 Nyní chceme zobrazit krabicový graf porovnávající výšky obou pohlaví. K tomu si z našich sérií vyrobíme DataFrame.
 
-```pycon
+```py
 vysky = muzi.to_frame(name='muži')
 vysky['ženy'] = zeny
 vysky.plot(kind='box', whis=[0, 100])
