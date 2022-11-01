@@ -4,26 +4,29 @@ V této části si zkusíme napas nějaké základní dotazy na naše data. `pan
 
 Tentokrát si vyzkoušíme načíst data ze souboru ve formátu JSON. Konkrétně budeme pracovat s daty o státech světa, která jsou stažená ze služby [restcountries](https://restcountries.com/). Data si můžeš [stáhnout zde](assets/staty.json). Opět platí, že si je musíš stáhnout do adresáře, kde máš právě otevřený terminál!
 
-### Indexy
+## Indexy
 
-Pokud ještě nemáš otevřený Python terminál, otevři si ho. Soubor načteme pomocí funkce `read_json`, kde jako první parametr zadáme název souboru. Data jsou opět vrácena jako `DataFrame` a my si je uložíme do proměnné `staty`. U dat o státech světa však můžeme přidat jedno zlepšení. Víme, že každý stát na světě má svůj název a ten název je **unikátní** a **identifikuje ho**. Můžeme tedy tento název použít jako **index**.
+Vytvoř si nový Python skript. Soubor načteme pomocí funkce `read_json`, kde jako první parametr zadáme název souboru. Data jsou opět vrácena jako `DataFrame` a my si je uložíme do proměnné `staty`. U dat o státech světa však můžeme přidat jedno zlepšení. Víme, že každý stát na světě má svůj název a ten název je **unikátní** a **identifikuje ho**. Můžeme tedy tento název použít jako **index**.
 
 **K zamyšlení:** Jaký index bychom použili pro tabulku zaměstnanců ve firmě, tabulku obcí České republice a tabulku aut v autopůjčovně? Pamatuj, že index by měl být unikátní.
 
-#### Přidání indexu
+### Přidání indexu
 
 To, jaký sloupec má být použit jako index, řeší funkce `set_index()`. Ta nám vrátí upravený `DataFrame`, který si můžeme uložit do původní proměnné `staty`.
 
-```pycon
->>> import pandas
->>> staty = pandas.read_json("staty.json")
->>> staty = staty.set_index("name")
+```py
+import pandas
+staty = pandas.read_json("staty.json")
+staty = staty.set_index("name")
 ```
 
 Úspěch našeho počínání si můžeme zkontrolovat pomocí příkazu `staty.index`, který nám zobrazí informace o indexu.
 
-```pycon
->>> staty.index
+```py
+print(staty.index)
+```
+
+```shell
 Index(['Afghanistan', 'Åland Islands', 'Albania', 'Algeria', 'American Samoa',
        'Andorra', 'Angola', 'Anguilla', 'Antarctica', 'Antigua and Barbuda',
        ...
@@ -35,8 +38,11 @@ Index(['Afghanistan', 'Åland Islands', 'Albania', 'Algeria', 'American Samoa',
 
 Podívejme se nejprve, jaké informace jsou v naší tabulce obsažené.
 
-```pycon
->>> staty.info()
+```py
+staty.info()
+```
+
+```shell
 <class 'pandas.core.frame.DataFrame'>
 Index: 250 entries, Afghanistan to Zimbabwe
 Data columns (total 8 columns):
@@ -54,14 +60,17 @@ dtypes: float64(2), int64(1), object(5)
 memory usage: 17.6+ KB
 ```
 
-#### Výběr konkrétního řádku a hodnoty
+### Výběr konkrétního řádku a hodnoty
 
 Z názvů sloupců bychom mohli odvodit, jaké informace se v našem `DataFrame` nacházejí, ale možná se zorientujeme lépe, když se podíváme na nějaký konkrétní řádek.
 
 K nalezení řádku pomocí indexu použijeme `loc`, která funguje obdobně jako funkce `iloc`. Oproti ní však primárně používá námi zvolené indexy, zatímco funkce `iloc` pracuje s čísly řádků. Opět platí, že používáme hranaté závorky, protože `loc` není běžná funkce.
 
-```pycon
->>> staty.loc["Czech Republic"]
+```py
+print(staty.loc["Czech Republic"])
+```
+
+```shell
 alpha2Code                CZ
 alpha3Code               CZE
 capital               Prague
@@ -75,16 +84,19 @@ Name: Czech Republic, dtype: object
 
 Opět jsme vybrali jeden řádek, získáme tedy výsledek jako sérii. Můžeme však jít ještě dále a získat jednu konkrétní hodnotu. Funkci `loc` dodáme druhý parametr, který bude obsahovat jméno sloupce, ze kterého chceme hodnotu vybrat. Vyberme si třeba rozlohu, kterou uložíme do proměnné `rozloha`.
 
-```pycon
+```py
 rozloha = staty.loc["Czech Republic","area"]
 ```
 
-#### Výběr několika řádků
+### Výběr několika řádků
 
 Funkce `loc()` si podobně jako `iloc()` dobře rozumí s dvojtečkou. Náš soubor je seřazený dle abecedy. Pokud tedy chceme vypsat všechny státy, jejich názvy v abecedě patří mezi Českou republikou a Dominikánskou republikou, vložíme tato jméno do uvozovek a dáme mezi ně dvojtečku.
 
-```pycon
->>> staty.loc["Czech Republic":"Dominican Republic"] 
+```py
+print(staty.loc["Czech Republic":"Dominican Republic"])
+```
+
+```shell
                    alpha2Code alpha3Code        capital    region        subregion  population     area  gini
 name
 Czech Republic             CZ        CZE         Prague    Europe   Eastern Europe    10558524  78865.0  26.0
@@ -95,15 +107,19 @@ Dominican Republic         DO        DOM  Santo Domingo  Americas        Caribbe
 ```
 
 Podobně se funkce chová, i když zadáme jen jednu hranici. Můžeme si třeba zkusit vypsat hodnoty od začátku po Andorru nebo od Uzbekistánu do konce.
-```pycon
->>> staty.loc[:"Andorra"]
->>> staty.loc["Uzbekistan":] 
+
+```py
+print(staty.loc[:"Andorra"])
+print(staty.loc["Uzbekistan":])
 ```
 
 Pokud by nás zajímaly informace o více řádcích, které spolu nesousedí, můžeme opět použít seznam. Index řádků, které nás zajímají, vložíme do seznamu a ten předáme jako první parametr funkci `loc`.
 
-```pycon
->>> staty.loc[["Czech Republic","Slovakia"]]   
+```py
+print(staty.loc[["Czech Republic","Slovakia"]])
+```
+
+```shell
                alpha2Code alpha3Code     capital  region       subregion  population     area  gini
 name
 Czech Republic         CZ        CZE      Prague  Europe  Eastern Europe    10558524  78865.0  26.0
@@ -112,8 +128,11 @@ Slovakia               SK        SVK  Bratislava  Europe  Eastern Europe     542
 
 Pomocí seznamu se můžeme zeptat i na informace z více sloupců. Zkusme si třeba porovnat rozlohu a počet obyvatel sousedních států České republiky.
 
-```pycon
->>> staty.loc[["Slovakia","Poland","Germany","Austria"], ["area","population"]]
+```py
+print(staty.loc[["Slovakia","Poland","Germany","Austria"], ["area","population"]])
+```
+
+```shell
               area  population
 name
 Slovakia   49037.0     5426252
@@ -122,44 +141,46 @@ Germany   357114.0    81770900
 Austria    83871.0     8725931
 ```
 
-### Dotazy
+## Dotazy
 
 Nyní si vyzkoušíme jednu z hlavních prací datového analytika, a to je **psaní dotazů**. Logika psaní dotazů je v různých prostředích stejná, liší se pouze to, jak ji provádíme. Podívejme se na konkrétní příklady.
 
-#### Výběr sloupců
+### Výběr sloupců
 
 Již jsme si říkali, že ne vždy nás zajímají všechna data. Řádky již umíme vybrat pomocí funkce `loc`. Funkce `loc` je praktická, pokud vybíráme konkrétní řádky a k nim nějaké konkrétní sloupce. Dále si zopakujme, že pokud chceme vybrat jen sloupec a zachovat všechny řádky, zpravidla použijeme výběr sloupců pomocí hranatých závorek.
 
-```pycon
->>> staty["population"]
+```py
+print(staty["population"])
 ```
 
 Pokud nás zajímá více sloupců, můžeme opět použít seznam, do kterého sloupce vepíšeme.
 
-```pycon
->>> staty[["population", "area"]] 
+```py
+print(staty[["population", "area"]])
 ```
 
-#### Co vlastně umí série
+### Co vlastně umí série
 
 Asi se teď říkáš, k čemu je to vlastně dobré. Zkusme si jednoduchý příklad: Chceme zjistit, kolik lidí žije ve všech státech světa. Bude nás tedy zajímat pouze sloupec `population`, kde máme sérii s počty obyvatel jednotlivých států. Série sama o sobě umí zajímavé věci, například umí sama spočítat svůj součet a vrátit výsledek jako číslo. K tomu slouží funkce `sum`. K jejímu volání opět použijeme tečkovou notaci.
 
-```pycon
->>> populace = staty["population"]
->>> populace.sum()
+```py
+populace = staty["population"]
+print(populace.sum())
+```
+
+```shell
 7349137231
 ```
 
 Oba kroky můžeme spojit do jednoho.
 
-```pycon
->>> staty["population"].sum()
-7349137231
+```py
+print(staty["population"].sum())
 ```
 
 Série umí spočítat řadu dalších věcí, jako třeba průměr (funkce `mean`), minimum a maximum (funkce `min` a `max`) nebo medián (funkce `median`). Přehled všech funkcí najdeš [v dokumentaci](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html).
 
-#### Podmínky (ano, už zase)
+### Podmínky (ano, už zase)
 
 V datové analýze podmínkám rozhodně neutečeš. Podmínky jsou velmi užitečné, protože bez nich bychom museli pracovat se všemi daty, co jsme dostali, což není vždy žádoucí.
 
@@ -173,7 +194,10 @@ V jazyce SQL píšeme podmínky za klíčové slovo `WHERE`, v Excelu můžeme p
  Nejprve potřebujeme formulovat podmínku. Ta bude vypadat takto `staty["population"] < 1000`. V podmínce máme sloupec, na který se ptáme, a porovnání s číselnou hodnotou. Používáme nám již známý operátor menší než (`<`). Zkusme si zadat samotnou podmínku do terminálu a podívejme se na výsledek.
 
 ```pycon
->>> staty["population"] < 1000
+print(staty["population"] < 1000)
+```
+
+```shell
 name
 Afghanistan          False
 Åland Islands        False
@@ -193,9 +217,12 @@ Pokud si vzpomeneš na hodnoty typu `bool`, víš, že ty mohly nabývat pouze d
 
 My v naší tabulce ale máme 250 států s různými počty obyvatel, proto nám náš dotaz vrací 250 hodnot, z nichž některé jsou `True` a některé `False`. Vytvořili jsme tedy jakýsi polotovar. My nyní chceme vidět jen ty řádku, kde máme hodnotu `True`, což nám dá státy s počtem obyvatel menší než 1000. K tomu využijeme poměrně zvláštní zápis - naši podmínku vložíme do hranatých závorek.
 
-```pycon
->>> pidistaty = staty[staty["population"] < 1000]
->>> pidistaty[["population", "area"]]
+```py
+pidistaty = staty[staty["population"] < 1000]
+print(pidistaty[["population", "area"]])
+```
+
+```shell
                                               population     area
 name
 Bouvet Island                                          0    49.00
@@ -212,7 +239,7 @@ Tento podivný zápis má ve skutečnosti svoji logiku. My jsme v našem polotov
 
 V tabulce vidíme několik států a kromě Holy See (tj. Vatikánu) jsme o nich asi ani nikdy neslyšeli. V některých řádcích vidíme hodnotu `NaN`. To značí, že pro daný řádek hodnotu nemáme, pro některé státy tedy nemáme zadanou rozlohu. Měli bychom si tedy rozmyslet, zda s takovými státy v nějaké analýze vůbec pracovat.
 
-#### Spojení více podmínek
+### Spojení více podmínek
 
 Často narazíme na případ, kdy chceme zkombinovat více podmínek, například chceme tržby v jedné prodejně a pro letošní rok. Při kombinaci se musíme rozhodnout, zda chceme, aby ke zobrazení řádku byly splněné obě, nebo zda stačí, aby byla splněna pouze jedna z nich.
 
@@ -223,9 +250,12 @@ Pokud chceme, aby musely být splněny obě podmínky, vložíme mezi ně symbol
 
 Obě tyto podmínky napíšeme do závorek a vložíme mezi ně symbol `&`. Následně použijeme již známé hranaté závorky, které přidáme hned za proměnnou `staty`.
 
-```pycon
->>> lidnate_evropske_staty = staty[(staty["population"] > 20000000) & (staty["region"] == "Europe")]
->>> lidnate_evropske_staty["population"]
+```py
+lidnate_evropske_staty = staty[(staty["population"] > 20000000) & (staty["region"] == "Europe")]
+print(lidnate_evropske_staty["population"])
+```
+
+```shell
 name
 France                                                   66710000
 Germany                                                  81770900
@@ -240,8 +270,11 @@ Name: population, dtype: int64
 
 Pokud chceme, aby stačilo splnění jedné podmínky, použijeme symbol `|`. Zde vypisujeme státy, které mají buď více než miliardu obyvatel nebo rozlohu větší než 3 miliony kilometrů čtverečních.
 
-```pycon
->>> staty[(staty["population"] > 10_000_000_000) | (staty["area"] > 3_000_000)]
+```py
+print(staty[(staty["population"] > 10_000_000_000) | (staty["area"] > 3_000_000)])
+```
+
+```shell
                          alpha2Code alpha3Code           capital    region                  subregion  population        area  gini
 name
 Antarctica                       AQ        ATA                       Polar                                   1000  14000000.0   NaN
@@ -256,14 +289,17 @@ United States of America         US        USA  Washington, D.C.  Americas      
 
 **Poznámka:** Abychom zpřehlednili zápis velkých čísel, použili jsme podtržítko.
 
-#### Použití seznamu v podmínce
+### Použití seznamu v podmínce
 
 Uvažujme, že bychom chtěli vypsat všechny státy, které leží v západní nebo východní Evropě. Na to bychom mohli použít operátor `|`, ale při dotazu na tři nebo čtyři hodnoty by se takový zápis extrémně protáhl.
 
 V seznamu operátorů na porovnávání jsme měli ještě operátor `in`, kterým jsme ověřovali, jestli je nějaký prvek přítomný v kolekci. Tento operátor nám v `pandas` supluje funkce `isin()`. Pokud tuto funkci aplikujeme na jeden konkrétní sloupec, vrátí ním `True` pro všechny řádky, pro které je hodnota přítomná v seznamu. Náš dotaz na země východní a západní Evropy bychom tedy napsali jako `isin(["Western Europe", "Eastern Europe"])`.
 
-```pycon
->>> staty[staty["subregion"].isin(["Western Europe", "Eastern Europe"])]
+```py
+print(staty[staty["subregion"].isin(["Western Europe", "Eastern Europe"])])
+```
+
+```shell
                       alpha2Code alpha3Code     capital  region       subregion  population         area  gini
 name
 Austria                       AT        AUT      Vienna  Europe  Western Europe     8725931     83871.00  26.0
@@ -286,101 +322,4 @@ Russian Federation            RU        RUS      Moscow  Europe  Eastern Europe 
 Slovakia                      SK        SVK  Bratislava  Europe  Eastern Europe     5426252     49037.00  26.0
 Switzerland                   CH        CHE        Bern  Europe  Western Europe     8341600     41284.00  33.7
 Ukraine                       UA        UKR        Kiev  Europe  Eastern Europe    42692393    603700.00  26.4
-```
-
-### Převody dat na DataFrame a zpět
-
-`DataFrame` nejsou uzavřeným světem, ale umožňují snadný převod na seznamy, případně můžeme naopak převést seznam na `DataFrame`.
-
-#### Převod DataFrame na seznam
-
-K takovému převodu na seznam nám poslouží kombinace funkcí `to_numpy` a `tolist`. Převod totiž neprovádíme přímo, ale jako mezikrok jej převedeme na pole modulu `numpy`.
-
-```pycon
->>> staty_list = staty.to_numpy().tolist() 
->>> staty_list[0] 
-['Kabul', 'Asia', 'Southern Asia', 27657145, 652230.0, 27.8]
-```
-
-Ve výsledných seznamech nám chybí názvy států. Potíž je v tom, že index se v Pandas nebere jako součást dat. Pokud chceme index vrátit do původního stavu a mít ho jako automaticky generovaná čísla řádků, můžeme použít metodu `reset_index`. S její pomocí pak už dokážeme dostat z DataFramu čistá data takto
-
-```pycon
->>> staty_list = staty.reset_index().to_numpy().tolist() 
->>> staty_list[0]
-['Afghanistan', 'Kabul', 'Asia', 'Southern Asia', 27657145, 652230.0, 27.8]
-```
-
-#### Vytvoření DataFrame ze seznamu
-
-Zkusme si nyní opačný postup, převedeme si seznam seznamů (což je jiný zápis dvourozměrné tabulky) na `DataFrame`. Jistě si vzpomínáš na příklad se známkami z testu, kterým jsme měli na prvním workshopu.
-
-```pycon
-znamky = [
-    ['Petr', 2],
-    ['Roman', 1],
-    ['Jitka', 3],
-    ['Zuzana', 5],
-    ['Ondřej', 2],
-    ['Julie', 2],
-    ['Karel', 4],
-    ['Anna', 1],
-    ['Eva', 1]
-]
-```
-
-Naším úkolem bylo spočítat průměrnou známku. K tomu jsme použili cyklus.
-
-```py
-soucet = 0
-for radek in znamky:
-    soucet = soucet + radek[1]
-prumer = soucet / len(znamky)
-```
-
-Průměrnou známku ale můžeme spočítat i pomocí `pandas`. Pomocí funkce `DataFrame` převedeme proměnnou `znamky` na `DataFrame`. Abychom měli v `DataFrame` správné názvy sloupců, definujeme je jako parametr `columns`.
-
-Následně vybereme data ve sloupci `znamka`. Protože jsme vybrali jeden sloupec, získáme sérii. Průměrnou hodnotu v sérii pak spočítáme pomocí funkce `mean`.
-
-```pycon
->>> znamky = pandas.DataFrame(znamky, columns=['student', 'znamka'])
->>> prumer = znamky["znamka"].mean()
-```
-
-Přehled všech funkcí, které pro sérii můžeš použít, opět najdeš [v dokumentaci](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html).
-
-#### Vytvoření DataFrame ze seznamu slovníků
-
-Pokud jsi absolvovala Úvod do programování v Pythonu 2, znáš již též slovníky. I pole složené ze slovníků můžeme převést na `DataFrame`.
-
-```pycon
-nakupy = [
-    {"person": "Petr", "item": "Prací prášek", "value": 399},
-    {"person": "Ondra", "item": "Savo", "value": 80},
-    {"person": "Petr", "item": "Toaletní papír", "value": 65},
-    {"person": "Libor", "item": "Pivo", "value": 124},
-    {"person": "Petr", "item": "Pytel na odpadky", "value": 75},
-    {"person": "Míša", "item": "Utěrky na nádobí", "value": 130},
-    {"person": "Ondra", "item": "Toaletní papír", "value": 120},
-    {"person": "Míša", "item": "Pečící papír", "value": 30},
-    {"person": "Zuzka", "item": "Savo", "value": 80},
-    {"person": "Pavla", "item": "Máslo", "value": 50},
-    {"person": "Ondra", "item": "Káva", "value": 300}
-]
-```
-
-Výhodou je, že nyní nemusíme přidávat názvy sloupců, protože ty už funkce `DataFrame` získá z klíčů slovníků.
-
-```pycon
->>> nakupy = pandas.DataFrame(nakupy)
->>> nakupy.info()
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 11 entries, 0 to 10
-Data columns (total 3 columns):
- #   Column  Non-Null Count  Dtype
----  ------  --------------  -----
- 0   person  11 non-null     object
- 1   item    11 non-null     object
- 2   value   11 non-null     int64
-dtypes: int64(1), object(2)
-memory usage: 392.0+ bytes
 ```
