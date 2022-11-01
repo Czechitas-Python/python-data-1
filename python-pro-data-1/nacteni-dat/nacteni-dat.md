@@ -28,21 +28,21 @@ Abychom si práci s DataFrame vyzkoušeli, vrátíme se k naší tabulce se sezn
 
 Tabulku výše si můžete stáhnout ve [formátu CSV](assets/nakupy.csv). Důležité je, že si soubor musíš uložit nebo zkopírovat do **stejného adresáře**, v jakém právě pracuješ ve Visual Studiu! To si ověříš pomocí příkazu `dir` ve Windows nebo `ls` v MacOS nebo Linuxu. Tento příkaz ti vypíše obsah aktuální adresáře. V přehledu souborů bys měla vidět soubor `nakupy.csv`.
 
-Abychom tabulku načetli jako `DataFrame`, otevřeme si nejprve Python konzoli, importujeme modul `pandas` a načteme CSV soubor pomocí funkce `read_csv().`
+Abychom tabulku načetli jako `DataFrame`, vytvoříme si nový Python skript, importujeme modul `pandas` a načteme CSV soubor pomocí funkce `read_csv().`
 
-```pycon
->>> import pandas
->>> nakupy = pandas.read_csv('nakupy.csv')
+```py
+import pandas
+nakupy = pandas.read_csv('nakupy.csv')
+print(nakupy)
 ```
 
 **Poznámka:** Modul `pandas` nabízí obrovské množství možností. Nemusíš si samozřejmě vše pamatovat, protože vše najdeš přehledně popsáno [v dokumentaci](https://pandas.pydata.org/docs/). Například funkce `read_csv` je [popsána zde](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html). Dokumentaci k samotnému DataFrame najdeš [zde](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html).
 
 Funkce `read_csv` má spoustu nepovinných parametrů, o kterých si můžeme přečíst [v dokumentaci](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html). Například se tam dočteme, že `pandas` standardně nastavuje jako oddělovač sloupců čárku (parametr `sep`). Protože my většinou používáme středník, budeme muset tento parametr často nastavit. Náš soubor `nakupy.csv` ale používá čárku, takže nyní nic měnit nemusíš.
 
-Celý DataFrame vypíšeme na obrazovku tak, že zobrazíme přímo proměnnou `nakupy`.
+Celý DataFrame vypíšeme na obrazovku pomocí funkce `print()`.
 
-```pycon
->>> nakupy
+```shell
     Jméno       Datum               Věc  Částka v korunách
 0    Petr  2020-02-05      Prací prášek                399
 1   Ondra  2020-02-08              Savo                 80
@@ -65,8 +65,13 @@ Pandas nabízí kromě funkce `read_csv()` také funkci pro čtení formátu JSO
 
 Jakmile máme tabulku načtenou, budeme o ní chtít vědět nějaké úplně základní údaje. K tomu nám pomůže metoda `info()`, která vrací souhrnné informace o celé tabulce: názvy sloupců, datové typy, počet neprázdných hodnot atd.
 
-```pycon
->>> nakupy.info()
+```py
+import pandas
+nakupy = pandas.read_csv('nakupy.csv')
+nakupy.info()
+```
+
+```shell
 <class 'pandas.core.frame.DataFrame'>
 RangeIndex: 11 entries, 0 to 10
 Data columns (total 4 columns):
@@ -82,24 +87,35 @@ memory usage: 480.0+ bytes
 
 Počet řádků a sloupců můžeme získat z vlastnosti `shape`:
 
-```pycon
->>> nakupy.shape
+```py
+import pandas
+nakupy = pandas.read_csv('nakupy.csv')
+print(nakupy.shape)
+```
+
+```shell
 (11, 4)
 ```
 
-**Poznámka:** Pokud znáš základy objektově orientovaného programování, pak věz, že `info` je ve skutečnosti funkce třídy `DataFrame`. 
+**Poznámka:** Pokud znáš základy objektově orientovaného programování, pak věz, že `info` je ve skutečnosti funkce třídy `DataFrame`.
 
-`pandas` nám vrací výsledky v sekvenci, která se jmenuje `tuple`. Nám stačí vědět, že si z ní data můžeme načíst stejně jako ze seznamu. Na prvním místě je vždy počet řádků a na druhém počet sloupců. Pokud by nás třeba zajímal jen počet řádků, napíšeme: 
+`pandas` nám vrací výsledky v sekvenci, která se jmenuje `tuple`. Nám stačí vědět, že si z ní data můžeme načíst stejně jako ze seznamu. Na prvním místě je vždy počet řádků a na druhém počet sloupců. Pokud by nás třeba zajímal jen počet řádků, napíšeme:
 
-```pycon
->>> nakupy.shape[0]
+```py
+print(nakupy.shape[0])
+```
+
+```shell
 11
 ```
 
 Názvy všech sloupců pak z vlastnosti `columns`:
 
-```pycon
->>> nakupy.columns
+```py
+print(nakupy.columns)
+```
+
+```shell
 Index(['Jméno', 'Datum', 'Věc', 'Částka v korunách'], dtype='object')
 ```
 
@@ -110,8 +126,11 @@ V některých případech nás jako první při práci s daty napadne nějak si 
 
 K tomu použijeme výběr sloupců pomocí hranatých závorek. Zápis připomíná práci se seznamy - hranatou závorku napíšeme přímo za název proměnné, kde máme uložený `DataFrame`, a do ní vepíšeme název sloupce, který nás zajímá.
 
-```pycon
->>> nakupy['Věc']
+```py
+print(nakupy['Věc'])
+```
+
+```shell
 0         Prací prášek
 1                 Savo
 2       Toaletní papír
@@ -130,8 +149,11 @@ Zde je důležité říct, že pokud vybíráme pouze jeden sloupec, vrátí se 
 
 Pro výběr více sloupců musíme do indexace DataFrame vložit seznam s názvy sloupců.
 
-```pycon
->>> nakupy[['Jméno', 'Částka v korunách']]
+```py
+print(nakupy[['Jméno', 'Částka v korunách']])
+```
+
+```shell
     Jméno  Částka v korunách
 0    Petr                399
 1   Ondra                 80
@@ -148,8 +170,11 @@ Pro výběr více sloupců musíme do indexace DataFrame vložit seznam s názvy
 
 Tady se nám již vrátil datový typ DataFrame. Tohoto triku můžeme využít, když chceme získat pouze jeden sloupec, ale nechceme ho v datovém typu Série, ale jako DataFrame.
 
-```pycon
->>> nakupy[['Věc']]
+```py
+print(nakupy[['Věc']])
+```
+
+```shell
                  Věc
 0       Prací prášek
 1               Savo
@@ -172,8 +197,11 @@ K vybrání jednoho konkrétního řádku můžeme použít `iloc[]`. `iloc` ná
 
 Zkusme si zobrazit třeba **čtvrtý** nákup. Číslujeme tradičně od nuly, jistě tě tedy nepřekvapí, že napíšeme `nakupy.iloc[3]`.
 
-```pycon
->>> nakupy.iloc[3]
+```py
+print(nakupy.iloc[3])
+```
+
+```shell
 Jméno                     Libor
 Datum                2020-03-05
 Věc                        Pivo
@@ -185,8 +213,11 @@ Všimni si, že když jsme chtěli pouze jeden řádek, vypsal se nám výsledek
 
 Metoda `iloc[]` umožňuje pro výběr řádků použít rozsah ve formátu `od:do`. K tomu používáme **dvojtečku**. Před dvojtečku píšeme první řádek, který chceme vypsat a za dvojtečku první řádek, který již vy výpisu nebude. Pokud tedy například napíšeme `nakupy.iloc[3:5]`, získáme řádky s indexy 3 a 4, ale už ne řádek s indexem 5.
 
-```pycon
->>> nakupy.iloc[3:5]
+```py
+print(nakupy.iloc[3:5])
+```
+
+```shell
    Jméno       Datum               Věc  Částka v korunách
 3  Libor  2020-03-05              Pivo                124
 4   Petr  2020-03-18  Pytel na odpadky
@@ -194,8 +225,11 @@ Metoda `iloc[]` umožňuje pro výběr řádků použít rozsah ve formátu `od:
 
 Pokud se chceme podívat třeba na první tři řádky, nemusíme před dvojtečku psát 0, stačí napsat `iloc[:3]`.
 
-```pycon
->>> nakupy.iloc[:3]
+```py
+print(nakupy.iloc[:3])
+```
+
+```shell
    Jméno       Datum             Věc  Částka v korunách
 0   Petr  2020-02-05    Prací prášek                399
 1  Ondra  2020-02-08            Savo                 80
@@ -204,8 +238,11 @@ Pokud se chceme podívat třeba na první tři řádky, nemusíme před dvojteč
 
 Podobně si můžeme nechat vypsat poslední tři řádky. Pokud víme, že řádků je 10, chceme vypsat řádky od osmého dále. Nyní se nabízí napsat číslo před dvojtečku. Píšeme tam ale 8, protože řádek, jehož číslo je před dvojtečkou, je vždy součástí výpisu.
 
-```pycon
->>> nakupy.iloc[8:]
+```py
+print(nakupy.iloc[8:])
+```
+
+```shell
     Jméno       Datum    Věc  Částka v korunách
 8   Zuzka  2020-06-05   Savo                 80
 9   Pavla  2020-06-13  Máslo                 50
@@ -214,8 +251,11 @@ Podobně si můžeme nechat vypsat poslední tři řádky. Pokud víme, že řá
 
 Nevýhodou postupu je, že si musíme předem zjistit, jak kolik řádků máme. U seznamů už ale existoval trik použití záporného čísla. Ten můžeš použít i v `pandas`. Pokud napíšeš `iloc[-3:]`, získáš též poslední tři řádky.
 
-```pycon
->>> nakupy.iloc[-3:]
+```py
+print(nakupy.iloc[-3:])
+```
+
+```shell
     Jméno       Datum    Věc  Částka v korunách
 8   Zuzka  2020-06-05   Savo                 80
 9   Pavla  2020-06-13  Máslo                 50
@@ -227,8 +267,11 @@ Nevýhodou postupu je, že si musíme předem zjistit, jak kolik řádků máme.
 
 Na prvních a posledních několik řádků se chceme podívat často, hlavně v případě, když moc dobře neznáme strukturu dat. Kromě funkce `iloc`, z níž se ti možná už začala točit hlava, k tomu ještě můžeme použít funkce `head` a `tail`.
 
-```pycon
->>> nakupy.head()
+```py
+print(nakupy.head())
+```
+
+```shell
    Jméno       Datum               Věc  Částka v korunách
 0   Petr  2020-02-05      Prací prášek                399
 1  Ondra  2020-02-08              Savo                 80
@@ -239,8 +282,11 @@ Na prvních a posledních několik řádků se chceme podívat často, hlavně v
 
 Často je užitečné podívat se spíše na konec souboru. Pokud jsou data seřazená podle času, uvidíme na konci souboru nejnovější data, která nás často (např. u kurzu měn nebo akcií) zajímají víc než dávná historie.
 
-```pycon
->>> nakupy.tail()
+```py
+print(nakupy.tail())
+```
+
+```shell
     Jméno       Datum             Věc  Částka v korunách
 6   Ondra  2020-04-22  Toaletní papír                120
 7    Míša  2020-05-05    Pečící papír                 30
@@ -255,8 +301,11 @@ Kromě řádků si často chceme vybrat jen některé sloupce, protože mnoho ta
 
 Pokud chceš například vypsat jména u prvních pět nákupů, jako první parametr napiš `:5` a jako druhý `0`.
 
-```pycon
->>> nakupy.iloc[:5,0]
+```py
+print(nakupy.iloc[:5,0])
+```
+
+```shell
 0     Petr
 1    Ondra
 2     Petr
@@ -267,8 +316,11 @@ Name: Jméno, dtype: object
 
 U sloupců ale často narazíme na to, že jich chceme několik, ale ony nutně nemusí být vedle sebe. nás u nákupů asi bude nejvíce zajímat jméno a částka. Abychom dali dohromady dvě čísla, která neleží vedle sebe, můžeme použít seznam. Pro prvních pět nákupů tedy jako druhý parametr napíšeme `[0,3]`.
 
-```pycon
->>> nakupy.iloc[:5,[0,3]]
+```py
+print(nakupy.iloc[:5,[0,3]])
+```
+
+```shell
    Jméno  Částka v korunách
 0   Petr                399
 1  Ondra                 80
@@ -279,8 +331,11 @@ U sloupců ale často narazíme na to, že jich chceme několik, ale ony nutně 
 
 Pokud bys chtěla vidět všechny řádky, jako první parametr napiš pouze dvojtečku.
 
-```pycon
->>> nakupy.iloc[:,[0,3]]
+```py
+print(nakupy.iloc[:,[0,3]])
+```
+
+```shell
     Jméno  Částka v korunách
 0    Petr                399
 1   Ondra                 80
