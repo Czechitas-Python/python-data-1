@@ -8,7 +8,7 @@ Abychom měli nějaký praktický příklad k procvičování, použijeme fiktiv
 
 Funkce `read_csv()` knihovny `pandas` umí stáhnout CSV soubor rovnou z internetu.
 
-```pycon
+```py
 import pandas
 
 u202 = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/u202.csv")
@@ -47,13 +47,13 @@ V `pandas`, ale i obecně v datové analýze, je možné se s chybějícími dat
 
 Důležité je mít na paměti, že vyřazením některých řádků může dojít ke zkreslení výsledků analýzy!
 
-#### Odstranění neúplných řádků
+### Odstranění neúplných řádků
 
 Předpokládejme, že jsme si ověřili, že data chybí skutečně pouze u studentů, kteří z daného předmětu nematurovali. Protože nás budou zajímat především statistiky jednotlivých předmětů, můžeme prázdné řádky vynechat, protože označují zkoušky, které ve skutečnosti neproběhly.
 
 Pokud jsme tak ještě neučinili, načteme si naši první tabulku jako DataFrame.
 
-```pycon
+```py
 import pandas
 u202 = pandas.read_csv('u202.csv')
 ```
@@ -62,9 +62,11 @@ Pokud `pandas` narazí na prázdnou buňku, vloží místo ní do tabulky speci�
 
 Série obsahují metodu `isnull()`, která vrátí pravdivostní sérii s hodnotou `True` všude tam, kde v původní sérii chybí hodnota. Metoda `notnull()` pracuje přesně opačně. Vrátí pravdivostní sérii s hodnotami `True` všude tam, kde v původní sérii hodnota nechybí.
 
-```pycon
+```py
 print(u202['znamka'].isnull())
+```
 
+```shell
 0      True
 1     False
 2     False
@@ -85,9 +87,11 @@ Name: znamka, dtype: bool
 
 Tyto metody můžeme využít například k tomu, abychom získali všechna data, kde chybí hodnota ve sloupečku `znamka`.
 
-```pycon
+```py
 print(u202[u202['znamka'].isnull()])
+```
 
+```shell
    cisloStudenta  predmet  znamka den
 0              1   Chemie     NaN  pá
 9              9  Dějepis     NaN  pá
@@ -105,7 +109,7 @@ Nyní bychom chtěli všechny tři naše tabulky spojit do jedné. Nejprve si uk
 
 Začneme s tím, že každou tabulku uložíme do `DataFrame` s tím, že vyhodíme studenty, kteří na maturitu nedorazili.
 
-```pycon
+```py
 u202 = pandas.read_csv('u202.csv').dropna()
 u203 = pandas.read_csv('u203.csv').dropna()
 u302 = pandas.read_csv('u302.csv').dropna()
@@ -113,19 +117,19 @@ u302 = pandas.read_csv('u302.csv').dropna()
 
 Pokud chceme tyto tři DataFrame spojit do jednoho, můžeme použít funkci `concat`.
 
-```pycon
+```py
 maturita = pandas.concat([u202, u203, u302])
 ```
 
 Pozor ale na to, že v takto vzniklém DataFrame se nám **rozbije index**, protože se prostě spojí za sebe indexy jednotlivých tabulek. Pokud chceme, aby `pandas` při spojování index přepočítal, musíme nastavit hodnotu parametru `ignore_index` na `True`.
 
-```pycon
+```py
 maturita = pandas.concat([u202, u203, u302], ignore_index=True)
 ```
 
 To už je lepší. Stále nám však zůstává jeden problém. Po spojení tabulek do jedné už nevíme, kdo maturoval v jaké místnosti. Tuto informaci si proto doplníme do původních tří tabulek jako nový sloupeček. Až poté tabulky spojíme do jedné.
 
-```pycon
+```py
 u202['mistnost'] = 'u202'
 u203['mistnost'] = 'u203'
 u302['mistnost'] = 'u302'
@@ -134,7 +138,7 @@ maturita = pandas.concat([u202, u203, u302], ignore_index=True)
 
 Takto už nám vznikla pěkná vyčištěná tabulka. Uložme si ji do CSV, ať ji nemusíme vyrábět pořád znova. Nebudeme ukládat index, protože ten si vždycky necháme vyrobit automaticky.
 
-```pycon
+```py
 maturita.to_csv('maturita.csv', index=False)
 ```
 
@@ -146,10 +150,12 @@ Výslednou tabulku si můžete stáhnout jako soubor [maturita.csv](assets/matur
 
 Naše výsledky byly anonymní. Pokud bychom ale chtěli vytisknout maturitní vysvědčení, potřebujeme k číslům studenta zjistit jejich jména. Jména najdeme v samostatné tabulce [studenti.csv](assets/studenti.csv). Načtěme si jej jako `DataFrame`.
 
-```pycon
+```py
 studenti = pandas.read_csv('https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/studenti.csv')
-studenti.head()
+print(studenti.head())
+```
 
+```shell
    cisloStudenta             jméno
 0              1    Jana Zbořilová
 1              2      Lukáš Jurčík
@@ -167,10 +173,12 @@ Propojení tabulek se v `pandas` dělá pomocí funkce `merge` (dokumentaci k n�
 
 Ve výchozím nastavení funkce `merge()` ponechá pouze řádky, které mají záznamy v obou tabulkách. V SQL bychom tuto operaci označili jako `INNER JOIN`.
 
-```pycon
+```py
 propojeny_df = pandas.merge(u202, studenti)
 print(propojeny_df.head())
+```
 
+```shell
    cisloStudenta           predmet  znamka den           jmeno
 0              1            Chemie     NaN  pá  Jana Zbořilová
 1              2           Dějepis     3.0  pá    Lukáš Jurčík
@@ -181,10 +189,19 @@ print(propojeny_df.head())
 
 Pokud by například nějaký student nebyl uvedený v tabulce se studenty, jeho maturitní výsledek by zmizel. U nového `DataFrame` bychom tedy měli zkontrolovat, zda má `spojenyDF` stejný počet řádků jako `u202`.
 
-```pycon
-u202.shape
+```py
+print(u202.shape)
+```
+
+```shell
 (15, 4)
-propojeny_df.shape
+```
+
+```py
+print(propojeny_df.shape)
+```
+
+```shell
 (15, 5)
 ```
 
@@ -192,16 +209,18 @@ Zde vidíme, že data jsou zřejmě v pořádku.
 
 Dále připojíme tabulku [predsedajici.csv](assets/predsedajici.csv), kde máme vypsané předsedy maturitních komisí. Tu si opět načteme jako `DataFrame`.
 
-```pycon
+```py
 preds = pandas.read_csv('https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/predsedajici.csv')
 ```
 
 Zkusme tabulky spojit jako předtím.
 
-```pycon
+```py
 novy_propojeny_df = pandas.merge(propojeny_df, preds)
 print(novy_propojeny_df.head())
+```
 
+```shell
 Empty DataFrame
 Columns: [den, datum, jmeno, cisloStudenta, predmet, znamka]
 Index: []
@@ -209,10 +228,12 @@ Index: []
 
 Tentokrát jsme příliš neuspěli, výsledný `DataFrame` je prázdný. Proč tomu tak je? Protože v obou `DataFrame` máme sloupec `jmeno`, v jednom případě však jde o jméno studenta a ve druhém o jméno předsedy komise. To ale `pandas` samozřejmě neví. Proto mu musíme říct, že chceme data spojit pouze podle sloupce `den`.
 
-```pycon
+```py
 novy_propojeny_df = pandas.merge(propojeny_df, preds, on=['den'])
 print(novy_propojeny_df.head())
+```
 
+```shell
        datum           jmeno_x den  cisloStudenta     predmet  znamka mistnost          jmeno_y
 0  21.5.2019  Marie Zuzaňáková  út              3  Matematika     2.0     u202      Pavel Horák
 1  21.5.2019  Marie Zuzaňáková  út              3      Chemie     5.0     u202      Pavel Horák
@@ -223,26 +244,32 @@ print(novy_propojeny_df.head())
 
 Zatím to vypadá dobře. Pokud se ovšem podíváme na `shape`, něco nám tady nehraje.
 
-```pycon
+```py
 print(novy_propojeny_df.shape)
+```
 
+```shell
 (10, 8)
 ```
 
 Najednou máme v tabulce pouze 12 řádků, některé tedy zmizely. To znamená, že funkce `merge()` nenašla pro všechna zkoušení odpovídajícího předsedu. Jak je to možné? Zkusme nyní říct funkci `merge()`, aby nám zachovala v prvním `DataFrame` ty řádky, pro které nenajde odpovídající záznam. Této operaci se v jazyce SQL říká LEFT OUTER JOIN. My ho provede tak, že funkci `merge()` jako parametr `how` zadáme hodnotu `left`.
 
-```pycon
+```py
 novy_propojeny_df = pandas.merge(propojeny_df, preds, on=['den'], how="outer")
 print(novy_propojeny_df.shape)
+```
 
+```shell
 (14, 8)
 ```
 
 Tentokrát jsme již o data nepřišli, ale kde se stala chyba? Zkusme si zobrazit ty řádky, které se nepodařilo propojit. Poznáme je tak, že mají prázdný sloupec `datum`.
 
-```pycon
+```py
 print(novy_propojeny_df[novy_propojeny_df["datum"].isnull()])
+```
 
+```shell
    cisloStudenta     predmet  znamka den mistnost           jmeno_x datum jmeno_y
 5            5.0     Dějepis     1.0  po     u202  Kateřina Novotná   NaN     NaN
 6            7.0     Dějepis     4.0  po     u202       Vasil Lácha   NaN     NaN
@@ -253,32 +280,36 @@ Nyní jsme již na stopě problému. Z nějakého důvodu nám nefunguje propoje
 
 Pokud nemáme možnost vstupní data opravit, můžeme použít funkci `strip()`, která z řetězce odstraní mezery (a další bílé znaky) na začátku a na konci. Tyto mezery jsou v drtivé většině případů způsobeny chybou a proto jejich odstraněním nic nezkazíme.
 
-```pycon
+```py
 preds["den"] = preds["den"].str.strip()
 novy_propojeny_df = pandas.merge(propojeny_df, preds, on=['den'], how="outer")
 print(novy_propojeny_df.shape)
+```
 
+```shell
 (13, 8)
 ```
 
 Poslední nepříjemností, na kterou se podíváme, je to, že sloupce `jmeno` se automaticky přejmenovaly, aby neměly v tabulce stejný název. Zde můžeme použít metodu `rename`, abychom sloupečky přejmenovali na něco smysluplného.
 
-```pycon
+```py
 novy_propojeny_df = novy_propojeny_df.rename(columns={'jmeno_x': 'jmeno', 'jmeno_y': 'predseda'})
 ```
 ### Agregace
 
 Z databází známe kromě UNION a JOIN také operaci GROUP BY. V `pandas` ji provedeme tak, že pomocí metody `groupby` vyrobíme z `DataFrame` speciální objekt `DataFrameGroupBy`. Dejme tomu, že chceme grupovat podle sloupečku `mistnost`.
 
-```pycon
+```py
 maturita.groupby('mistnost')
 ```
 
 Na tomto speciálním objektu pak můžeme používat různé agregační funkce. Nejjednodušší je funkce `count`
 
-```pycon
-maturita.groupby('mistnost').count()
+```py
+print(maturita.groupby('mistnost').count())
+```
 
+```shell
           jméno  předmět  známka  den  datum  předs
 místnost
 u202         13       13      13   13     13     13
@@ -302,17 +333,19 @@ Další užitečné agregační funkce jsou například:
 
 Nemusíme samozřejmě grupovat přes všechny sloupečky. Vybereme si pouze ty, které nás zajímají. Zkusme například spočítat průměrnou známku z jednotlivých předmětů.
 
-```pycon
-maturita.groupby('predmet')['znamka'].mean()
+```py
+print(maturita.groupby('predmet')['znamka'].mean())
 ```
 
 Pomocí agregací můžeme vyřešit i náš problém s nákupy. Pokud máme stále načtený `Data Frame` `nakupy`, můžeme použít funkci `groupby` podle jména a následně spočítat sumu nákupů pomocí `.sum()`.
 
-```pycon
+```py
 nakupy = pandas.read_csv('nakupy.csv')
 nakupy_celkem = nakupy.groupby("Jméno")["Částka v korunách"].sum()
 print(nakupy_celkem)
+```
 
+```shell
 Jméno
 Libor    124
 Míša     160
@@ -323,74 +356,35 @@ Zuzka     80
 Name: Částka v korunách, dtype: int64
 ```
 
-#### Čtení na doma: Více různých agregací
-
-Pokud chceme provést více různých agregací, použijeme metodu `agg`. Metodě `agg` vložíme jako parametr slovník, kde klíčem je název sloupce, pro který počítáme agregaci, a hodnotou je řetězec nebo seznam řetězců se jmény agregací, které chceme provést. Například u maturity chceme zjistit, jestli student prospěl, prospěl s vyznamenáním nebo neprospěl. K tomu potřebujeme funkci `max()` (pětka znamená, že student neuspěl a trojka znamená, že nemůže získat vyznamenání) a funkci `mean()` (abychom zjistili, zda je průměr známek menší než 1.5).
-
-```pycon
-maturita.groupby("cisloStudenta").agg({"znamka": ["max", "mean"]})
-```
-
-K určení výsledku studenta bychom ještě potřebovali nový sloupec, jehož hodnota bude určena na základě podmínky, což si ukážeme níže.
-
 ### Počítané sloupce
 
 Občas je užitečné přidat nový sloupec, který obsahuje hodnotu vypočtenou na základě hodnot ostatních sloupců. Vraťme se například k naší tabulce s údaji o státech ve světě. Máme informaci o rozloze a počtu obyvatel, mohli bychom tedy přidal sloupec s hodnotou hustoty zalidnění (počet obyvatel na 1 km čtvereční), který získáme vydělením počtu obyvatel rozlohou země.
 
 Pokud nemáme načtený soubor s daty, načteme si ho.
 
-```pycon
+```py
 staty = pandas.read_json("staty.json")
 staty = staty.set_index("name")
 ```
 
 Přidání nového sloupce je poměrně jednoduché. Před znaménko `=` vložíme proměnnou s `DataFrame` a do hranatých závorek vložíme název nového sloupce. Na pravou stranu umístíme výpočet. Ve výpočtu pracujeme s jednotlivými sloupci, v našem konkrétním případě vydělíme sloupec `population` sloupcem `area`.
 
-```pycon
+```py
 staty["population_density"] = staty["population"] / staty["area"]
 ```
 
 **Poznámka:** `pandas` nás neupozorní, pokud sloupec již existuje, musíme si tedy dát pozor, abychom nepřepsali nějaký existující sloupec.
 
-#### Čtení na doma: Podmíněný sloupec
-
-Občas chceme do výpočtu zapracovat i podmínku. Ve skutečnosti je podmínka to poslední, co nám chybělo k vyřešení našeho problému s finančním vypořádání spolubydlících pomocí `pandas`. Náš výpočet se skládá z pěti kroků.
-
-1. Provedeme agregaci hodnot nákupů podle jmen. Tím zjistíme sumu, kolik každý utratil.
-1. Zjistíme si průměrnou útratu za osobu. K tomu použijeme funkci `mean()`.
-1. Přidáme sloupec s podmínkou. V podmínce porovnáváme, zda spolubydlící utratil více nebo méně, než je průměr. K tomu použijeme funkci `where`, která je součástí modulu `numpy`. Nejprve provedeme import modulu `numpy` a následně z modulu zavoláme funkci `where()`. Jako první parametr zadáme podmínku (porovnání hodnot), jako druhý hodnotu vloženou v případě splnění podmínky (text "má dáti") a jako poslední hodnotu vloženou v případě nesplnění podmínky (text "dostane"). Jako předposlední krok si určíme částku potřebnou k vypořádání - rozdíl mezi součtem pro danou osobu a průměrnou útratou. Poslední krok je pak jen výpisem hodnoty.
-
-```pycon
-nakupy = pandas.read_csv('nakupy.csv')
-nakupy_celkem = nakupy.groupby("Jméno")[["Částka v korunách"]].sum()
-prumerna_hodnota = nakupy_celkem["Částka v korunách"].mean()
-import numpy
-nakupy_celkem["Operace"] = numpy.where(nakupy_celkem["Částka v korunách"] > prumerna_hodnota, "má dáti", "dostane")
-nakupy_celkem["Kolik"] = abs(nakupy_celkem["Částka v korunách"] - prumerna_hodnota)
-print(nakupy_celkem[["Operace", "Kolik"]])
-
-       Operace       Kolik
-Jméno
-Libor  dostane  118.166667
-Míša   dostane   82.166667
-Ondra  má dáti  257.833333
-Pavla  dostane  192.166667
-Petr   má dáti  296.833333
-Zuzka  dostane  162.166667
-```
-
-Srovnej si toto řešení s tím, které jsme si ukazovali na úvodním workshopu. Zdá se ti jednodušší?
-
 ### Řazení
 
 Data řadíme poměrně často. U běžeckého závodu nás zajímají ti nejrychlejší běžci, u položek v e-shopu ty nejlépe hodnocené, u projektu zase chceme vidět úkoly s nejbližším deadline. Abychom tyto hodnoty získali, musíme data seřadit. Ve světě databází pro to používáme klíčová slova `ORDER BY`, v `pandas` nám poslouží metoda `sort_values`. Jako její první parametr zadáváme sloupec (nebo seznam sloupců), podle kterého (kterých) řadíme.
 
-```pycon
+```py
 staty.sort_values(by="population")
 ```
 
 Metoda `sort_values` standardně řadí vzestupně. Chceme-li řadit sestupně, zadáme jí parametr `ascending` a nastavíme ho na `False`.
 
-```pycon
+```py
 staty.sort_values(by="population", ascending=False)
 ```
