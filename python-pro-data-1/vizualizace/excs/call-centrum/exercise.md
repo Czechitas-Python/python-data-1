@@ -8,7 +8,7 @@ V souboru [callcentrum.csv](assets/callcentrum.csv) najdete několik tisíc záz
 
 K převodu na vteřiny můžeš použít metodu `str.split()`. Pomocí ní rozdělíš hodnoty minut a vteřin do samostatných sloupců. Pomocí metody `astype(int)` převedeš hodnoty na čísla. Poté pomocí počítaných sloupců můžeš spočítat celkový počet vteřin.
 
-```pycon
+```py
 import pandas
 
 callcentrum = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/vizualizace/excs/excs>call-centrum/callcentrum.csv")

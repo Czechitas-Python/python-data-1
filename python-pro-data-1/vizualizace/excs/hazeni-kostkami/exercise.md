@@ -10,7 +10,7 @@ Načtěte tato data do tabulky a zobrazte histogram hodů. Zvolte vhodné rozlo�
 1. Jaká je nejčastější hodnota, která na dvou kostkách padne?
 1. Je větší šance, že padne hodnota 12 než že padne hodnota 2?
 
-```pycon
+```py
 import pandas
 
 kostky = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/vizualizace/excs/excs>hazeni-kostkami/kostky.csv")
