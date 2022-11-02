@@ -5,7 +5,7 @@ demand: 3
 
 Stáhni si datové sety, se kterými budeme pracovat v tomto cvičení: [jmena.csv](assets/jmena.csv), [studenti1.csv](assets/studenti1.csv), [studenti2.csv](assets/studenti2.csv).
 
-```pycon
+```py
 import pandas
 
 jmena = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/excs/excs>studenti/jmena.csv")

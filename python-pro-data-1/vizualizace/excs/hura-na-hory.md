@@ -5,7 +5,7 @@ demand: 2
 
 Následující data obsahují úhrnné množství sněhu (v cm) napadlé za každý rok pro posledních 50 let pro dva lyžarské resorty. První sloupec je rok, druhý jsou data pro resort Hora šílenství, třetí jsou data pro resort Prašné údolí.
 
-```pycon
+```py
 snih = [
     [1968, 480, 351],
     [1969, 462, 663],

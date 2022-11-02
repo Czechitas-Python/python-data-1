@@ -193,7 +193,7 @@ V jazyce SQL píšeme podmínky za klíčové slovo `WHERE`, v Excelu můžeme p
 
  Nejprve potřebujeme formulovat podmínku. Ta bude vypadat takto `staty["population"] < 1000`. V podmínce máme sloupec, na který se ptáme, a porovnání s číselnou hodnotou. Používáme nám již známý operátor menší než (`<`). Zkusme si zadat samotnou podmínku do terminálu a podívejme se na výsledek.
 
-```pycon
+```py
 print(staty["population"] < 1000)
 ```
 
