@@ -3,3 +3,4 @@ lead: Ovládneme regulární výrazy, které nám umožní dělat kouzla při do
 sections:
   - regularni-vyrazy
   - python-re
+  - regularni-vyrazy-pandas
