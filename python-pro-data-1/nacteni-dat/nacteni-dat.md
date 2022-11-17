@@ -10,19 +10,19 @@ V Pandas většinou pracujeme s datovou strukturou zvanou `DataFrame`. Je to tab
 
 Abychom si práci s DataFrame vyzkoušeli, vrátíme se k naší tabulce se seznamem nákupů.
 
-| Jméno   | Datum      | Věc              |   Částka v korunách |
-|:--------|:-----------|:-----------------|--------------------:|
-| Petr    | 2020-02-05 | Prací prášek     |                 399 |
-| Ondra   | 2020-02-08 | Savo             |                  80 |
-| Petr    | 2020-02-24 | Toaletní papír   |                  65 |
-| Libor   | 2020-03-05 | Pivo             |                 124 |
-| Petr    | 2020-03-18 | Pytel na odpadky |                  75 |
-| Míša    | 2020-03-30 | Utěrky na nádobí |                 130 |
-| Ondra   | 2020-04-22 | Toaletní papír   |                 120 |
-| Míša    | 2020-05-05 | Pečící papír     |                  30 |
-| Zuzka   | 2020-06-05 | Savo             |                  80 |
-| Pavla   | 2020-06-13 | Máslo            |                  50 |
-| Ondra   | 2020-07-25 | Káva             |                 300 |
+| jmeno   | datum      | vec              | cena |
+|:--------|:-----------|:-----------------|-----:|
+| Petr    | 2020-02-05 | Prací prášek     |  399 |
+| Ondra   | 2020-02-08 | Savo             |   80 |
+| Petr    | 2020-02-24 | Toaletní papír   |   65 |
+| Libor   | 2020-03-05 | Pivo             |  124 |
+| Petr    | 2020-03-18 | Pytel na odpadky |   75 |
+| Míša    | 2020-03-30 | Utěrky na nádobí |  130 |
+| Ondra   | 2020-04-22 | Toaletní papír   |  120 |
+| Míša    | 2020-05-05 | Pečící papír     |   30 |
+| Zuzka   | 2020-06-05 | Savo             |   80 |
+| Pavla   | 2020-06-13 | Máslo            |   50 |
+| Ondra   | 2020-07-25 | Káva             |  300 |
 
 #### Načítání dat
 
@@ -43,18 +43,18 @@ Funkce `read_csv` má spoustu nepovinných parametrů, o kterých si můžeme p�
 Celý DataFrame vypíšeme na obrazovku pomocí funkce `print()`.
 
 ```shell
-    Jméno       Datum               Věc  Částka v korunách
-0    Petr  2020-02-05      Prací prášek                399
-1   Ondra  2020-02-08              Savo                 80
-2    Petr  2020-02-24    Toaletní papír                 65
-3   Libor  2020-03-05              Pivo                124
-4    Petr  2020-03-18  Pytel na odpadky                 75
-5    Míša  2020-03-30  Utěrky na nádobí                130
-6   Ondra  2020-04-22    Toaletní papír                120
-7    Míša  2020-05-05      Pečící papír                 30
-8   Zuzka  2020-06-05              Savo                 80
-9   Pavla  2020-06-13             Máslo                 50
-10  Ondra  2020-07-25              Káva                300
+    jmeno       datum               vec  cena
+0    Petr  2020-02-05      Prací prášek   399
+1   Ondra  2020-02-08              Savo    80
+2    Petr  2020-02-24    Toaletní papír    65
+3   Libor  2020-03-05              Pivo   124
+4    Petr  2020-03-18  Pytel na odpadky    75
+5    Míša  2020-03-30  Utěrky na nádobí   130
+6   Ondra  2020-04-22    Toaletní papír   120
+7    Míša  2020-05-05      Pečící papír    30
+8   Zuzka  2020-06-05              Savo    80
+9   Pavla  2020-06-13             Máslo    50
+10  Ondra  2020-07-25              Káva   300
 ```
 
 Všimni si, že `pandas` nám přidal nový sloupec s číslem řádku. Jedná se o **index**, se kterým budeme později pracovat. Index je hodnota, která identifikuje řádek. V některých případech nemusíme jako index používat číslo řádku, ale můžeme jako index vybrat některý ze sloupců. Obdobnou funkci má v databázích **primární klíč**. Jako *best practice* se většinou uvádí, že index by měl být **unikátní**, i když to `pandas` (na rozdíl od právě databází) nevyžadují. Mohli bychom si tedy jako index zvolit například sloupec `Jmeno`, ale tím bychom si zadělávali na problém do budoucna (například v tom, že by práce s `DataFrame` byla [pomalejší](https://stackoverflow.com/q/16626058/4693904)).
@@ -75,12 +75,12 @@ nakupy.info()
 <class 'pandas.core.frame.DataFrame'>
 RangeIndex: 11 entries, 0 to 10
 Data columns (total 4 columns):
- #   Column             Non-Null Count  Dtype
----  ------             --------------  -----
- 0   Jméno              11 non-null     object
- 1   Datum              11 non-null     object
- 2   Věc                11 non-null     object
- 3   Částka v korunách  11 non-null     int64
+ #   Column  Non-Null Count  Dtype
+---  ------  --------------  -----
+ 0   jmeno   11 non-null     object
+ 1   datum   11 non-null     object
+ 2   vec     11 non-null     object
+ 3   cena    11 non-null     int64
 dtypes: int64(1), object(3)
 memory usage: 480.0+ bytes
 ```
@@ -116,7 +116,7 @@ print(nakupy.columns)
 ```
 
 ```shell
-Index(['Jméno', 'Datum', 'Věc', 'Částka v korunách'], dtype='object')
+Index(['jmeno', 'datum', 'vec', 'cena'], dtype='object')
 ```
 
 
@@ -127,7 +127,7 @@ V některých případech nás jako první při práci s daty napadne nějak si 
 K tomu použijeme výběr sloupců pomocí hranatých závorek. Zápis připomíná práci se seznamy - hranatou závorku napíšeme přímo za název proměnné, kde máme uložený `DataFrame`, a do ní vepíšeme název sloupce, který nás zajímá.
 
 ```py
-print(nakupy['Věc'])
+print(nakupy['vec'])
 ```
 
 ```shell
@@ -142,7 +142,7 @@ print(nakupy['Věc'])
 8                 Savo
 9                Máslo
 10                Káva
-Name: Věc, dtype: object
+Name: vec, dtype: object
 ```
 
 Zde je důležité říct, že pokud vybíráme pouze jeden sloupec, vrátí se nám takzvaná **Série** (`Series`), což je jiný datový typ než DataFrame. Sérii si představme jako jednorozměrnou tabulku.
@@ -150,32 +150,32 @@ Zde je důležité říct, že pokud vybíráme pouze jeden sloupec, vrátí se 
 Pro výběr více sloupců musíme do indexace DataFrame vložit seznam s názvy sloupců.
 
 ```py
-print(nakupy[['Jméno', 'Částka v korunách']])
+print(nakupy[['jmeno', 'cena']])
 ```
 
 ```shell
-    Jméno  Částka v korunách
-0    Petr                399
-1   Ondra                 80
-2    Petr                 65
-3   Libor                124
-4    Petr                 75
-5    Míša                130
-6   Ondra                120
-7    Míša                 30
-8   Zuzka                 80
-9   Pavla                 50
-10  Ondra                300
+    jmeno  cena
+0    Petr   399
+1   Ondra    80
+2    Petr    65
+3   Libor   124
+4    Petr    75
+5    Míša   130
+6   Ondra   120
+7    Míša    30
+8   Zuzka    80
+9   Pavla    50
+10  Ondra   300
 ```
 
 Tady se nám již vrátil datový typ DataFrame. Tohoto triku můžeme využít, když chceme získat pouze jeden sloupec, ale nechceme ho v datovém typu Série, ale jako DataFrame.
 
 ```py
-print(nakupy[['Věc']])
+print(nakupy[['vec']])
 ```
 
 ```shell
-                 Věc
+                 vec
 0       Prací prášek
 1               Savo
 2     Toaletní papír
@@ -202,10 +202,10 @@ print(nakupy.iloc[3])
 ```
 
 ```shell
-Jméno                     Libor
-Datum                2020-03-05
-Věc                        Pivo
-Částka v korunách           124
+jmeno         Libor
+datum    2020-03-05
+vec            Pivo
+cena            124
 Name: 3, dtype: object
 ```
 
@@ -218,9 +218,9 @@ print(nakupy.iloc[3:5])
 ```
 
 ```shell
-   Jméno       Datum               Věc  Částka v korunách
-3  Libor  2020-03-05              Pivo                124
-4   Petr  2020-03-18  Pytel na odpadky
+   jmeno       datum               vec  cena
+3  Libor  2020-03-05              Pivo   124
+4   Petr  2020-03-18  Pytel na odpadky    75
 ```
 
 Pokud se chceme podívat třeba na první tři řádky, nemusíme před dvojtečku psát 0, stačí napsat `iloc[:3]`.
@@ -230,10 +230,10 @@ print(nakupy.iloc[:3])
 ```
 
 ```shell
-   Jméno       Datum             Věc  Částka v korunách
-0   Petr  2020-02-05    Prací prášek                399
-1  Ondra  2020-02-08            Savo                 80
-2   Petr  2020-02-24  Toaletní papír                 65
+   jmeno       datum             vec  cena
+0   Petr  2020-02-05    Prací prášek   399
+1  Ondra  2020-02-08            Savo    80
+2   Petr  2020-02-24  Toaletní papír    65
 ```
 
 Podobně si můžeme nechat vypsat poslední tři řádky. Pokud víme, že řádků je 10, chceme vypsat řádky od osmého dále. Nyní se nabízí napsat číslo před dvojtečku. Píšeme tam ale 8, protože řádek, jehož číslo je před dvojtečkou, je vždy součástí výpisu.
@@ -243,10 +243,10 @@ print(nakupy.iloc[8:])
 ```
 
 ```shell
-    Jméno       Datum    Věc  Částka v korunách
-8   Zuzka  2020-06-05   Savo                 80
-9   Pavla  2020-06-13  Máslo                 50
-10  Ondra  2020-07-25   Káva                300
+    jmeno       datum    vec  cena
+8   Zuzka  2020-06-05   Savo    80
+9   Pavla  2020-06-13  Máslo    50
+10  Ondra  2020-07-25   Káva   300
 ```
 
 Nevýhodou postupu je, že si musíme předem zjistit, jak kolik řádků máme. U seznamů už ale existoval trik použití záporného čísla. Ten můžeš použít i v `pandas`. Pokud napíšeš `iloc[-3:]`, získáš též poslední tři řádky.
@@ -256,10 +256,10 @@ print(nakupy.iloc[-3:])
 ```
 
 ```shell
-    Jméno       Datum    Věc  Částka v korunách
-8   Zuzka  2020-06-05   Savo                 80
-9   Pavla  2020-06-13  Máslo                 50
-10  Ondra  2020-07-25   Káva                300
+    jmeno       datum    vec  cena
+8   Zuzka  2020-06-05   Savo    80
+9   Pavla  2020-06-13  Máslo    50
+10  Ondra  2020-07-25   Káva   300
 ```
 
 
@@ -272,12 +272,12 @@ print(nakupy.head())
 ```
 
 ```shell
-   Jméno       Datum               Věc  Částka v korunách
-0   Petr  2020-02-05      Prací prášek                399
-1  Ondra  2020-02-08              Savo                 80
-2   Petr  2020-02-24    Toaletní papír                 65
-3  Libor  2020-03-05              Pivo                124
-4   Petr  2020-03-18  Pytel na odpadky                 75
+   jmeno       datum               vec  cena
+0   Petr  2020-02-05      Prací prášek   399
+1  Ondra  2020-02-08              Savo    80
+2   Petr  2020-02-24    Toaletní papír    65
+3  Libor  2020-03-05              Pivo   124
+4   Petr  2020-03-18  Pytel na odpadky    75
 ```
 
 Často je užitečné podívat se spíše na konec souboru. Pokud jsou data seřazená podle času, uvidíme na konci souboru nejnovější data, která nás často (např. u kurzu měn nebo akcií) zajímají víc než dávná historie.
@@ -287,12 +287,12 @@ print(nakupy.tail())
 ```
 
 ```shell
-    Jméno       Datum             Věc  Částka v korunách
-6   Ondra  2020-04-22  Toaletní papír                120
-7    Míša  2020-05-05    Pečící papír                 30
-8   Zuzka  2020-06-05            Savo                 80
-9   Pavla  2020-06-13           Máslo                 50
-10  Ondra  2020-07-25            Káva                300
+    jmeno       datum             vec  cena
+6   Ondra  2020-04-22  Toaletní papír   120
+7    Míša  2020-05-05    Pečící papír    30
+8   Zuzka  2020-06-05            Savo    80
+9   Pavla  2020-06-13           Máslo    50
+10  Ondra  2020-07-25            Káva   300
 ```
 
 #### Výběr řádků a sloupců podle čísla
@@ -311,7 +311,7 @@ print(nakupy.iloc[:5,0])
 2     Petr
 3    Libor
 4     Petr
-Name: Jméno, dtype: object
+Name: jmeno, dtype: object
 ```
 
 U sloupců ale často narazíme na to, že jich chceme několik, ale ony nutně nemusí být vedle sebe. nás u nákupů asi bude nejvíce zajímat jméno a částka. Abychom dali dohromady dvě čísla, která neleží vedle sebe, můžeme použít seznam. Pro prvních pět nákupů tedy jako druhý parametr napíšeme `[0,3]`.
@@ -321,12 +321,12 @@ print(nakupy.iloc[:5,[0,3]])
 ```
 
 ```shell
-   Jméno  Částka v korunách
-0   Petr                399
-1  Ondra                 80
-2   Petr                 65
-3  Libor                124
-4   Petr                 75
+   jmeno  cena
+0   Petr   399
+1  Ondra    80
+2   Petr    65
+3  Libor   124
+4   Petr    75
 ```
 
 Pokud bys chtěla vidět všechny řádky, jako první parametr napiš pouze dvojtečku.
@@ -336,16 +336,16 @@ print(nakupy.iloc[:,[0,3]])
 ```
 
 ```shell
-    Jméno  Částka v korunách
-0    Petr                399
-1   Ondra                 80
-2    Petr                 65
-3   Libor                124
-4    Petr                 75
-5    Míša                130
-6   Ondra                120
-7    Míša                 30
-8   Zuzka                 80
-9   Pavla                 50
-10  Ondra                300
+    jmeno  cena
+0    Petr   399
+1   Ondra    80
+2    Petr    65
+3   Libor   124
+4    Petr    75
+5    Míša   130
+6   Ondra   120
+7    Míša    30
+8   Zuzka    80
+9   Pavla    50
+10  Ondra   300
 ```
