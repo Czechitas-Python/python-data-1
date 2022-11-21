@@ -93,6 +93,7 @@ for vysledek in vysledky:
     print(vysledek)
 ```
 
+<!-- TODO: rozpracovaný text
 Nyní máme zpracovat program, připraví informaci o pokutě pro majitele vozidla, který projel měřeným úsekem příliš rychle. V šabloně máme
 
 ```py
@@ -104,6 +105,7 @@ Za tento přestupek Vás vyzýváme k zaplacení pokuty ${fine} Kč.
 Vyřizuje ${firstname} ${lastname}
 """
 ```
+-->
 
 ### Nahrazování
 
