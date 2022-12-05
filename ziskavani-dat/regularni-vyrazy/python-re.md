@@ -12,12 +12,12 @@ Regulární výraz můžeme vytvořit pomocí funkce `compile()` z modulu `re`. 
 
 ```py
 import re
-regularniVyraz = re.compile(r"\d{9,10}")
+regularni_vyraz = re.compile(r"\d{9,10}")
 
 rezetec = "9511121234"
-print(regularniVyraz.match(rezetec))
+print(regularni_vyraz.match(rezetec))
 rezetec = "ahoj"
-print(regularniVyraz.match(rezetec))
+print(regularni_vyraz.match(rezetec))
 ```
 
 Pokud funkce `match` došla k závěru, že se řetězec shoduje s regulárním výrazem, vrátí objekt  `Match`. S ním později budeme pracovat. Pokud by však funkce došla k závěru, že se řetězce s regulárním výrazem neshoduje, vrátí hodnotu označovanou jako `None`, tj. prázdnou hodnotu.
@@ -30,12 +30,12 @@ Pokud chceš ověřit, jestli řetězec odpovídá zadanému výrazu a není tam
 
 ```py
 import re
-regularniVyraz = re.compile(r"\d{9,10}")
+regularni_vyraz = re.compile(r"\d{9,10}")
 
 rezetec = "9511121234"
-print(regularniVyraz.match(rezetec))
+print(regularni_vyraz.match(rezetec))
 rezetec = "9511121234$ je moje rodné číslo"
-print(regularniVyraz.fullmatch(rezetec))
+print(regularni_vyraz.fullmatch(rezetec))
 ```
 
 ### Zapojení podmínky
@@ -48,9 +48,9 @@ Pojďme nyní zapojit do akce podmínku. Můžeme třeba uživateli vypsat, jest
 ```py
 import re
 
-regularniVyraz = re.compile(r"\d{9,10}")
+regularni_vyraz = re.compile(r"\d{9,10}")
 vstup = input("Zadej rodné číslo: ")
-hledani = regularniVyraz.fullmatch(vstup)
+hledani = regularni_vyraz.fullmatch(vstup)
 if hledani:
     print("Rodné číslo je v pořádku!")
 else:
@@ -64,9 +64,9 @@ Pokud např. dostaneme e-mail `info@czechitas.cz`, víme, že je v pořádku. E-
 ```py
 import re
 
-regularniVyraz = re.compile(r"\w+@\w+\.cz")
+regularni_vyraz = re.compile(r"\w+@\w+\.cz")
 email = input("Zadej e-mail: ")
-hledani = regularniVyraz.fullmatch(email)
+hledani = regularni_vyraz.fullmatch(email)
 if hledani:
     print("E-mail je v pořádku!")
 else:
@@ -87,8 +87,8 @@ Pacientka 8655057477 přišla na kontrolu po zranění kotníku.
 Do ordinace telefonovala pacientka 7752126712, které byl elektronicky vydán recept na Paralen. 
 """
 import re
-regularniVyraz = re.compile(r"\d{9,10}")
-vysledky = regularniVyraz.findall(zapis)
+regularni_vyraz = re.compile(r"\d{9,10}")
+vysledky = regularni_vyraz.findall(zapis)
 for vysledek in vysledky:
     print(vysledek)
 ```
@@ -119,8 +119,8 @@ Pacientka 8655057477 přišla na kontrolu po zranění kotníku.
 Do ordinace telefonovala pacientka 7752126712, které byl elektronicky vydán recept na Paralen. 
 """
 import re
-regularniVyraz = re.compile(r"\d{9,10}")
-anonymniZapis = regularniVyraz.sub("X" * 9, zapis)
+regularni_vyraz = re.compile(r"\d{9,10}")
+anonymniZapis = regularni_vyraz.sub("X" * 9, zapis)
 print(anonymniZapis)
 ```
 
