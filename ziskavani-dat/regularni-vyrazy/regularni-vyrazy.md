@@ -139,7 +139,7 @@ Zkus si program zkopírovat do Visual Studia a vyzkoušej si vyhledávání pře
 
 Kromě výpisu znaků a předdefinovaných skupin můžeme ještě vybrat znaky pomocí rozmezí. K tomu použijeme pomlčku, kterou vepíšeme do hranatých závorek. Například čísla od 1 do 5 napíšeme jako `[1-5]`, malá písmena od a do e jako `[a-e]` a všechna velká písmena jako `[A-Z]`.
 
-Pokud například víme, že se na nějaké střední školy vyskytují třídy označené od A do M, regulární výraz pasující na všechna jména tříd je `[1-4][A-M]`.
+Pokud například víme, že se na nějaké střední škole vyskytují třídy označené od A do M, regulární výraz pasující na všechna jména tříd je `[1-4][A-M]`.
 
 Pokud potřebujeme zajistit opakování určité sekvence znaků (ne jen jednoho), můžeme sekvenci znaků uzavřít do kulatých závorek `( )` a za pravou závorku umístit kvantifikátor. Pokud máme variant více, můžeme k jejich oddělení použít znak `|`. Například pokud chceme vybrat oba víkendové dny, napíšeme `(sobota|neděle)`.
 
@@ -149,7 +149,7 @@ Podívejme se nyní na pár příkladů. Níže máme tabulku s kurzy Czechitas.
 
 * Chceme jít na kurz programování v Pythonu nebo v JavaScriptu. Kurz musí být pro začátečníky. Řádky, které nás zajímají, vyhledáme pomocí `Úvod do programování 1 - (JavaScript|Python)`. Co kdyby nám nevadil ani navazující kurz?
 * Uvažujme, že nás zajímají pouze kurzy o víkendu. Vyzkoušíme si výraz `(sobota|neděle)`. Můžeme k povoleným dnům přidat ještě úterý?
-* Protože se nám o víkendu nechce příliš brzy vstávat, chceme víkendové kurzy, které začínají nejdříve v 8:30. Napíšeme `(sobota|neděle) [89]:30`. Co kdybychom naopak chtěli kurzy, které začínají nejpozději v 8:30
+* Protože se nám o víkendu nechce příliš brzy vstávat, chceme víkendové kurzy, které začínají nejdříve v 8:30. Napíšeme `(sobota|neděle) [89]:30`. Co kdybychom naopak chtěli kurzy, které začínají nejpozději v 8:30?
 * Napíšeme si regulární výraz, který označí všechna data ve formátu, jaký je v tabulce. Můžeme například použít výraz `\d{1,2}\. (led|úno). 2021`. Do závorky bychom pro rozvrh na celý rok potřebovali přidat zkratky všech měsíců.
 
 ```
