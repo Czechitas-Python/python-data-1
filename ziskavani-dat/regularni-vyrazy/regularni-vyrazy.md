@@ -12,10 +12,10 @@ Oněm magickým znakům říkáme *metaznaky*.
 
 Zkusme si to na příkladu tečky `.`. Tečka zastupuje **právě jeden** libovolný znak, přesně tedy odpovídá právě "žolíku". Pokud budeme pracovat s řetězcem `"A23456789JQKA"` a zadáme regulární výraz `"78.J"`, podbarví se nám část řetězce od `7` do `J`.
 
-Vyzkoušejme si nyní upravit program, který bude sledovat vývoj kurzu měn ve Směnárně Na Růžku, aby nám například poslal upozornění ve chvíli, kdy má nějaká měna výhodný kurz. Náš program zatím umí stáhnout informace do následující řetězce.
+Vyzkoušejme si nyní upravit program, který bude sledovat vývoj kurzu měn ve Směnárně na Růžku, aby nám například poslal upozornění ve chvíli, kdy má nějaká měna výhodný kurz. Náš program zatím umí stáhnout informace do následující řetězce.
 
 ```
-Vítejte ve Směnárně Na Růžku!
+Vítejte ve Směnárně na Růžku!
 Kurzy měn pro 19. 12. 2020 jsou:
 
 1 €   = 26.35 Kč
@@ -41,7 +41,7 @@ Pokud například chceme označit celou část našeho řádku s kurzem měn př
 Někdy se ale náš kurzovní lístek může "nafouknout", proto můžeme využít i výraz `1 [€$] {3,}`.
 
 ```
-Vítejte ve Směnárně Na Růžku!
+Vítejte ve Směnárně na Růžku!
 Kurzy měn pro 19. 12. 2020 jsou:
 
 1 €     = 26.35 Kč
@@ -53,7 +53,7 @@ Kurzy měn pro 19. 12. 2020 jsou:
 Neúčtujeme žádné poplatky.
 ```
 
-Morseova abeceda sloužila dřív k předávání zpráv. Každé písmeno mělo svoji reprezentaci pomocí krátkých a dlouhých signálů (např. telegrafem, rádiem nebo světlem baterky). Podívejme se na následující zprávu, zda v ní není skryto volání o pomoc. O pomoc voláme pomocí mezinárodní zkratky SOS, s kódujeme pomocí tří teček a O pomocí tří čárek.
+Morseova abeceda sloužila dřív k předávání zpráv. Každé písmeno mělo svoji reprezentaci pomocí krátkých a dlouhých signálů (např. telegrafem, rádiem nebo světlem baterky). Podívejme se na následující zprávu, zda v ní není skryto volání o pomoc. O pomoc voláme pomocí mezinárodní zkratky SOS, S kódujeme pomocí tří teček a O pomocí tří čárek.
 
 ```
 .--- .- -.-. .... -.-. .. -.. --- -- ..- -.-.-- ... --- ... -.-.-- -. ..- -.. .. -- ... . -.-.--
