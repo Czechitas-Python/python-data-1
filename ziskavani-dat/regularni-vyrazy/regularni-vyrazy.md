@@ -123,17 +123,17 @@ Nyní už umíme sestavit výraz, kterým vybereme celý řádek s kurzem dolaru
 
 Pokud bychom neuvažovali předčíslí, stačí nám regulární výraz `\d{6,10}/\d{4}`, který by měl pasovat např. na číslo účtu 2300117015/2010. Nesmíme zapomenout na zpětné lomítko před lomítkem.
 
-Uvažujme, že máme program, do kterého nějaký programátor vložil proměnnou `magickaKonstanta`. Víme, že proměnná je desetinné číslo, ale potřebujeme vědět, kde je zadána její hodnota. Napiš regulární výraz, který najde řádek, který
+Uvažujme, že máme program, do kterého nějaký programátor vložil proměnnou `magicka_konstanta`. Víme, že proměnná je desetinné číslo, ale potřebujeme vědět, kde je zadána její hodnota. Napiš regulární výraz, který najde řádek, který
 
 ```
 polomer = input("Zadej poloměr koule: ")
 polomer = int(polomer)
-magickaKonstanta = 3.1415
-objem = 4/3 * magickaKonstanta * polomer ** 3
-povrch = 4 * magickaKonstanta * r ** 2
+magicka_konstanta = 3.1415
+objem = 4/3 * magicka_konstanta * polomer ** 3
+povrch = 4 * magicka_konstanta * r ** 2
 ```
 
-Zkus si program zkopírovat do Visual Studia a vyzkoušej si vyhledávání přepnout na regulární výrazy. Najde regulární výraz `magickaKonstanta = \d+\.\d*` správný řádek?
+Zkus si program zkopírovat do Visual Studia a vyzkoušej si vyhledávání přepnout na regulární výrazy. Najde regulární výraz `magicka_konstanta = \d+\.\d*` správný řádek?
 
 ### Rozmezí
 
