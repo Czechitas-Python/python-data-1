@@ -123,7 +123,7 @@ Nyní už umíme sestavit výraz, kterým vybereme celý řádek s kurzem dolaru
 
 Pokud bychom neuvažovali předčíslí, stačí nám regulární výraz `\d{6,10}/\d{4}`, který by měl pasovat např. na číslo účtu 2300117015/2010. Nesmíme zapomenout na zpětné lomítko před lomítkem.
 
-Uvažujme, že máme program, do kterého nějaký programátor vložil proměnnou `magicka_konstanta`. Víme, že proměnná je desetinné číslo, ale potřebujeme vědět, kde je zadána její hodnota. Napiš regulární výraz, který najde řádek, který
+Uvažujme, že máme program, do kterého nějaký programátor vložil proměnnou `magicka_konstanta`. Víme, že proměnná je desetinné číslo, ale potřebujeme vědět, kde je zadána její hodnota. Napiš regulární výraz, který najde řádek, kde programátor zadává hodnotu proměnné `magicka_konstanta`.
 
 ```
 polomer = input("Zadej poloměr koule: ")
@@ -137,7 +137,7 @@ Zkus si program zkopírovat do Visual Studia a vyzkoušej si vyhledávání pře
 
 ### Rozmezí
 
-Kromě výpisu znaků a předdefinovaných skupin můžeme ještě vybrat znaky pomocí rozmezí. K tomu použijeme pomlčku, kterou vepíšeme do hranatých závorek. Například čísla od 1 do 5 napíšeme jako `[1-5]`, malá písmena od `[a-e]` a všechna velká písmena jako `[A-Z]`.
+Kromě výpisu znaků a předdefinovaných skupin můžeme ještě vybrat znaky pomocí rozmezí. K tomu použijeme pomlčku, kterou vepíšeme do hranatých závorek. Například čísla od 1 do 5 napíšeme jako `[1-5]`, malá písmena od a do e jako `[a-e]` a všechna velká písmena jako `[A-Z]`.
 
 Pokud například víme, že se na nějaké střední školy vyskytují třídy označené od A do M, regulární výraz pasující na všechna jména tříd je `[1-4][A-M]`.
 
