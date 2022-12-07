@@ -12,10 +12,10 @@ Oněm magickým znakům říkáme *metaznaky*.
 
 Zkusme si to na příkladu tečky `.`. Tečka zastupuje **právě jeden** libovolný znak, přesně tedy odpovídá právě "žolíku". Pokud budeme pracovat s řetězcem `"A23456789JQKA"` a zadáme regulární výraz `"78.J"`, podbarví se nám část řetězce od `7` do `J`.
 
-Vyzkoušejme si nyní upravit program, který bude sledovat vývoj kurzu měn ve Směnárně Na Růžku, aby nám například poslal upozornění ve chvíli, kdy má nějaká měna výhodný kurz. Náš program zatím umí stáhnout informace do následující řetězce.
+Vyzkoušejme si nyní upravit program, který bude sledovat vývoj kurzu měn ve Směnárně na Růžku, aby nám například poslal upozornění ve chvíli, kdy má nějaká měna výhodný kurz. Náš program zatím umí stáhnout informace do následující řetězce.
 
 ```
-Vítejte ve Směnárně Na Růžku!
+Vítejte ve Směnárně na Růžku!
 Kurzy měn pro 19. 12. 2020 jsou:
 
 1 €   = 26.35 Kč
@@ -41,7 +41,7 @@ Pokud například chceme označit celou část našeho řádku s kurzem měn př
 Někdy se ale náš kurzovní lístek může "nafouknout", proto můžeme využít i výraz `1 [€$] {3,}`.
 
 ```
-Vítejte ve Směnárně Na Růžku!
+Vítejte ve Směnárně na Růžku!
 Kurzy měn pro 19. 12. 2020 jsou:
 
 1 €     = 26.35 Kč
@@ -53,7 +53,7 @@ Kurzy měn pro 19. 12. 2020 jsou:
 Neúčtujeme žádné poplatky.
 ```
 
-Morseova abeceda sloužila dřív k předávání zpráv. Každé písmeno mělo svoji reprezentaci pomocí krátkých a dlouhých signálů (např. telegrafem, rádiem nebo světlem baterky). Podívejme se na následující zprávu, zda v ní není skryto volání o pomoc. O pomoc voláme pomocí mezinárodní zkratky SOS, s kódujeme pomocí tří teček a O pomocí tří čárek.
+Morseova abeceda sloužila dřív k předávání zpráv. Každé písmeno mělo svoji reprezentaci pomocí krátkých a dlouhých signálů (např. telegrafem, rádiem nebo světlem baterky). Podívejme se na následující zprávu, zda v ní není skryto volání o pomoc. O pomoc voláme pomocí mezinárodní zkratky SOS, S kódujeme pomocí tří teček a O pomocí tří čárek.
 
 ```
 .--- .- -.-. .... -.-. .. -.. --- -- ..- -.-.-- ... --- ... -.-.-- -. ..- -.. .. -- ... . -.-.--
@@ -123,23 +123,23 @@ Nyní už umíme sestavit výraz, kterým vybereme celý řádek s kurzem dolaru
 
 Pokud bychom neuvažovali předčíslí, stačí nám regulární výraz `\d{6,10}/\d{4}`, který by měl pasovat např. na číslo účtu 2300117015/2010. Nesmíme zapomenout na zpětné lomítko před lomítkem.
 
-Uvažujme, že máme program, do kterého nějaký programátor vložil proměnnou `magickaKonstanta`. Víme, že proměnná je desetinné číslo, ale potřebujeme vědět, kde je zadána její hodnota. Napiš regulární výraz, který najde řádek, který
+Uvažujme, že máme program, do kterého nějaký programátor vložil proměnnou `magicka_konstanta`. Víme, že proměnná je desetinné číslo, ale potřebujeme vědět, kde je zadána její hodnota. Napiš regulární výraz, který najde řádek, kde programátor zadává hodnotu proměnné `magicka_konstanta`.
 
 ```
 polomer = input("Zadej poloměr koule: ")
 polomer = int(polomer)
-magickaKonstanta = 3.1415
-objem = 4/3 * magickaKonstanta * polomer ** 3
-povrch = 4 * magickaKonstanta * r ** 2
+magicka_konstanta = 3.1415
+objem = 4/3 * magicka_konstanta * polomer ** 3
+povrch = 4 * magicka_konstanta * r ** 2
 ```
 
-Zkus si program zkopírovat do Visual Studia a vyzkoušej si vyhledávání přepnout na regulární výrazy. Najde regulární výraz `magickaKonstanta = \d+\.\d*` správný řádek?
+Zkus si program zkopírovat do Visual Studia a vyzkoušej si vyhledávání přepnout na regulární výrazy. Najde regulární výraz `magicka_konstanta = \d+\.\d*` správný řádek?
 
 ### Rozmezí
 
-Kromě výpisu znaků a předdefinovaných skupin můžeme ještě vybrat znaky pomocí rozmezí. K tomu použijeme pomlčku, kterou vepíšeme do hranatých závorek. Například čísla od 1 do 5 napíšeme jako `[1-5]`, malá písmena od `[a-e]` a všechna velká písmena jako `[A-Z]`.
+Kromě výpisu znaků a předdefinovaných skupin můžeme ještě vybrat znaky pomocí rozmezí. K tomu použijeme pomlčku, kterou vepíšeme do hranatých závorek. Například čísla od 1 do 5 napíšeme jako `[1-5]`, malá písmena od a do e jako `[a-e]` a všechna velká písmena jako `[A-Z]`.
 
-Pokud například víme, že se na nějaké střední školy vyskytují třídy označené od A do M, regulární výraz pasující na všechna jména tříd je `[1-4][A-M]`.
+Pokud například víme, že se na nějaké střední škole vyskytují třídy označené od A do M, regulární výraz pasující na všechna jména tříd je `[1-4][A-M]`.
 
 Pokud potřebujeme zajistit opakování určité sekvence znaků (ne jen jednoho), můžeme sekvenci znaků uzavřít do kulatých závorek `( )` a za pravou závorku umístit kvantifikátor. Pokud máme variant více, můžeme k jejich oddělení použít znak `|`. Například pokud chceme vybrat oba víkendové dny, napíšeme `(sobota|neděle)`.
 
@@ -149,7 +149,7 @@ Podívejme se nyní na pár příkladů. Níže máme tabulku s kurzy Czechitas.
 
 * Chceme jít na kurz programování v Pythonu nebo v JavaScriptu. Kurz musí být pro začátečníky. Řádky, které nás zajímají, vyhledáme pomocí `Úvod do programování 1 - (JavaScript|Python)`. Co kdyby nám nevadil ani navazující kurz?
 * Uvažujme, že nás zajímají pouze kurzy o víkendu. Vyzkoušíme si výraz `(sobota|neděle)`. Můžeme k povoleným dnům přidat ještě úterý?
-* Protože se nám o víkendu nechce příliš brzy vstávat, chceme víkendové kurzy, které začínají nejdříve v 8:30. Napíšeme `(sobota|neděle) [89]:30`. Co kdybychom naopak chtěli kurzy, které začínají nejpozději v 8:30
+* Protože se nám o víkendu nechce příliš brzy vstávat, chceme víkendové kurzy, které začínají nejdříve v 8:30. Napíšeme `(sobota|neděle) [89]:30`. Co kdybychom naopak chtěli kurzy, které začínají nejpozději v 8:30?
 * Napíšeme si regulární výraz, který označí všechna data ve formátu, jaký je v tabulce. Můžeme například použít výraz `\d{1,2}\. (led|úno). 2021`. Do závorky bychom pro rozvrh na celý rok potřebovali přidat zkratky všech měsíců.
 
 ```

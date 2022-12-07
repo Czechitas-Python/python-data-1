@@ -89,11 +89,11 @@ user: pavca action: send sms to phone number +420728123456
 user: jirka: action: send 2 sms to phone number +420734123456
 """
 import re
-regularniVyraz = re.compile(r"[+\d]{13}")
-vysledky = regularniVyraz.findall(zaznamy)
+regularni_vyraz = re.compile(r"[+\d]{13}")
+vysledky = regularni_vyraz.findall(zaznamy)
 for vysledek in vysledky:
     print(vysledek)
-anonymni_zaznamy = regularniVyraz.sub("X" * 9, zaznamy)
+anonymni_zaznamy = regularni_vyraz.sub("X" * 9, zaznamy)
 print(anonymni_zaznamy)
 ```
 
