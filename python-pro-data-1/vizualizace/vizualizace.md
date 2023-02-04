@@ -87,7 +87,7 @@ plt.show()
 
 ::fig[Histogram výšek]{src=assets/vysky-muzi.png}
 
-Histogram si pro přehlednost můžeme rozdělit do <term cs="přihrádek" en="bins"> po pěti centimetrech
+Histogram si pro přehlednost můžeme rozdělit do :term{cs="přihrádek" en="bins"} po pěti centimetrech
 
 ```py
 muzi.hist(bins=[
