@@ -41,7 +41,7 @@ print(propojeny_df.head())
 4              3            Chemie     5.0  út     Pavel Horák
 ```
 
-Pokud by například nějaký student nebyl uvedený v tabulce se studenty, jeho maturitní výsledek by zmizel. U nového `DataFrame` bychom tedy měli zkontrolovat, zda má `spojenyDF` stejný počet řádků jako `u202`.
+Pokud by například nějaký student nebyl uvedený v tabulce se studenty, jeho maturitní výsledek by zmizel. U nového `DataFrame` bychom tedy měli zkontrolovat, zda má `propojeny_df` stejný počet řádků jako `u202`.
 
 ```py
 print(u202.shape)
