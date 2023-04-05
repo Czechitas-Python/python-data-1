@@ -47,16 +47,8 @@ Pokud by například nějaký student nebyl uvedený v tabulce se studenty, jeho
 print(u202.shape)
 ```
 
-```shell
-(15, 4)
-```
-
 ```py
 print(propojeny_df.shape)
-```
-
-```shell
-(15, 5)
 ```
 
 Zde vidíme, že data jsou zřejmě v pořádku.
@@ -72,12 +64,6 @@ Zkusme tabulky spojit jako předtím.
 ```py
 novy_propojeny_df = pandas.merge(propojeny_df, preds)
 print(novy_propojeny_df.head())
-```
-
-```shell
-Empty DataFrame
-Columns: [den, datum, jmeno, cisloStudenta, predmet, znamka]
-Index: []
 ```
 
 Tentokrát jsme příliš neuspěli, výsledný `DataFrame` je prázdný. Proč tomu tak je? Protože v obou `DataFrame` máme sloupec `jmeno`, v jednom případě však jde o jméno studenta a ve druhém o jméno předsedy komise. To ale `pandas` samozřejmě neví. Proto mu musíme říct, že chceme data spojit pouze podle sloupce `den`.
@@ -102,19 +88,11 @@ Zatím to vypadá dobře. Pokud se ovšem podíváme na `shape`, něco nám tady
 print(novy_propojeny_df.shape)
 ```
 
-```shell
-(10, 8)
-```
-
 Najednou máme v tabulce pouze 12 řádků, některé tedy zmizely. To znamená, že funkce `merge()` nenašla pro všechna zkoušení odpovídajícího předsedu. Jak je to možné? Zkusme nyní říct funkci `merge()`, aby nám zachovala v prvním `DataFrame` ty řádky, pro které nenajde odpovídající záznam. Této operaci se v jazyce SQL říká LEFT OUTER JOIN. My ho provede tak, že funkci `merge()` jako parametr `how` zadáme hodnotu `left`.
 
 ```py
 novy_propojeny_df = pandas.merge(propojeny_df, preds, on=['den'], how="outer")
 print(novy_propojeny_df.shape)
-```
-
-```shell
-(14, 8)
 ```
 
 Tentokrát jsme již o data nepřišli, ale kde se stala chyba? Zkusme si zobrazit ty řádky, které se nepodařilo propojit. Poznáme je tak, že mají prázdný sloupec `datum`.
@@ -138,10 +116,6 @@ Pokud nemáme možnost vstupní data opravit, můžeme použít funkci `strip()`
 preds["den"] = preds["den"].str.strip()
 novy_propojeny_df = pandas.merge(propojeny_df, preds, on=['den'], how="outer")
 print(novy_propojeny_df.shape)
-```
-
-```shell
-(13, 8)
 ```
 
 Poslední nepříjemností, na kterou se podíváme, je to, že sloupce `jmeno` se automaticky přejmenovaly, aby neměly v tabulce stejný název. Zde můžeme použít metodu `rename`, abychom sloupečky přejmenovali na něco smysluplného.
