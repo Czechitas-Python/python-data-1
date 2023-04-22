@@ -1,8 +1,25 @@
 ---
 title: Scraping Kodim.cz
-demand: 3
+demand: 4
 ---
 
 Jistě vás nepřekvapí, že stránky, které právě čtete, se dají také snadno scrapovat.
 
-Napište program, který vypíše na výstup všechna cvičení z lekce [Vstup a výstup](https://kodim.cz/kurzy/uvod-do-progr-1/prvni-krucky/vstup-vystup/excs) spolu s jejich obtížností.
+Napište program, který vypíše na výstup všechny sekce a kurzy ze stránky kodim.cz. Výstup může vypadat např. takto:
+
+```
+Základy programování
+    Úvod do programování
+    Úvod do programování 2
+    JavaScript
+    Úvod do Linuxu
+Vývoj webových aplikací
+    Digitální akademie Web
+    React 2
+Datová analýza a programování
+    Python pro data 1
+    Python pro Power BI
+    Python pro databáze
+    Objektově orientované programování v Pythonu
+    Datová analytika
+```
