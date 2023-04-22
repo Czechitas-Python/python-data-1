@@ -3,6 +3,4 @@ lead: Pojďme načíst data do pandas a podívat se na ně
 sections:
   - nacteni-dat
   - vyber-sloupcu
-  - cisla-radku
   - excs
-  - indexy

@@ -1,4 +1,4 @@
-## Čtení na doma
+## Z Pandas a do Pandas
 
 `DataFrame` nejsou uzavřeným světem, ale umožňují snadný převod na seznamy, případně můžeme naopak převést seznam na `DataFrame`.
 
