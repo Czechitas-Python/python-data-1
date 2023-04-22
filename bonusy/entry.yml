@@ -1,5 +1,6 @@
 title: Bonusové kapitoly
-lead: Bonusové kapitoly
+lead: Další speciality datové analýzy v Pythonu
 lessons:
   - datum
   - jupyter
+  - bonusove-pandas

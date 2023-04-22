@@ -4,7 +4,7 @@ Nyní si vyzkoušíme jednu z hlavních prací datového analytika, a to je **ps
 
 ### Výběr sloupců
 
-Již jsme si říkali, že ne vždy nás zajímají všechna data. Řádky již umíme vybrat pomocí funkce `loc`. Funkce `loc` je praktická, pokud vybíráme konkrétní řádky a k nim nějaké konkrétní sloupce. Dále si zopakujme, že pokud chceme vybrat jen sloupec a zachovat všechny řádky, zpravidla použijeme výběr sloupců pomocí hranatých závorek.
+Již jsme si říkali, že ne vždy nás zajímají všechna data. Zopakujme si, že pokud chceme vybrat jen sloupec a zachovat všechny řádky, zpravidla použijeme výběr sloupců pomocí hranatých závorek.
 
 ```py
 print(staty["population"])
