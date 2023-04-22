@@ -7,7 +7,7 @@ Jistě vás nepřekvapí, že stránky, které právě čtete, se dají také sn
 
 Napište program, který vypíše na výstup všechny sekce a kurzy ze stránky kodim.cz. Výstup může vypadat např. takto:
 
-```shell
+```
 Základy programování
     Úvod do programování
     Úvod do programování 2
