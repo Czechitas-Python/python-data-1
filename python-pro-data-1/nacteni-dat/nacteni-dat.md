@@ -81,11 +81,26 @@ dtypes: int64(1), object(3)
 memory usage: 480.0+ bytes
 ```
 
+Základní statistické veličiny u číselných hodnot získáme metodou `describe()`:
+```py
+nakupy.describe()
+```
+
+```shell
+             cena
+count   11.000000
+mean   132.090909
+std    114.017064
+min     30.000000
+25%     70.000000
+50%     80.000000
+75%    127.000000
+max    399.000000
+```
+
 Počet řádků a sloupců můžeme získat z vlastnosti `shape`:
 
 ```py
-import pandas
-nakupy = pandas.read_csv('nakupy.csv')
 print(nakupy.shape)
 ```
 
