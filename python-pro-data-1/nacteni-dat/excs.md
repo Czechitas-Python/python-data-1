@@ -1,2 +1,2 @@
 ## Cvičení
-::exc[excs>nabidky]
+::exc[excs>titanic]
