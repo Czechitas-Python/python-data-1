@@ -1,6 +1,4 @@
-V této části si zkusíme napsat nějaké základní dotazy na naše data. `pandas` umožňují napsat dotazy podobně jako jazyk SQL, k práci ale jeho znalost vůbec ne potřebujeme.
-
-Tentokrát si vyzkoušíme načíst data ze souboru ve formátu JSON. Konkrétně budeme pracovat s daty o státech světa, která jsou stažená ze služby [restcountries](https://restcountries.com/). Data si můžeš [stáhnout zde](assets/staty.json). Opět platí, že si je musíš stáhnout do adresáře, kde máš právě otevřený terminál!
+Opět si zde načteme data ze souboru ve formátu JSON. Konkrétně budeme pracovat s daty o státech světa, která jsou stažená ze služby [restcountries](https://restcountries.com/). Data si můžeš [stáhnout zde](assets/staty.json). Opět platí, že si je musíš stáhnout do adresáře, kde máš právě otevřený terminál!
 
 ## Indexy
 
