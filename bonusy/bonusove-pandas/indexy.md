@@ -136,4 +136,4 @@ AT           83871.0     8725931
 ```
 
 ## Cvičení
-::exc[excs>ceska-jmena]
+::exc[excs/ceska-jmena]

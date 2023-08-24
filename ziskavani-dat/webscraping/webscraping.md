@@ -100,8 +100,8 @@ print(stranka.html.html)
 ```
 
 ## Cvičení: Scraping
-::exc[excs>scraping-dhmo]
-::exc[excs>scraping-kodim.cz]
+::exc[excs/scraping-dhmo]
+::exc[excs/scraping-kodim.cz]
 
 ## Web scraping vs JavaScript
 
@@ -119,7 +119,7 @@ stranka.html.render(sleep=5)
 ```
 
 ## Doporučené úložky na doma
-::exc[excs>kava-na-mall.cz]
+::exc[excs/kava-na-mall.cz]
 
 ## Čtení na doma
 

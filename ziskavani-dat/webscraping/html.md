@@ -63,4 +63,4 @@ Všech HTML značek je kolem stovky a mnoho z nich má spoustu možných atribut
 Pokud by vás zajímalo, co vše je v HTML možné, přehled všech používaných značek [najdete zde (anglicky)](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
 
 ## Cvičení
-::exc[excs>porozumeni-html]
+::exc[excs/porozumeni-html]

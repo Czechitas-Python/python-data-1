@@ -191,4 +191,4 @@ Ukraine                       UA        UKR        Kiev  Europe  Eastern Europe 
 ```
 
 ## Cvičení
-::exc[excs>ceska-jmena-2]
+::exc[excs/ceska-jmena-2]

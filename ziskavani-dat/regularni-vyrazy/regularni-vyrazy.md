@@ -171,11 +171,11 @@ Podívejme se nyní na pár příkladů. Níže máme tabulku s kurzy Czechitas.
 
 
 ## Cvičení: Regulární výrazy
-::exc[excs>cislo-uctu-1]
-::exc[excs>cislo-uctu-2]
-::exc[excs>registracni-znacka]
-::exc[excs>telefonni-cislo]
-::exc[excs>ministerstva]
-::exc[excs>napravy]
-::exc[excs>slavny-soude]
-::exc[excs>ave-caesar]
+::exc[excs/cislo-uctu-1]
+::exc[excs/cislo-uctu-2]
+::exc[excs/registracni-znacka]
+::exc[excs/telefonni-cislo]
+::exc[excs/ministerstva]
+::exc[excs/napravy]
+::exc[excs/slavny-soude]
+::exc[excs/ave-caesar]

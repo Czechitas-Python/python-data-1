@@ -104,6 +104,6 @@ Takové štěstí ale často nemáme, protože řada programů ukládá datum ve
 Výsledek je hodnota typu `timedelta`.
 
 ## Cvičení: Datum a čas
-::exc[excs>prevod-casu]
-::exc[excs>cas-od-startu]
-::exc[excs>doprava-vecere]
+::exc[excs/prevod-casu]
+::exc[excs/cas-od-startu]
+::exc[excs/doprava-vecere]

@@ -125,9 +125,9 @@ print(anonymniZapis)
 ```
 
 ## Cvičení: Regulární výrazy v Pythonu
-::exc[excs>uzivatelske-jmeno]
-::exc[excs>email-s-teckou]
-::exc[excs>zaznamy]
-::exc[excs>adresy-stranek]
-::exc[excs>ip-adresy]
-::exc[excs>prace-s-kodem]
+::exc[excs/uzivatelske-jmeno]
+::exc[excs/email-s-teckou]
+::exc[excs/zaznamy]
+::exc[excs/adresy-stranek]
+::exc[excs/ip-adresy]
+::exc[excs/prace-s-kodem]

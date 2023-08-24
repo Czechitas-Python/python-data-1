@@ -1,3 +1,3 @@
 ## Cvičení
-::exc[excs>ceska-jmena]
-::exc[excs>ceska-jmena-2]
+::exc[excs/ceska-jmena]
+::exc[excs/ceska-jmena-2]

@@ -1,2 +1,2 @@
 ## Cvičení
-::exc[excs>studenti]
+::exc[excs/studenti]

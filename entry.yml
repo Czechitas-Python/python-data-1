@@ -1,6 +1,6 @@
 title: Python pro data 1
 lead: Úvod do zpracování dat v Pythonu
-image: python-data.svg
+image: assets/python.svg
 chapters:
   - python-pro-data-1
   - ziskavani-dat
