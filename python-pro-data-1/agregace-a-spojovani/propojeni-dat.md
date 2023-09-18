@@ -5,7 +5,7 @@
 Naše výsledky byly anonymní. Pokud bychom ale chtěli vytisknout maturitní vysvědčení, potřebujeme k číslům studenta zjistit jejich jména. Jména najdeme v samostatné tabulce [studenti.csv](assets/studenti.csv). Načtěme si jej jako `DataFrame`.
 
 ```py
-studenti = pandas.read_csv('https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/studenti.csv')
+studenti = pandas.read_csv('https://kodim.cz/cms/assets/analyza-dat/python-data-1/python-pro-data-1/agregace-a-spojovani/propojeni-dat/studenti.csv')
 print(studenti.head())
 ```
 
@@ -56,7 +56,7 @@ Zde vidíme, že data jsou zřejmě v pořádku.
 Dále připojíme tabulku [predsedajici.csv](assets/predsedajici.csv), kde máme vypsané předsedy maturitních komisí. Tu si opět načteme jako `DataFrame`.
 
 ```py
-preds = pandas.read_csv('https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/predsedajici.csv')
+preds = pandas.read_csv('https://kodim.cz/cms/assets/analyza-dat/python-data-1/python-pro-data-1/agregace-a-spojovani/propojeni-dat/predsedajici.csv')
 ```
 
 Zkusme tabulky spojit jako předtím.

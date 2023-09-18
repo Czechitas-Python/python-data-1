@@ -11,9 +11,9 @@ Funkce `read_csv()` knihovny `pandas` umí stáhnout CSV soubor rovnou z interne
 ```py
 import pandas
 
-u202 = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/u202.csv")
-u203 = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/u203.csv")
-u302 = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/agregace-a-spojovani/u302.csv")
+u202 = pandas.read_csv("https://kodim.cz/cms/assets/analyza-dat/python-data-1/python-pro-data-1/agregace-a-spojovani/pokrocile-upravy/u202.csv")
+u203 = pandas.read_csv("https://kodim.cz/cms/assets/analyza-dat/python-data-1/python-pro-data-1/agregace-a-spojovani/pokrocile-upravy/u203.csv")
+u302 = pandas.read_csv("https://kodim.cz/cms/assets/analyza-dat/python-data-1/python-pro-data-1/agregace-a-spojovani/pokrocile-upravy/u302.csv")
 ```
 
 |cisloStudenta |predmet         |znamka|den|
