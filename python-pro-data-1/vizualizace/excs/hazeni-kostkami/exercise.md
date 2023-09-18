@@ -13,5 +13,5 @@ Načtěte tato data do tabulky a zobrazte histogram hodů. Zvolte vhodné rozlo�
 ```py
 import pandas
 
-kostky = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/vizualizace/excs/excs>hazeni-kostkami/kostky.csv")
+kostky = pandas.read_csv("https://kodim.cz/cms/assets/analyza-dat/python-data-1/python-pro-data-1/vizualizace/excs/hazeni-kostkami/kostky.csv")
 ```

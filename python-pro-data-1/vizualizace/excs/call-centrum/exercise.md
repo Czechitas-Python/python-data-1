@@ -11,6 +11,6 @@ K převodu na vteřiny můžeš použít metodu `str.split()`. Pomocí ní rozd�
 ```py
 import pandas
 
-callcentrum = pandas.read_csv("https://kodim.cz/cms/assets/kurzy/python-data-1/python-pro-data-1/vizualizace/excs/excs>call-centrum/callcentrum.csv")
+callcentrum = pandas.read_csv("https://kodim.cz/cms/assets/analyza-dat/python-data-1/python-pro-data-1/vizualizace/excs/call-centrum/callcentrum.csv")
 callcentrum = callcentrum["hodnota"].str.split(':', expand=True).astype(int)
 ```
