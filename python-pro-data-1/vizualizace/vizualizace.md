@@ -5,6 +5,8 @@ V této lekci si ukážeme, jak zobrazovat různé druhy grafů pomocí modulu `
 
 Modul `matplotlib` nabízí ohromné množství možností pro vizualizaci dat. My zde probereme jen naprosté základy, aby nám lekce nenarostla to olbřímích rozměrů.
 
+Pracovní dataset [ucet.csv](assets/ucet.csv) si můžeme stáhnout dopředu nebo rovnou až v rámci kódu.
+
 ```py
 import pandas
 import matplotlib.pyplot as plt
