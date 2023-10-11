@@ -39,22 +39,3 @@ Nemusíme samozřejmě grupovat přes všechny sloupečky. Vybereme si pouze ty,
 ```py
 print(maturita.groupby('predmet')['znamka'].mean())
 ```
-
-Pomocí agregací můžeme vyřešit i náš problém s nákupy. Pokud máme stále načtený `Data Frame` `nakupy`, můžeme použít funkci `groupby` podle jména a následně spočítat sumu nákupů pomocí `.sum()`.
-
-```py
-nakupy = pandas.read_csv('nakupy.csv')
-nakupy_celkem = nakupy.groupby("Jméno")["Částka v korunách"].sum()
-print(nakupy_celkem)
-```
-
-```shell
-Jméno
-Libor    124
-Míša     160
-Ondra    500
-Pavla     50
-Petr     539
-Zuzka     80
-Name: Částka v korunách, dtype: int64
-```
