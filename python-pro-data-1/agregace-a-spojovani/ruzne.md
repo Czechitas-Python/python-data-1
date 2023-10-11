@@ -2,7 +2,7 @@
 
 Občas je užitečné přidat nový sloupec, který obsahuje hodnotu vypočtenou na základě hodnot ostatních sloupců. Vraťme se například k naší tabulce s údaji o státech ve světě. Máme informaci o rozloze a počtu obyvatel, mohli bychom tedy přidal sloupec s hodnotou hustoty zalidnění (počet obyvatel na 1 km čtvereční), který získáme vydělením počtu obyvatel rozlohou země.
 
-Pokud nemáme načtený soubor s daty, načteme si ho.
+Pokud nemáme načtený soubor s daty, načteme si ho. Data si můžeme [stáhnout zde](assets/staty.json). Opět platí, že si je dáme do adresáře, kde máme právě otevřený terminál!
 
 ```py
 staty = pandas.read_json("staty.json")
