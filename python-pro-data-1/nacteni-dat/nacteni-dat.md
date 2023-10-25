@@ -6,7 +6,7 @@ V Pandas většinou pracujeme s datovou strukturou zvanou `DataFrame`. Je to tab
 
 Abychom si práci s DataFrame vyzkoušeli, vrátíme se k naší tabulce se seznamem nákupů.
 
-| jmeno   | datum      | vec              | cena |
+| Jméno   | Datum      | Věc              | Částka v korunách |
 |:--------|:-----------|:-----------------|-----:|
 | Petr    | 2020-02-05 | Prací prášek     |  399 |
 | Ondra   | 2020-02-08 | Savo             |   80 |
