@@ -28,9 +28,19 @@ Neúčtujeme žádné poplatky.
 
 Podívejme se nejprve na řádek, kde máme kurz Eura. Mohli bychom napsat pouze dolar, ale abychom označili i jedničku před znakem měny, napíšeme `1 €`.
 
-### Skupiny znaků
+### Množiny znaků
 
-Pokud chceme, aby náš metaznak zastupoval jeden ze skupiny znaků, vložíme tyto znaky do hranatých závorek `[ ]`. Například pokud chceme v kurzovním lístku vyhledat řádky, které mají v sobě znak dolaru nebo eura, napíšeme `1 [€$]`.
+Pokud chceme, aby náš metaznak zastupoval jeden z množiny znaků, vložíme tyto znaky do hranatých závorek `[ ]`. Například pokud chceme v kurzovním lístku vyhledat řádky, které mají v sobě znak dolaru nebo eura, napíšeme `1 [€$]`.
+
+
+### Rozsahy znaků
+
+Množinu znaků můžeme vyjádřit pomocí rozsahu. K tomu použijeme pomlčku, kterou vepíšeme do hranatých závorek. Například čísla od 1 do 5 napíšeme jako `[1-5]`, malá písmena od a do e jako `[a-e]` a všechna velká písmena jako `[A-Z]`. Krajní hodnoty do rozsahu patří.
+
+V jedné množině znaků můžeme napsat i více rozsahů. Např. velká písmena anglické abecedy a cifry můžeme vyjádřit jako `[A-Z0-9]`.
+
+Pokud například víme, že se na nějaké střední škole vyskytují třídy označené od A do M, regulární výraz pasující na všechna jména tříd je `[1-4][A-M]`.
+
 
 ### Kvantifikátory
 
@@ -71,9 +81,10 @@ Kromě složených závorek existují i tři speciální kvantifikátory.
 
 Pro náš případ s výběrem řádků můžeme použít např. `1 [€$] +`.
 
-### Skupiny znaků
 
-Ve většině případů potřebujeme pracovat nejen s konkrétním znakem nebo konkrétními znaky, ale skupinami znaků. Abychom si práci usnadnili a nemuseli používat příliš často hranaté závorky, existují předem definované skupiny znaků. Skupiny jsou celkem tři a ke každé z nich existuje i její "opak". Např. skupina `\d` označuje čísla a skupina `\D` označuje vše kromě čísel, tj. písmena, mezery, speciální znaky jako `€`, `$` atd. Přehled skupin najdeš zde:
+### Speciální množiny znaků
+
+Abychom si práci usnadnili a nemuseli používat příliš často hranaté závorky, existují předem definované skupiny znaků. Skupiny jsou celkem tři a ke každé z nich existuje i její "opak". Např. skupina `\d` označuje čísla a skupina `\D` označuje vše kromě čísel, tj. písmena, mezery, speciální znaky jako `€`, `$` atd. Přehled skupin najdeš zde:
 
 * `\d` zahrnuje číslice 0-9.
 * `\D` zahrnuje jakýkoliv znak kromě číslic 0-9
@@ -123,23 +134,8 @@ Nyní už umíme sestavit výraz, kterým vybereme celý řádek s kurzem dolaru
 
 Pokud bychom neuvažovali předčíslí, stačí nám regulární výraz `\d{6,10}/\d{4}`, který by měl pasovat např. na číslo účtu 2300117015/2010. Nesmíme zapomenout na zpětné lomítko před lomítkem.
 
-Uvažujme, že máme program, do kterého nějaký programátor vložil proměnnou `magicka_konstanta`. Víme, že proměnná je desetinné číslo, ale potřebujeme vědět, kde je zadána její hodnota. Napiš regulární výraz, který najde řádek, kde programátor zadává hodnotu proměnné `magicka_konstanta`.
 
-```
-polomer = input("Zadej poloměr koule: ")
-polomer = int(polomer)
-magicka_konstanta = 3.1415
-objem = 4/3 * magicka_konstanta * polomer ** 3
-povrch = 4 * magicka_konstanta * r ** 2
-```
-
-Zkus si program zkopírovat do Visual Studia a vyzkoušej si vyhledávání přepnout na regulární výrazy. Najde regulární výraz `magicka_konstanta = \d+\.\d*` správný řádek?
-
-### Rozmezí
-
-Kromě výpisu znaků a předdefinovaných skupin můžeme ještě vybrat znaky pomocí rozmezí. K tomu použijeme pomlčku, kterou vepíšeme do hranatých závorek. Například čísla od 1 do 5 napíšeme jako `[1-5]`, malá písmena od a do e jako `[a-e]` a všechna velká písmena jako `[A-Z]`.
-
-Pokud například víme, že se na nějaké střední škole vyskytují třídy označené od A do M, regulární výraz pasující na všechna jména tříd je `[1-4][A-M]`.
+### Kvatifikátory skupin
 
 Pokud potřebujeme zajistit opakování určité sekvence znaků (ne jen jednoho), můžeme sekvenci znaků uzavřít do kulatých závorek `( )` a za pravou závorku umístit kvantifikátor. Pokud máme variant více, můžeme k jejich oddělení použít znak `|`. Například pokud chceme vybrat oba víkendové dny, napíšeme `(sobota|neděle)`.
 
@@ -176,6 +172,5 @@ Podívejme se nyní na pár příkladů. Níže máme tabulku s kurzy Czechitas.
 ::exc[excs/registracni-znacka]
 ::exc[excs/telefonni-cislo]
 ::exc[excs/ministerstva]
-::exc[excs/napravy]
 ::exc[excs/slavny-soude]
 ::exc[excs/ave-caesar]
