@@ -101,7 +101,6 @@ print(stranka.html.html)
 
 ## Cvičení: Scraping
 ::exc[excs/scraping-dhmo]
-::exc[excs/scraping-kodim.cz]
 
 ## Web scraping vs JavaScript
 
