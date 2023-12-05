@@ -12,6 +12,7 @@ Regulární výraz můžeme vytvořit pomocí funkce `compile()` z modulu `re`. 
 
 ```py
 import re
+
 regularni_vyraz = re.compile(r"\d{9,10}")
 
 rezetec = "9511121234"
@@ -30,6 +31,7 @@ Pokud chceš ověřit, jestli řetězec odpovídá zadanému výrazu a není tam
 
 ```py
 import re
+
 regularni_vyraz = re.compile(r"\d{9,10}")
 
 rezetec = "9511121234"
@@ -80,13 +82,15 @@ Kromě ověřování správného formátu můžeme použít regulární výrazy 
 Následující program například z deníku lékaře vyhledá rodná čísla všech pacientů, které lékař zmínil.
 
 ```py
+import re
+
 zapis = """
 Zápisy o provedených vyšetřeních:
 Pacient 6407156800 trpěl bolestí zad a byl poslán na vyšetření. 
 Pacientka 8655057477 přišla na kontrolu po zranění kotníku.
 Do ordinace telefonovala pacientka 7752126712, které byl elektronicky vydán recept na Paralen. 
 """
-import re
+
 regularni_vyraz = re.compile(r"\d{9,10}")
 vysledky = regularni_vyraz.findall(zapis)
 for vysledek in vysledky:
@@ -112,13 +116,15 @@ Vyřizuje ${firstname} ${lastname}
 Uvažujme, že máme nějakém textu provést anonymizaci, tj. vymazat všechny osobní údaje. K tomu můžeme využít funkci `sub()`, která nahradí všechny podřetězce, které odpovídají regulárnímu výrazu, námi zadanou hodnotou.
 
 ```py
+import re
+
 zapis = """
 Zápisy o provedených vyšetřeních:
 Pacient 6407156800 trpěl bolestí zad a byl poslán na vyšetření. 
 Pacientka 8655057477 přišla na kontrolu po zranění kotníku.
 Do ordinace telefonovala pacientka 7752126712, které byl elektronicky vydán recept na Paralen. 
 """
-import re
+
 regularni_vyraz = re.compile(r"\d{9,10}")
 anonymniZapis = regularni_vyraz.sub("X" * 9, zapis)
 print(anonymniZapis)
