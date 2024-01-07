@@ -26,7 +26,7 @@ Všimni si, že nevíme název potraviny, pouze její identifikační číslo. T
 Již jsme si říkali, že ne vždy nás zajímají všechna data. Zopakujme si, že pokud chceme vybrat jen sloupec a zachovat všechny řádky, zpravidla použijeme výběr sloupců pomocí hranatých závorek.
 
 ```py
-import pandas
+import pandas as pd
 food_nutrient = pandas.read_json("food_nutrient.json")
 food_nutrient.head()
 ```
