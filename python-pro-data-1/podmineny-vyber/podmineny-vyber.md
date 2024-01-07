@@ -27,7 +27,7 @@ Již jsme si říkali, že ne vždy nás zajímají všechna data. Zopakujme si,
 
 ```py
 import pandas as pd
-food_nutrient = pandas.read_json("food_nutrient.json")
+food_nutrient = pd.read_csv("food_nutrient.csv")
 food_nutrient.head()
 ```
 
