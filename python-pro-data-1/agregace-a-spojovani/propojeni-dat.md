@@ -1,22 +1,10 @@
 ## Propojení dat
 
-`pandas` však umí `DataFrame` také propojit, což odpovídá SQL příkazu `JOIN`. Nyní si ukážeme, jak na to. U výsledné tabulky je důležité, že bude mít **více sloupců**, počet řádků závisí na konkrétním typu operace a na samotných datech, jak ještě uvidíme.
+`pandas` však umí `DataFrame` také propojit, což odpovídá SQL příkazu `JOIN`. Vyvětleme si propojení na našich datech. V tabulce `food_nutrient` máme výživné látky v potravinách, nevíme ale názvy potravin, kterých se hodnoty týkají. V tabulce `food` máme názvy potravin. Propojení dat nám umožní ke každé informaci o výživných látkách připojit název potraviny.
 
-Naše výsledky byly anonymní. Pokud bychom ale chtěli vytisknout maturitní vysvědčení, potřebujeme k číslům studenta zjistit jejich jména. Jména najdeme v samostatné tabulce [studenti.csv](assets/studenti.csv). Načtěme si jej jako `DataFrame`.
+Jak ale `pandas` pozná, která informace o výživné láce patří jaké potravině? K tomu využijeme sloupec s identifikačním číslem potraviny. Při propojování tabulek vždy potřebujeme nějaký sloupeček (nebo sloupečky), pomocí kterého propojení provedeme.
 
-```py
-studenti = pandas.read_csv('https://kodim.cz/cms/assets/analyza-dat/python-data-1/python-pro-data-1/agregace-a-spojovani/propojeni-dat/studenti.csv')
-print(studenti.head())
-```
 
-```shell
-   cisloStudenta             jméno
-0              1    Jana Zbořilová
-1              2      Lukáš Jurčík
-2              3       Pavel Horák
-3              4     Pavel Kysilka
-4              5  Kateřina Novotná
-```
 
 U operace `JOIN` jsou důležité dvě věci:
 

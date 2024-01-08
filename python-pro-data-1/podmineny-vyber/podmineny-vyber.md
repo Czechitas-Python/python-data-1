@@ -69,11 +69,11 @@ food_nutrient["name"] == "Magnesium, Mg"
 Pokud si vzpomeneš na hodnoty typu `bool`, víš, že můžou nabývat pouze dvou hodnot: `True` (pravda) a `False` (nepravda). Při použití operátorů pro porovnávání vždy získáme hodnotu typu `bool`. Nyní použijeme poměrně svérázný zápis pomocí hranatých závorek. Podmínku, kterou jsme formulovali v předchozím kroku, vložíme do hranatých závorek, před kterou vložíme název tabulky `food_nutrient`. Tento zápis provede následující:
 
 - Z původní tabulky `food_nutrient` vybere ty řádky, které vyhovují podmínce, tj. ty, které měly při předchozím zápisu hodnotu `True`.
-- Výsledek uloží do nové tabulky `food_nutrient_magnesium`. Výsledná tabulka bude obsahovat všechny sloupce z původní tabulky, ale pouze ty řádky, které vyhovují podmínce.
+- Výsledek uloží do nové tabulky `magnesium`. Výsledná tabulka bude obsahovat všechny sloupce z původní tabulky, ale pouze ty řádky, které vyhovují podmínce.
 
 ```py
-food_nutrient_magnesium = food_nutrient[food_nutrient["name"] == "Magnesium, Mg"]
-food_nutrient_magnesium.head()
+magnesium = food_nutrient[food_nutrient["name"] == "Magnesium, Mg"]
+magnesium.head()
 ```
 
 ### Popisná statistika
@@ -83,7 +83,7 @@ Pokud pracujeme s číselnými ukazateli, je dobré podívat se na ukazatele pop
 Též by nemělo smysl použít metodu `.describe()` pro všechny řádky najednou, protože by došlo k promíchání dat o různých živinách, navíš měřených v odlišných jednotkách.
 
 ```py
-food_nutrient_magnesium["amount"].describe()
+magnesium["amount"].describe()
 ```
 
 V datech se zobrazují tyto hodnoty: 
@@ -101,8 +101,8 @@ V datech se zobrazují tyto hodnoty:
 Naším úkolem je vybrat potraviny, které mají vyšší množství hořčíku. K tomu opět využijeme dotaz. Uvažujeme, že nás zajímají potraviny, které mají více než 100 gramů hořčíku.
 
 ```py
-food_nutrient_magnesium_limit = food_nutrient_magnesium[food_nutrient_magnesium["amount"] > 100]
-food_nutrient_magnesium_limit
+magnesium_limit = magnesium[magnesium["amount"] > 100]
+magnesium_limit
 ```
 
 ### Spojení více podmínek
@@ -110,14 +110,14 @@ food_nutrient_magnesium_limit
 Nyní uvažujme, že chceme spojit více podmínek dohromady. U některých živin může být například vhodné nekonzumovat jich příliš malé, ale ani příliš velké množství. Uvažujme například vápník. Nejprve si vytvoříme tabulku, která bude obsahovat data pouze o vápníku. Postup je stejný jako v předchozí části.
 
 ```py
-food_nutrient_calcium = food_nutrient[food_nutrient["name"] == "Calcium, Ca"]
+calcium = food_nutrient[food_nutrient["name"] == "Calcium, Ca"]
 ```
 
 Naším úkolem bude vybrat potraviny, které mají mezi 30 a 500 mg vápníku. Vepíšeme do hranatých závorek obě podmínky. Každou z podmínek vložíme do kulatých závorek. V našem případě chceme, aby byly splněné obě podmínky, proto mezi ně vložíme symbol `&`.
 
 ```py
-food_nutrient_calcium_limit = food_nutrient_calcium[(food_nutrient_calcium["amount"] > 30) & (food_nutrient_calcium["amount"] < 500)]
-food_nutrient_calcium_limit
+calcium_limit = calcium[(calcium["amount"] > 30) & (calcium["amount"] < 500)]
+calcium_limit
 ```
 
 Podmínek můžeme zkombinovat i více, například tři. Předchozí dva kroky můžeme díky tomu spojit do jednoho, tj. z původní tabulky `food_nutrient` vybereme řádky, které:
@@ -129,8 +129,8 @@ Podmínek můžeme zkombinovat i více, například tři. Předchozí dva kroky 
 Mezi každou dvojici podmínek vložíme symbol `&`, tento symbol tedy použijeme dvakrát.
 
 ```py
-food_nutrient_calcium_limit = food_nutrient[(food_nutrient["name"] == "Calcium, Ca") & (food_nutrient["amount"] > 30) & (food_nutrient["amount"] < 500)]
-food_nutrient_calcium_limit
+calcium_limit = food_nutrient[(food_nutrient["name"] == "Calcium, Ca") & (food_nutrient["amount"] > 30) & (food_nutrient["amount"] < 500)]
+calcium_limit
 ```
 
 Pokud chceme, aby stačilo splnění jedné podmínky, použijeme symbol `|`.
