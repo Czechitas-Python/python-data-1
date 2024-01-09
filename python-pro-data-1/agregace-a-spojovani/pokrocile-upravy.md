@@ -10,7 +10,7 @@ Při práci s daty, je možné se s chybějícími daty vypořádat různými zp
 
 Nejprve bychom si měli uvědomit, zda jsou pro nějaké sloupec chybějící hodnoty vlastně problém. Typický příklad sloupečku, kde to nevadí, je `footnote`. To, že k nějaké hodnotě není poznámka pod čarou, nevadí, zkrátka k měření žádná doplňující poznámka není. Naopak u sloupce `amount` to vadit může. U nějaké konkrétní výživné látky nevíme její obsah v nějaké konkrétní potravině. 
 
-Co v takovém případě udělat? Nejlepší je vždy ověření, proč údaje chybí (např. u poskytovatele dat, v metodice sběru, v programu na export dat) a pokud je to možné, zajistit jejich doplnění. Př ihledání příčiny může pomoci i uložení těchto dat do samostatné tabulky, protože v ní můžeme vidět nějaké společné znaky, které tyto neúplné řádky mají. Zkusme si to na našich datech.
+Co v takovém případě udělat? Nejlepší je vždy ověření, proč údaje chybí (např. u poskytovatele dat, v metodice sběru, v programu na export dat) a pokud je to možné, zajistit jejich doplnění. Při hledání příčiny může pomoci i uložení těchto dat do samostatné tabulky, protože v ní můžeme vidět nějaké společné znaky, které tyto neúplné řádky mají. Zkusme si to na našich datech.
 
 Pokud nemáš načtená data, použij stejný příkaz jako v minulé lekci.
 
