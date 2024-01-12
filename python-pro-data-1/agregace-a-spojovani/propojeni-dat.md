@@ -4,7 +4,7 @@
 
 Jak ale `pandas` pozná, která informace o výživné láce patří jaké potravině? K tomu využijeme sloupec s identifikačním číslem potraviny. Při propojování tabulek vždy potřebujeme nějaký sloupeček (nebo sloupečky), pomocí kterého propojení provedeme. Pokud se sloupce jmenují v obou tabulkách stejně, můžeme použít parametr `on`. Pokud se jmenují různě, je třeba využít parametry `left_on` (název v tabulce, kterou zapisujeme jako první) a `right_on` (název v tabulce, kterou zapisujeme jako druhou). Propojovat tabulky můžeme i pomocí více sloupců, v takovém případě je třeba zapsat názvy jako seznam.
 
-Dále si poležme otázku, co se stane, pokud bude nějaká potravina zastoupena pouze v jedné tabulce. Je například možné, že nějakou potravinu máme v tabulce `food`, ale nemáme k ní žádné údaje o výživných látkách. Co v takovém případě máme dělat? A co v případě "anonymních" potravin, o kterých víme výživné látky, ale nemáme je uvedené v tabulce `food`?
+Dále si položme otázku, co se stane, pokud bude nějaká potravina zastoupena pouze v jedné tabulce. Je například možné, že nějakou potravinu máme v tabulce `food`, ale nemáme k ní žádné údaje o výživných látkách. Co v takovém případě máme dělat? A co v případě "anonymních" potravin, o kterých víme výživné látky, ale nemáme je uvedené v tabulce `food`?
 
 Na to neexistuje univerzální odpověď, vždy záleží na konkrétní situaci. Můžeme si tedy vybrat jednu z několika variant provedení operace `merge`. Vybranou variantu zadáváme jako parametr `how`.
 
