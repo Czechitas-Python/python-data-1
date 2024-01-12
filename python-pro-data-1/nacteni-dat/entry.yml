@@ -1,6 +1,7 @@
 title: Načtení dat
 lead: Pojďme načíst data do pandas a podívat se na ně
 sections:
+  - formaty-souboru
   - nacteni-dat
   - vyber-sloupcu
   - excs

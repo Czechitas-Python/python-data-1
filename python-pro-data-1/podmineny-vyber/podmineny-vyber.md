@@ -1,194 +1,140 @@
 ## Podmíněný výběr
 
-Nyní si vyzkoušíme jednu z hlavních prací datového analytika, a to je **psaní dotazů**. Logika psaní dotazů je v různých prostředích stejná, liší se pouze to, jak ji provádíme. Podívejme se na konkrétní příklady.
+Nyní si vyzkoušíme jeden z hlavních nástrojů zpracování dat, a to je **psaní dotazů**. Logika psaní dotazů je v různých prostředích stejná, liší se pouze to, jak ji provádíme. Podívejme se na konkrétní příklady.
 
-Tentokrát si vyzkoušíme načíst data ze souboru ve formátu JSON. Konkrétně budeme pracovat s daty o státech světa, která jsou stažená ze služby [restcountries](https://restcountries.com/). Data si můžeš [stáhnout zde](assets/staty.json). Opět platí, že si je musíš stáhnout do adresáře, kde máš právě otevřený terminál!
+Budeme se dále věnovat potravinám, tentokrát jejich výživovým hodnotám. Data jsou uložena v souboru [food_nutrient.csv](assets/food_nutrient.csv). Níže je stručný popis sloupců tabulky.
 
-### Výběr sloupců
+- `id`: Identifikační číslo záznamu.
+- `fdc_id`: Identifikační číslo potraviny, ke které se vztahuje živina.
+- `nutrient_id`: Identifikační číslo živiny.
+- `amount`: Množství živiny v potravině.
+- `data_points`: Počet datových bodů použitých pro výpočet průměru.
+- `derivation_id`: Identifikační číslo metody, kterou byla hodnota živiny odvozena.
+- `standard_error`: Standardní chyba měření množství živiny.
+- `min`: Minimální hodnota množství živiny nalezlá v potravině.
+- `max`: Maximální hodnota množství živiny nalezlá v potravině.
+- `median`: Medián hodnot množství živiny v potravině.
+- `footnote`: Poznámka nebo dodatečné informace o živině.
+- `name`: Název živiny.
+- `unit_name`: Název jednotky, ve které se měří živina.
+- `nutrient_nbr`: Unikátní číslo identifikující živinu nebo potravinovou složku​.
+
+Všimni si, že nevíme název potraviny, pouze její identifikační číslo. To je stejné jako v předchozí tabulce. Abychom ve výstupu viděli i názvy potravin, je potřeba obě tabulky propojit, což si ukážeme v další lekci.
+
+### Co vlastně umí série
 
 Již jsme si říkali, že ne vždy nás zajímají všechna data. Zopakujme si, že pokud chceme vybrat jen sloupec a zachovat všechny řádky, zpravidla použijeme výběr sloupců pomocí hranatých závorek.
 
 ```py
-import pandas
-staty = pandas.read_json("staty.json")
-staty.set_index("name", inplace=True)
+import pandas as pd
+food_nutrient = pd.read_csv("food_nutrient.csv")
+food_nutrient.head()
 ```
+
+Podívejme se na sloupec `name`, který obsahuje názvy jednotlivých výživných látek.
 
 ```py
-print(staty["population"])
+food_nutrient["name"]
 ```
 
-Pokud nás zajímá více sloupců, můžeme opět použít seznam, do kterého sloupce vepíšeme.
+Nás by mohlo zajímat, jaké všechny výživné látky v datech jsou. K tomu nám snaží vidět každý název jenom jednou. Jinak řečeno, potřebujeme unikátní hodnoty. K tomu můžeme využít metodu `.unique()`.
 
 ```py
-print(staty[["population", "area"]])
+food_nutrient["name"]
 ```
 
-### Co vlastně umí série
-
-Asi se teď říkáš, k čemu je to vlastně dobré. Zkusme si jednoduchý příklad: Chceme zjistit, kolik lidí žije ve všech státech světa. Bude nás tedy zajímat pouze sloupec `population`, kde máme sérii s počty obyvatel jednotlivých států. Série sama o sobě umí zajímavé věci, například umí sama spočítat svůj součet a vrátit výsledek jako číslo. K tomu slouží funkce `sum`. K jejímu volání opět použijeme tečkovou notaci.
+Též může být zajímavé, kolikrát máme o některé z výživných látek informaci. K tomu můžeme použít metodu `.value_counts()`. Ta nám pro každou výživnou hodnotu zobrazí, kolikrát se v tabulce vyskytuje.
 
 ```py
-populace = staty["population"]
-print(populace.sum())
+food_nutrient["name"].value_counts()
 ```
-
-```shell
-7349137231
-```
-
-Oba kroky můžeme spojit do jednoho.
-
-```py
-print(staty["population"].sum())
-```
-
-Série umí spočítat řadu dalších věcí, jako třeba průměr (funkce `mean`), minimum a maximum (funkce `min` a `max`) nebo medián (funkce `median`). Přehled všech funkcí najdeš [v dokumentaci](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html).
-
 
 ### Podmíněný výběr
 
-V datové analýze podmínkám rozhodně neutečeš. Podmínky jsou velmi užitečné, protože bez nich bychom museli pracovat se všemi daty, co jsme dostali, což není vždy žádoucí.
+Při zpracovávání dat podmínkám rozhodně neutečeš. Podmínky jsou velmi užitečné, protože bez nich bychom museli pracovat se všemi daty, co jsme dostali, což není vždy žádoucí.
 
 - Data často obsahují chyby, která vzniknou třeba špatným nastavením stroje nebo překlepem pracovníka, který je zadával. Pokud bychom chyby nechali v datech a dále s nimi pracovali, udělaly by nám tam pěknou paseku.
-- Často chceme zpracovat jen část dat. Pokud máme například firmu s obchůdky v několika městech, můžeme chtít zpracovat jen data z jednoho města, pro nějaké konkrétní zboží nebo časové období.
+- Často chceme zpracovat jen část dat. Například u výživných látek nás můžou zajímat jen ty, které jsou zdraví prospěšné (chceme jich konzumovat nějaké doporučené množství), nebo naopak ty zdraví škodlivé (chceme jich konzumovat co nejméně).
 
-V jazyce SQL píšeme podmínky za klíčové slovo `WHERE`, v Excelu můžeme použít funkce Filtr atd. V `pandas` používáme funkci `query`. Název této funkce si ale pamatovat nemusíš, protože namísto ní opět můžeme použít hranaté závorky.
+V jazyce SQL píšeme podmínky za klíčové slovo `WHERE`, v Excelu můžeme použít funkce Filtr atd. V `pandas` můžeme použít metodu `query` nebo zápis s využitím hranatých závorek.
 
- Začněme s tím, že se podíváme na nejmenší státy, které na světě jsou. Nechme si například vypsat státy, které mají méně než 1000 obyvatel. Postup si vysvětlíme ve dvou krocích.
+Uvažujme například, že nám jde o obsah hořčíku (`Magnesium`), protože naším úkolem je doporučit potraviny lidem s nedostatkem hořčíku. Nejprve potřebujeme formulovat podmínku. Ta bude vypadat takto `food_nutrient["Magnesium"] == "Magnesium, Mg"`. V podmínce máme sloupec, na který se ptáme, a porovnání s řetězcem. Používáme operátor na kontrolu rovnosti (`==`). Zkusme si zadat samotnou podmínku a podívejme se na výsledek.
 
- Nejprve potřebujeme formulovat podmínku. Ta bude vypadat takto `staty["population"] < 1000`. V podmínce máme sloupec, na který se ptáme, a porovnání s číselnou hodnotou. Používáme nám již známý operátor menší než (`<`). Zkusme si zadat samotnou podmínku do terminálu a podívejme se na výsledek.
-
-```py
-print(staty["population"] < 1000)
-```
-
-```shell
-name
-Afghanistan          False
-Åland Islands        False
-Albania              False
-Algeria              False
-American Samoa       False
-                     ...
-Wallis and Futuna    False
-Western Sahara       False
-Yemen                False
-Zambia               False
-Zimbabwe             False
-Name: population, Length: 250, dtype: bool
-```
-
-Pokud si vzpomeneš na hodnoty typu `bool`, víš, že ty mohly nabývat pouze dvou hodnot: `True` a `False`. Při použití operátorů pro porovnávání vždy získáme hodnotu typu `bool`. Pokud bychom například měli proměnnou `znamka` a napsali do terminálu `znamka < 3`, získáme jednu hodnotu `True` nebo `False`, a to podle toho, jakou hodnotu v proměnné `znamka` máme.
-
-My v naší tabulce ale máme 250 států s různými počty obyvatel, proto nám náš dotaz vrací 250 hodnot, z nichž některé jsou `True` a některé `False`. Vytvořili jsme tedy jakýsi polotovar. My nyní chceme vidět jen ty řádku, kde máme hodnotu `True`, což nám dá státy s počtem obyvatel menší než 1000. K tomu využijeme poměrně zvláštní zápis - naši podmínku vložíme do hranatých závorek.
+Název zadáváme včetně chemické značky, protože tak je to v původních datech.
 
 ```py
-pidistaty = staty[staty["population"] < 1000]
-print(pidistaty[["population", "area"]])
+food_nutrient["name"] == "Magnesium, Mg"
 ```
 
-```shell
-                                              population     area
-name
-Bouvet Island                                          0    49.00
-United States Minor Outlying Islands                 300      NaN
-Cocos (Keeling) Islands                              550    14.00
-French Southern Territories                          140  7747.00
-Heard Island and McDonald Islands                      0   412.00
-Holy See                                             451     0.44
-Pitcairn                                              56    47.00
-South Georgia and the South Sandwich Islands          30      NaN
+Pokud si vzpomeneš na hodnoty typu `bool`, víš, že můžou nabývat pouze dvou hodnot: `True` (pravda) a `False` (nepravda). Při použití operátorů pro porovnávání vždy získáme hodnotu typu `bool`. Nyní použijeme poměrně svérázný zápis pomocí hranatých závorek. Podmínku, kterou jsme formulovali v předchozím kroku, vložíme do hranatých závorek, před kterou vložíme název tabulky `food_nutrient`. Tento zápis provede následující:
+
+- Z původní tabulky `food_nutrient` vybere ty řádky, které vyhovují podmínce, tj. ty, které měly při předchozím zápisu hodnotu `True`.
+- Výsledek uloží do nové tabulky `magnesium`. Výsledná tabulka bude obsahovat všechny sloupce z původní tabulky, ale pouze ty řádky, které vyhovují podmínce.
+
+```py
+magnesium = food_nutrient[food_nutrient["name"] == "Magnesium, Mg"]
+magnesium.head()
 ```
 
-Tento podivný zápis má ve skutečnosti svoji logiku. My jsme v našem polotovaru získali sloupec, kde máme 250 hodnot typu `bool`. `pandas` teď jednoduše udělají to, že vypíšou ty řádky řádky, kde má náš polotovar hodnotu `True` a ty, které mají hodnotu `False`, před námi skryjí.
+### Popisná statistika
 
-V tabulce vidíme několik států a kromě Holy See (tj. Vatikánu) jsme o nich asi ani nikdy neslyšeli. V některých řádcích vidíme hodnotu `NaN`. To značí, že pro daný řádek hodnotu nemáme, pro některé státy tedy nemáme zadanou rozlohu. Měli bychom si tedy rozmyslet, zda s takovými státy v nějaké analýze vůbec pracovat.
+Pokud pracujeme s číselnými ukazateli, je dobré podívat se na ukazatele popisné statistiky. Ač to může znít hrozivě, jsou to hodnoty, se kterými se setkáváme poměrně běžně. Zjistíme je pomocí metody `describe()`. Metodu je možné použít pro více sloupců, ale ne vždy dávají smysl. Například pro sloupec `fdc_id` nemá smysl hodnoty počítat, protože to jsou číslá označení ("pojmenování") jednotlivých potravin.
+
+Též by nemělo smysl použít metodu `.describe()` pro všechny řádky najednou, protože by došlo k promíchání dat o různých živinách, navíš měřených v odlišných jednotkách.
+
+```py
+magnesium["amount"].describe()
+```
+
+V datech se zobrazují tyto hodnoty: 
+
+- `count`: Počet hodnot,
+- `mean`: Aritmetický průměr hodnot.
+- `std`: Směrodatná odchylka. Pomocí ní měříme různorodost (variabilitu) dat.
+- `min`: Nejmenší hodnota.
+- `25%`: Toto číslo rozděluje data na 25 % menších hodnot a 75 % větších hodnot.
+- `50%`: Medián. Jde o číslo, které by leželo přesně uprostřed seřazených hodnot, tj. rozděluje data na 50 % menších hodnot a 50 % větších hodnot.
+- `75%`: Toto číslo rozděluje data na 75 % menších hodnot a 25 % větších hodnot.
+- `max`: Největší hodnota.
+
+
+Naším úkolem je vybrat potraviny, které mají vyšší množství hořčíku. K tomu opět využijeme dotaz. Uvažujeme, že nás zajímají potraviny, které mají více než 100 gramů hořčíku.
+
+```py
+magnesium_limit = magnesium[magnesium["amount"] > 100]
+magnesium_limit
+```
 
 ### Spojení více podmínek
 
-Často narazíme na případ, kdy chceme zkombinovat více podmínek, například chceme tržby v jedné prodejně a pro letošní rok. Při kombinaci se musíme rozhodnout, zda chceme, aby ke zobrazení řádku byly splněné obě, nebo zda stačí, aby byla splněna pouze jedna z nich.
-
-Pokud chceme, aby musely být splněny obě podmínky, vložíme mezi ně symbol `&`. Uvažujme dvě podmínky:
-
-- Stát musí mít alespoň 20 milionů obyvatel: `(staty["population"] > 20000000)`
-- Stát se musí nacházet v Evropě: `staty["region"] == "Europe")`
-
-Obě tyto podmínky napíšeme do závorek a vložíme mezi ně symbol `&`. Následně použijeme již známé hranaté závorky, které přidáme hned za proměnnou `staty`.
+Nyní uvažujme, že chceme spojit více podmínek dohromady. U některých živin může být například vhodné nekonzumovat jich příliš malé, ale ani příliš velké množství. Uvažujme například vápník. Nejprve si vytvoříme tabulku, která bude obsahovat data pouze o vápníku. Postup je stejný jako v předchozí části.
 
 ```py
-lidnate_evropske_staty = staty[(staty["population"] > 20000000) & (staty["region"] == "Europe")]
-print(lidnate_evropske_staty["population"])
+calcium = food_nutrient[food_nutrient["name"] == "Calcium, Ca"]
 ```
 
-```shell
-name
-France                                                   66710000
-Germany                                                  81770900
-Italy                                                    60665551
-Poland                                                   38437239
-Russian Federation                                      146599183
-Spain                                                    46438422
-Ukraine                                                  42692393
-United Kingdom of Great Britain and Northern Ireland     65110000
-Name: population, dtype: int64
-```
-
-Pokud chceme, aby stačilo splnění jedné podmínky, použijeme symbol `|`. Zde vypisujeme státy, které mají buď více než miliardu obyvatel nebo rozlohu větší než 3 miliony kilometrů čtverečních.
+Naším úkolem bude vybrat potraviny, které mají mezi 30 a 500 mg vápníku. Vepíšeme do hranatých závorek obě podmínky. Každou z podmínek vložíme do kulatých závorek. V našem případě chceme, aby byly splněné obě podmínky, proto mezi ně vložíme symbol `&`.
 
 ```py
-print(staty[(staty["population"] > 10_000_000_000) | (staty["area"] > 3_000_000)])
+calcium_limit = calcium[(calcium["amount"] > 30) & (calcium["amount"] < 500)]
+calcium_limit
 ```
 
-```shell
-                         alpha2Code alpha3Code           capital    region                  subregion  population        area  gini
-name
-Antarctica                       AQ        ATA                       Polar                                   1000  14000000.0   NaN
-Australia                        AU        AUS          Canberra   Oceania  Australia and New Zealand    24117360   7692024.0  30.5
-Brazil                           BR        BRA          Brasília  Americas              South America   206135893   8515767.0  54.7
-Canada                           CA        CAN            Ottawa  Americas           Northern America    36155487   9984670.0  32.6
-China                            CN        CHN           Beijing      Asia               Eastern Asia  1377422166   9640011.0  47.0
-India                            IN        IND         New Delhi      Asia              Southern Asia  1295210000   3287590.0  33.4
-Russian Federation               RU        RUS            Moscow    Europe             Eastern Europe   146599183  17124442.0  40.1
-United States of America         US        USA  Washington, D.C.  Americas           Northern America   323947000   9629091.0  48.0
-```
+Podmínek můžeme zkombinovat i více, například tři. Předchozí dva kroky můžeme díky tomu spojit do jednoho, tj. z původní tabulky `food_nutrient` vybereme řádky, které:
 
-**Poznámka:** Abychom zpřehlednili zápis velkých čísel, použili jsme podtržítko.
+- mají ve sloupci `name` hodnotu ` "Calcium, Ca"`,
+- mají ve sloupci `amount` hodnotu větší než 30,
+- mají ve sloupci `amount` hodnotu menší než 500.
 
-### Použití seznamu v podmínce
-
-Uvažujme, že bychom chtěli vypsat všechny státy, které leží v západní nebo východní Evropě. Na to bychom mohli použít operátor `|`, ale při dotazu na tři nebo čtyři hodnoty by se takový zápis extrémně protáhl.
-
-V seznamu operátorů na porovnávání jsme měli ještě operátor `in`, kterým jsme ověřovali, jestli je nějaký prvek přítomný v kolekci. Tento operátor nám v `pandas` supluje funkce `isin()`. Pokud tuto funkci aplikujeme na jeden konkrétní sloupec, vrátí ním `True` pro všechny řádky, pro které je hodnota přítomná v seznamu. Náš dotaz na země východní a západní Evropy bychom tedy napsali jako `isin(["Western Europe", "Eastern Europe"])`.
+Mezi každou dvojici podmínek vložíme symbol `&`, tento symbol tedy použijeme dvakrát.
 
 ```py
-print(staty[staty["subregion"].isin(["Western Europe", "Eastern Europe"])])
+calcium_limit = food_nutrient[(food_nutrient["name"] == "Calcium, Ca") & (food_nutrient["amount"] > 30) & (food_nutrient["amount"] < 500)]
+calcium_limit
 ```
 
-```shell
-                      alpha2Code alpha3Code     capital  region       subregion  population         area  gini
-name
-Austria                       AT        AUT      Vienna  Europe  Western Europe     8725931     83871.00  26.0
-Belarus                       BY        BLR       Minsk  Europe  Eastern Europe     9498700    207600.00  26.5
-Belgium                       BE        BEL    Brussels  Europe  Western Europe    11319511     30528.00  33.0
-Bulgaria                      BG        BGR       Sofia  Europe  Eastern Europe     7153784    110879.00  28.2
-Czech Republic                CZ        CZE      Prague  Europe  Eastern Europe    10558524     78865.00  26.0
-France                        FR        FRA       Paris  Europe  Western Europe    66710000    640679.00  32.7
-Germany                       DE        DEU      Berlin  Europe  Western Europe    81770900    357114.00  28.3
-Hungary                       HU        HUN    Budapest  Europe  Eastern Europe     9823000     93028.00  31.2
-Liechtenstein                 LI        LIE       Vaduz  Europe  Western Europe       37623       160.00   NaN
-Luxembourg                    LU        LUX  Luxembourg  Europe  Western Europe      576200      2586.00  30.8
-Moldova (Republic of)         MD        MDA    Chișinău  Europe  Eastern Europe     3553100     33846.00  33.0
-Monaco                        MC        MCO      Monaco  Europe  Western Europe       38400         2.02   NaN
-Netherlands                   NL        NLD   Amsterdam  Europe  Western Europe    17019800     41850.00  30.9
-Poland                        PL        POL      Warsaw  Europe  Eastern Europe    38437239    312679.00  34.1
-Republic of Kosovo            XK        KOS    Pristina  Europe  Eastern Europe     1733842     10908.00   NaN
-Romania                       RO        ROU   Bucharest  Europe  Eastern Europe    19861408    238391.00  30.0
-Russian Federation            RU        RUS      Moscow  Europe  Eastern Europe   146599183  17124442.00  40.1
-Slovakia                      SK        SVK  Bratislava  Europe  Eastern Europe     5426252     49037.00  26.0
-Switzerland                   CH        CHE        Bern  Europe  Western Europe     8341600     41284.00  33.7
-Ukraine                       UA        UKR        Kiev  Europe  Eastern Europe    42692393    603700.00  26.4
-```
+Pokud chceme, aby stačilo splnění jedné podmínky, použijeme symbol `|`.
+
 
 ## Cvičení
 ::exc[excs/ceska-jmena-2]
