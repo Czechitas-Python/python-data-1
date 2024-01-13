@@ -1,0 +1,2 @@
+## Cvičení
+::exc[excs/znacky]

@@ -13,7 +13,7 @@ Na to neexistuje univerzální odpověď, vždy záleží na konkrétní situaci
 - `outer` zachová všechny řádky z obou tabulek.
 
 ```py
-food_merged = pd.merge(food_nutrient, nutrient, left_on=["nutrient_id"], right_on=["id"])
+food_merged = pd.merge(food, food_nutrient, on="fdc_id")
 ```
 
 U tabulky `food_merged` je dobré zkontrolovat počet řádků a porovnat ho s původními tabulkami.
