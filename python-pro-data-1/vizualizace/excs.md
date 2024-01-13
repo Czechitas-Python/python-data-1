@@ -1,1 +1,3 @@
 ## Cvičení
+
+::exc[excs/odstin]

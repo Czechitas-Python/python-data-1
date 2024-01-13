@@ -103,9 +103,17 @@ Další z oblíbených grafů je je krabicový graf (`boxplot`). Zkusme pomocí 
 - Černé čáry jsou označované jaké *whisker* (kočičí vousy). V našem případě fungují podobně jako obdelník, ale oddělují vždy 5 % nejmenších a největších hodnot od zbývajících 90 %.
 - Zbývajících 10 % hodnot je vykresleno pomocí černých teček.
 
+Aby byl graf celý v jednom jazyce, pojďme nejprve přejmenovat názvy výživných látek do češtiny
 
 ```py
-food_merged_brands_box = food_merged_brands[(food_merged_brands["nutrient_name"].isin(["Protein", "Total lipid (fat)"])) & (food_merged_brands["branded_food_category"] == "Snack, Energy & Granola Bars")]
+food_merged_brands["nutrient_name"] = food_merged_brands["nutrient_name"].replace({
+    "Total lipid (fat)": "Lipid (tuk)", 
+    "Protein": "Protein"
+    })
+```
+
+```py
+food_merged_brands_box = food_merged_brands[(food_merged_brands["nutrient_name"].isin(["Proteiny", "Lipidy (tuky)"])) & (food_merged_brands["branded_food_category"] == "Snack, Energy & Granola Bars")]
 ax = sns.boxplot(food_merged_brands_box, x="nutrient_name", y="amount", whis=[5, 95])
 ax.set(xlabel="Kategorie", ylabel="Množství v gramech", title="Množství proteinů a lipidů (tuků) v potravinách")
 ```
