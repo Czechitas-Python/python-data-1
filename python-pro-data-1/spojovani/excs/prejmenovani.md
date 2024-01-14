@@ -9,4 +9,4 @@ demand: 3
 food_merged_brands = food_merged_brands.rename(columns={"stary_nazev": "novy_nazev"})
 ```
 
-Jako bonus se zamysli nad tím, co by se mohlo stát, pokud na místo starého názvu zadáš sloupec, který v tabulce není (např. `test`). Jaké chování bys od metody očekávala(a)? Jakmile to budeš mít rozmyšlené, použij metodu s neexistujícím názvem sloupce a zkontroluj, co se stalo.
+Jako bonus se zamysli nad tím, co by se mohlo stát, pokud na místo starého názvu zadáš sloupec, který v tabulce není (např. `test`). Jaké chování bys od metody očekával(a)? Jakmile to budeš mít rozmyšlené, použij metodu s neexistujícím názvem sloupce a zkontroluj, co se stalo.
