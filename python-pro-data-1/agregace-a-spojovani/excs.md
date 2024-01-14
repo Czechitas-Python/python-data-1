@@ -1,2 +1,0 @@
-## Cvičení
-::exc[excs/studenti]

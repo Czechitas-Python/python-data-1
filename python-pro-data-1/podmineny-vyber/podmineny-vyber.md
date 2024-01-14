@@ -137,4 +137,10 @@ Pokud chceme, aby stačilo splnění jedné podmínky, použijeme symbol `|`.
 
 
 ## Cvičení
+
+::exc[excs/vlaknina]
+::exc[excs/hlaseni_chyb]
+
+## Bonusy
+
 ::exc[excs/ceska-jmena-2]

@@ -1,139 +1,119 @@
 ## Vizualizace
-V této lekci si ukážeme, jak zobrazovat různé druhy grafů pomocí modulu `matplotlib`. Také si představíme Jupyter notebook, díky kterému budeme schopni vytvářet hezké reporty z našich datových analýz.
 
-### První graf
+V této lekci si ukážeme, jak zobrazovat různé druhy grafů. V Pythonu můžeme využívat spoustu různých knihoven na generování vizualizací. Velmi oblíbenou je knihovna `matplotlib`. Nad knihovnou `matplotlib` byla vytvořena knihovna `seaborn`, která zjednodušuje tvorbu některých typů vizualizací.
 
-Modul `matplotlib` nabízí ohromné množství možností pro vizualizaci dat. My zde probereme jen naprosté základy, aby nám lekce nenarostla to olbřímích rozměrů.
-
-Pracovní dataset [ucet.csv](assets/ucet.csv) si můžeme stáhnout dopředu nebo rovnou až v rámci kódu.
+Vyzkoušíme si nyní vytvořit několik základních vizualizací. Začněme s grafem `countplot`, pomocí kterého zobrazíme sloupcový graf s počtem hodnot v jednotlivých kategoriích. Protože kategorií máme v datech opravdu hodně a do jednoho grafu by se nevešly, vytvoříme si seznam 12 kategorií s největším počtem potravin a zobrazíme výsledky pouze pro ně. Použijeme metodu `isin()`, kterou jsme si ukazovali v části o podmíněném výběru.
 
 ```py
-import pandas
 import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 
-url = "https://kodim.cz/cms/assets/analyza-dat/python-data-1/python-pro-data-1/vizualizace/vizualizace/ucet.csv"
-ucet = pandas.read_csv(url, names=['datum', 'pohyb'], index_col='datum')
-print(ucet)
+food_nutrient = pd.read_csv("food_nutrient.csv")
+food = pd.concat([food_sample_100, food_other])
+food_brands = pd.merge(food, branded_food, on="fdc_id")
 
-ucet.plot()
-plt.show()
+top_cat_list = ['Candy', 'Popcorn, Peanuts, Seeds & Related Snacks', 'Cheese', 'Ice Cream & Frozen Yogurt', 'Chips, Pretzels & Snacks', 'Cookies & Biscuits', 'Pickles, Olives, Peppers & Relishes', 'Breads & Buns', 'Fruit & Vegetable Juice, Nectars & Fruit Drinks', 'Snack, Energy & Granola Bars', 'Chocolate', 'Other Snacks']
+food_top_cat = food_brands[food_brands["branded_food_category"].isin(top_cat_list)]
 ```
 
-* Importujeme si objekt `pyplot` z knihovny `matplotlib` a pojmenujeme si ho jako `plt`
-* Použijeme funkci `pandas.read_csv()`, kterou si necháme data stáhnout rovnou z internetu
-* Protože CSV soubor nemá hlavičku, musíme si sloupce sami pojmenovat a určit, který bude DataFrame index
-* Necháme si DataFrame vykreslit do podoby grafu
-* Obrázek s grafem si zobrazíme
-
-Mělo by se vám otevřít nové okno s následujícím obrázkem
-
-::fig[Graf pohybů]{src=assets/prirustky.png}
-
-Užitečnější by mohlo být zobrazit graf zůstatků
+Graf vytvoříme pomocí funkce `countplot`. Jako první hodnotu zadáme název tabulku s daty a jako parametr `x` název sloupce, podle kterého se vygenerují sloupce grafu. V předchozí lekci to odpovídalo sloupci, který jsme zadávali do metody `groupby().` Výsledek uložíme do proměnné `ax`. Jde o zkratku slova axis, která obsahuje odkaz na vytvořený graf. Pomocí metody `tick_params()` otočíme popisky osy *x* o 90 stupňů, protože jinak by se popisy vzájemně překrývaly.
 
 ```py
-ucet.cumsum().plot()
-plt.show()
+ax = sns.countplot(food_top_cat, x="branded_food_category")
+ax.tick_params(axis='x', rotation=90)
 ```
 
-::fig[Graf zůstatků]{src=assets/zustatky.png}
+Pokud píšeme program jako skript, je nutné ještě přidat řádke `plt.show()`. Ten zajistí, že se graf zobrazí v samostatném okně. Pozor ale na to, že program se pozastaví, dokud okno s grafem neuzavřeme. Pokud používáme Jupyter notebook, tento řádek přidávat nemusíme.
 
-Nyní si s grafem můžeme vyhrát podle chuti a nastavit jeho vzezření přesně tak, jak potřebujeme. Metoda `plot` na sériích obsahuje nepřeberné možnosti nastavení. Například takto vyrobíme z pohybů na účtu sloupcový graf s mřížkou ve žluté barvě.
+Vygenerovaný graf je poměrně špatně čitelný. Můžeme ale zkusit názvy kategorií zkrátit. V rámci toho rovnou provedeme překlad do češtiny. K přejmenování použijeme metodu `.replace()`. Hodnoty můžeme vložit jako slovník. Vložíme do něj původní hodnotu a jejích náhradu, obojí opět oddělíme dvojtečkou. Protože chceme přejmenovat více hodnot, vložíme více dvojic, které oddělíme čárkou.
 
 ```py
-ucet.plot(kind='bar', color='yellow', grid=True)
-plt.show()
+food_brands["branded_food_category"] = food_brands["branded_food_category"].replace({
+    "Candy": "Cukrovinky",
+    "Popcorn, Peanuts, Seeds & Related Snacks": "Slané snacky",
+    "Cheese": "Sýry",
+    "Ice Cream & Frozen Yogurt": "Zmrzlina",
+    "Chips, Pretzels & Snacks": "Chipsy",
+    "Cookies & Biscuits": "Sušenky",
+    "Pickles, Olives, Peppers & Relishes": "Nakl. zelenina",
+    "Breads & Buns": "Pečivo",
+    "Fruit & Vegetable Juice, Nectars & Fruit Drinks": "Džusy",
+    "Snack, Energy & Granola Bars": "En. tyčinky",
+    "Chocolate": "Čokoláda",
+    "Other Snacks": "Další snacky"
+})
+food_list = ["Cukrovinky", "Slané snacky", "Sýry", "Zmrzlina", "Chipsy", "Sušenky", "Nakl. zelenina", "Pečivo", "Džusy", "En. tyčinky", "Čokoláda", "Další snacky"]
+food_top_cat = food_brands[food_brands["branded_food_category"].isin(top_cat_list)]
 ```
 
-::fig[Sloupcový graf zůstatků]{src=assets/sloupce.png}
-
-Protože možností a parametrů je opravdu hodně, vyplatí se číst [oficiální dokumentaci](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.plot.html) a projít si nějaký vhodný tutoriál na internetu například přímo [ten oficiální](https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html) k vizualizaci v Pandas.
-
-### Typy grafů
-
-Typ grafu, který chceme zobrazit, se v metodě `plot` specifikuje pomocí argumentu `type`. Sloupcový graf pohybů na účtu
-
-Základní typy grafů, které se hojně používají mohou být například tyto:
-
-
-- `plot()` - [Bodový graf](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html),
-- `bar()` - [Sloupcový graf](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.bar.html),
-- `hist()` - [Histogram](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist.html),
-- `boxplot()` - [Krabicový graf](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.boxplot.html).
-
-Výběr vhodného typu vizualizace se odvíjí od toho, jaká data zobrazujeme. Rady, jak vybrat vhodný typ vizualizace, najdete třeba [v tomto článku](https://blog.hubspot.com/marketing/types-of-graphs-for-data-visualization).
-
-### Histogramy
-
-Histogram je důležitý typ grafu, který nám umožňuje zobrazit četnost hodnot z nějakého datasetu. Následující seznam obsahuje výšku 64 náhodných mužů v České republice, měřeno v centimetrech.
+Po přejmenování kategorií stačí otočit popisky o 45 stupňů, takže budou lépe čitelné.
 
 ```py
-muzi = pandas.Series([
-    179.3, 183.7, 181.4, 176.0, 183.6, 184.7, 163.4, 180.3,
-    167.5, 166.8, 173.5, 172.5, 173.0, 177.6, 176.0, 179.5,
-    182.6, 172.0, 183.2, 177.0, 176.2, 175.7, 174.3, 180.3,
-    184.9, 171.1, 182.3, 169.7, 181.3, 188.8, 176.8, 159.0,
-    180.3, 198.5, 185.8, 191.0, 170.9, 196.0, 183.3, 183.0,
-    189.9, 184.8, 184.0, 183.1, 184.0, 190.7, 191.7, 187.8,
-    177.5, 177.5, 189.2, 188.4, 195.0, 204.2, 180.2, 181.3,
-    178.2, 182.6, 172.1, 175.7, 180.7, 181.2, 165.0, 188.6
-])
+ax = sns.countplot(food_top_cat, x="branded_food_category")
+ax.tick_params(axis='x', rotation=45)
 ```
 
-Pomocí histogramu zobrazíme četnosti jednotlivých hodnot.
+Pokud bychom chtěli graf zveřejnit například v nějakém článku, je vhodné jej doplnit o popisky. K tomu využijeme metodu `set`, které nastavíme následující parametry:
+
+- `xlabel` nastaví popisek osy *x* (vodorovné osy),
+- `ylabel` nastaví popisek osy *y* (svislé osy),
+- `title` nastaví titulek grafu.
 
 ```py
-muzi.hist()
-plt.show()
+ax = sns.countplot(food_top_cat, x="branded_food_category")
+ax.tick_params(axis='x', rotation=45)
+ax.set(xlabel="Kategorie", ylabel="Počet potravin", title="Počty potravin ve 12 nejpočetnějších kategoriích")
 ```
 
-::fig[Histogram výšek]{src=assets/vysky-muzi.png}
-
-Histogram si pro přehlednost můžeme rozdělit do :term{cs="přihrádek" en="bins"} po pěti centimetrech
+Další z oblíbených grafů je histogram. Uvažujme, že se chceme blíže podívat, jak je to s množstvím proteinů v potravinách. Histogram nám umožní komplexnější pohled než průměr. Na vodorovné ose histogramu vidíme množství proteinu a na svislé ose množství potravin, které takovou hodnotu mají. Z histogramu tedy vidíme, že většina potravin má uvedené velmi nízké množství proteinu. Pouze malé množství potravin má více než 10 gramů proteinu.
 
 ```py
-muzi.hist(bins=[
-    150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 205, 210
-])
-plt.show()
+food_merged_brands_protein = food_merged_brands[food_merged_brands["nutrient_name"] == "Protein"]
+ax = sns.histplot(food_merged_brands_protein, x="amount")
+ax.set(xlabel="Množství proteinu (g)", ylabel="Počet potravin", title="Množství proteinů v potravinách")
 ```
 
-::fig[Histogram výšek s přihrádkami]{src=assets/vysky-muzi-bins.png}
+U histogramu můžeme použít parametr `bins`, kterým nastavíme, jaké mají být hranice jednotlivých intervalů. K nastavení hranic můžeme použít například funkci `range()`, která nám vygeneruje seznam čísel. Funkci zadáváme tři parametry:
 
-### Krabicový graf
+1. první číslo seznamu,
+1. číslo, které ukončuje seznam (pozor, jde o první číslo, které v seznamu **nebude**),
+1. rozdíl mezi dvěma čísly v seznamu.
 
-Krabicový graf graficky znázorňuje medián a kvartily naměřených hodnot. Můžeme si jej vyzkoušet na výškách mužů.
+Funkce `range(0, 110, 10)` tedy vygeneruje řadu čísel 0, 10, 20 až 100.
 
 ```py
-muzi.plot(kind='box', whis=[0, 100])
-plt.show()
+ax = sns.histplot(food_merged_brands_protein, x="amount", bins=range(0, 110, 10))
+ax.set(xlabel="Množství proteinu (g)", ylabel="Počet potravin", title="Množství proteinů v potravinách")
 ```
 
-::fig[Krabicový graf muži]{src=assets/vysky-muzi-box.png}
-
-Krabicové grafy jsou užitečné především pro porovnání dvou různých měření. Přidejme si druhou datovou sadu představující naměřené výšky žen
+Dále se můžeme podívat, jak se liší průměrné množství proteinu pro jednotlivé kategorie potravit. K tomu sloučí `barplot`. Ten vypočte průměrné hodnoty dle sloupce, který zadáme jako parametr `x`. Parametr `y` udává, ze kterého sloupce se vypočítá průměr, který udává výšku sloupců. Černá čára v grafu je označovaná jako `errorbar`. Vychází z předpokladu, že v datech máme vždy jen vzorek dat, například v našich datech je jen část potravin, které jsou na trhu k dostání. Sloupec, který udává výšku sloupce, je tedy v podstatě jen odhadem hodnoty, kterou bychom zjistili, pokud bychom analyzovali všechny dostupné postraviny na trhu. Černá čára pak udává tzv. interval spolehlivosti, tedy interval, ve kterém by se ten průměr nacházel s pravděpodobností 95 %.
 
 ```py
-zeny = pandas.Series([
-    172.0, 169.0, 166.8, 164.6, 172.7, 171.5, 167.0, 167.0,
-    168.3, 184.7, 166.0, 160.0, 168.8, 165.8, 173.5, 163.0,
-    168.9, 158.4, 166.4, 169.4, 174.2, 175.6, 167.2, 168.0,
-    171.5, 168.8, 168.9, 174.1, 169.0, 170.7, 156.3, 174.8,
-    169.1, 161.4, 172.5, 166.1, 171.5, 163.9, 164.5, 169.0,
-    168.5, 163.3, 169.5, 167.4, 175.5, 165.0, 166.6, 158.9,
-    164.5, 168.7, 161.6, 175.8, 179.0, 167.9, 161.1, 167.6,
-    165.9, 165.2, 176.0, 179.4, 160.1, 163.8, 177.7, 160.4
-])
+food_brands_top_nut = pd.merge(food_brands_top, food_nutrient, on="fdc_id")
+ax = sns.barplot(food_brands_top_nut, x="branded_food_category", y="amount")
+ax.tick_params(axis='x', rotation=45)
+ax.set(xlabel="Kategorie", ylabel="Množství proteinu (g)", title="Průměrné množství proteinů v potravinách")
 ```
 
-Nyní chceme zobrazit krabicový graf porovnávající výšky obou pohlaví. K tomu si z našich sérií vyrobíme DataFrame.
+Další z oblíbených grafů je je krabicový graf (`boxplot`). Zkusme pomocí krabicového grafu například porovnat množství proteinu a lipidů (tuků) v energetických tyčinkách. Jak tento graf interpretovat?
+
+- Černá čára uprostřed udává průměr. Průměrná hodnota pro obě látky je tedy přibližně stejná.
+- Modré obdélníky udávají rozsah, ve kterém se nachází 50 % hodnot. Dolní hrana obdélníku odděluje 25 % nejmenších hodnot od zbývajících 75 %. Horní hrana obdélníku odděluje 75 % nejmenších hodnot od zbývajících 25%. Tento obdélník ukazuje různorost dat. Na našem příkladu vidíme, že z pohledu množství proteinů jsou jednotlivé energetické tyčinky více různorodé než z pohledu množství lipidů (tuků).
+- Černé čáry jsou označované jaké *whisker* (kočičí vousy). V našem případě fungují podobně jako obdelník, ale oddělují vždy 5 % nejmenších a největších hodnot od zbývajících 90 %.
+- Zbývajících 10 % hodnot je vykresleno pomocí černých teček.
+
+Aby byl graf celý v jednom jazyce, pojďme nejprve přejmenovat názvy výživných látek do češtiny
 
 ```py
-vysky = muzi.to_frame(name='muži')
-vysky['ženy'] = zeny
-vysky.plot(kind='box', whis=[0, 100])
-plt.show()
+food_merged_brands["nutrient_name"] = food_merged_brands["nutrient_name"].replace({
+    "Total lipid (fat)": "Lipid (tuk)", 
+    "Protein": "Protein"
+    })
 ```
 
-::fig[Krabicový graf muži vs ženy]{src=assets/vysky-muzi-zeny-box.png}
-
+```py
+food_merged_brands_box = food_merged_brands[(food_merged_brands["nutrient_name"].isin(["Proteiny", "Lipidy (tuky)"])) & (food_merged_brands["branded_food_category"] == "Snack, Energy & Granola Bars")]
+ax = sns.boxplot(food_merged_brands_box, x="nutrient_name", y="amount", whis=[5, 95])
+ax.set(xlabel="Kategorie", ylabel="Množství v gramech", title="Množství proteinů a lipidů (tuků) v potravinách")
+```
