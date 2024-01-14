@@ -1,3 +1,3 @@
 ## Cvičení
-::exc[excs/titanic]
+::exc[excs/tuky]
 ::exc[excs/vyrobci]
