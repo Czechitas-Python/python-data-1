@@ -11,6 +11,8 @@ Pro tabulku `branded_food` splň následující úkoly.
 1. Ve sloupci `brand_owner` jsou názvy výrobců potravin. Zjisti tři výrobce s největším počtem potravin v tabulce.
 1. Ve sloupci `branded_food_category` jsou kategorie potravin. Zjisti pět kategorií s největších počtem potravin v tabulce.
 
+Nápověda: Na body 2 a 3 využij metodu, kterou jsme si již ukazovali v předchozí lekci. Její název se skládá ze dvou slov - anglického výrazu pro hodnotu a pro počet.
+
 V tabulce je sloupec `fdc_id`, pomocí kterého ji můžeš propojit s tabulkou `food_merged`. Protože názvy jsou v obou tabulkách stejné, takže by bylo možné použít parametr `on`. Vyzkoušej si ale místo toho parametry `left_on` a `right_on`, kterým dáš stejnou hodnotu, tj. název sloupce `fdc_id`. Výsledek ulož do tabulky `food_merged_brands`.
 
 Pro tabulku `food_merged_brands` splň následující úkoly.

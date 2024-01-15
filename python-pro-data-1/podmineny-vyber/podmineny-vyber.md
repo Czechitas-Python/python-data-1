@@ -40,7 +40,7 @@ food_nutrient["name"]
 Nás by mohlo zajímat, jaké všechny výživné látky v datech jsou. K tomu nám snaží vidět každý název jenom jednou. Jinak řečeno, potřebujeme unikátní hodnoty. K tomu můžeme využít metodu `.unique()`.
 
 ```py
-food_nutrient["name"]
+food_nutrient["name"].unique()
 ```
 
 Též může být zajímavé, kolikrát máme o některé z výživných látek informaci. K tomu můžeme použít metodu `.value_counts()`. Ta nám pro každou výživnou hodnotu zobrazí, kolikrát se v tabulce vyskytuje.
@@ -143,4 +143,4 @@ Pokud chceme, aby stačilo splnění jedné podmínky, použijeme symbol `|`.
 
 ## Bonusy
 
-::exc[excs/ceska-jmena-2]
+::exc[excs/ceska-jmena]

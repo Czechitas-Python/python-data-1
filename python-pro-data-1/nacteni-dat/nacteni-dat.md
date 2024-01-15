@@ -25,7 +25,11 @@ Celý DataFrame vypíšeme na obrazovku pomocí funkce `print()`.
 
 Všimni si, že `pandas` nám přidal nový sloupec s číslem řádku. Jedná se o **index**, se kterým budeme později pracovat. Index je hodnota, která identifikuje řádek. V některých případech nemusíme jako index používat číslo řádku, ale můžeme jako index vybrat některý ze sloupců. Obdobnou funkci má v databázích **primární klíč**. Jako *best practice* se většinou uvádí, že index by měl být **unikátní**, i když to `pandas` (na rozdíl od právě databází) nevyžadují. Na druhou stranu, práce s tabulkou, kde index není unikátní, je [pomalejší](https://stackoverflow.com/q/16626058/4693904). 
 
-My bychom si jako index zvolit sloupec `fdc_id`.
+My bychom si jako index mohli zvolit sloupec `fdc_id`. To bychom provedli pomocí metody `set_index()`.
+
+```py
+food = food.set_index("fdc_id")
+```
 
 Pandas nabízí kromě funkce `read_csv()` také funkci pro čtení formátu JSON `read_json()` nebo dokonce funkci pro čtení přímo Excelových tabulek `read_excel()`.
 
@@ -37,7 +41,7 @@ Jakmile máme tabulku načtenou, budeme o ní chtít vědět nějaké úplně z�
 food.info()
 ```
 
-Výsledek je vidět níže.
+Výsledek je vidět níže. Takto vypadá výsledek v případě, že nenastavíme sloupec `fdc_id` jako index. Pokud bychom to udělali, v seznamu sloupců `fdc_id` neuvidíme.
 
 ```shell
 <class 'pandas.core.frame.DataFrame'>
@@ -85,6 +89,8 @@ Názvy všech sloupců pak z vlastnosti `columns`:
 ```py
 print(food.columns)
 ```
+
+Níže je výstup příkazu. Opět platí, že kdybychom nastavili sloupec `fdc_id` jako index, tak tímto příkazem vypsán nebude.
 
 ```shell
 Index(['fdc_id', 'data_type', 'description', 'food_category_id', 'publication_date'], dtype='object')
