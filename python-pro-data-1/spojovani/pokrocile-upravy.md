@@ -61,8 +61,9 @@ My funkci využijeme, abychom si vytvořili větší tabulku s názvy potravin. 
 Pozor na to, že v takto vzniklém DataFrame se nám **rozbije index**, protože se spojí za sebe indexy jednotlivých tabulek. Pokud chceme, aby `pandas` při spojování index přepočítal, musíme nastavit hodnotu parametru `ignore_index` na `True`.
 
 ```py
-food_other = pd.read_csv("food_other.csv", ignore_index=True)
-food = pd.concat([food_sample_100, food_other])
+food_sample_100 = pd.read_csv("food_sample_100.csv")
+food_other = pd.read_csv("food_other.csv")
+food = pd.concat([food_sample_100, food_other], ignore_index=True)
 ```
 
 K čemu je spojování vlastně dobré? Některé programy například ukládají data za každý den do samostatného souboru, takže pokud potřebujeme data za jeden týden, stačí nám stáhnout a spojit 7 souborů a ostatní stovky souborů a gigabajty dat můžeme ignorovat.
