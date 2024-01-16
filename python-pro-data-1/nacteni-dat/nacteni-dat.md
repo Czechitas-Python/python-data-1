@@ -28,7 +28,7 @@ Všimni si, že `pandas` nám přidal nový sloupec s číslem řádku. Jedná s
 My bychom si jako index mohli zvolit sloupec `fdc_id`. To bychom provedli pomocí metody `set_index()`.
 
 ```py
-food = food.set_index("fdc_id")
+food.set_index("fdc_id", inplace=True)
 ```
 
 Pandas nabízí kromě funkce `read_csv()` také funkci pro čtení formátu JSON `read_json()` nebo dokonce funkci pro čtení přímo Excelových tabulek `read_excel()`.
