@@ -8,4 +8,4 @@ Každý tutoriál datové analýzy začíná zpracováváním data setu pasažé
 1. Načti data do `DataFrame`, který si pojmenuj `titanic`.
 1. Nech si zobrazit názvy sloupců, které jsou v souboru uloženy.
 1. Podívej se, kolik má soubor řádků.
-1. Zjisti, v jakých sloupcích nějaké hodnoty chybí
+1. Zjisti, v jakých sloupcích nějaké hodnoty chybí.

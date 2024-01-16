@@ -43,7 +43,7 @@ food.info()
 
 Výsledek je vidět níže.
 
-```
+```shell
 <class 'pandas.core.frame.DataFrame'>
 Index: 100 entries, 2644829 to 328565
 Data columns (total 4 columns):
@@ -67,7 +67,7 @@ print(food.shape)
 
 Výsledek je opět níže.
 
-```
+```shell
 (100, 4)
 ```
 
@@ -91,7 +91,7 @@ print(food.columns)
 
 Níže je výstup příkazu.
 
-```
+```shell
 Index(['data_type', 'description', 'food_category_id', 'publication_date'], dtype='object')
 ```
 
@@ -103,7 +103,7 @@ Na prvních a posledních několik řádků se chceme podívat často, hlavně v
 print(food.head())
 ```
 
-```
+```shell
                data_type    description  food_category_id publication_date
 fdc_id
 2644829  sub_sample_food   lentils, dry              16.0       2023-10-19
