@@ -8,7 +8,7 @@ K tomu použijeme výběr sloupců pomocí hranatých závorek. Zápis připomí
 food['description']
 ```
 
-```
+```shell
 fdc_id
 2644829                                         lentils, dry
 2347263                                          heavy cream
@@ -32,7 +32,7 @@ Pro výběr více sloupců musíme do indexace DataFrame vložit seznam s názvy
 food[['description', 'publication_date']]
 ```
 
-```
+```shell
                                                description publication_date
 fdc_id
 2644829                                       lentils, dry       2023-10-19
@@ -56,7 +56,7 @@ Tady se nám již vrátil datový typ DataFrame. Tohoto triku můžeme využít,
 food[['description']]
 ```
 
-```
+```shell
                                                description
 fdc_id
 2644829                                       lentils, dry
