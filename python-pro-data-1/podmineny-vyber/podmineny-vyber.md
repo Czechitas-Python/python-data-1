@@ -73,7 +73,6 @@ Pokud si vzpomeneš na hodnoty typu `bool`, víš, že můžou nabývat pouze dv
 
 ```py
 magnesium = food_nutrient[food_nutrient["name"] == "Magnesium, Mg"]
-magnesium.head()
 ```
 
 ### Popisná statistika
@@ -102,7 +101,6 @@ Naším úkolem je vybrat potraviny, které mají vyšší množství hořčíku
 
 ```py
 magnesium_limit = magnesium[magnesium["amount"] > 100]
-magnesium_limit
 ```
 
 ### Spojení více podmínek
@@ -117,7 +115,6 @@ Naším úkolem bude vybrat potraviny, které mají mezi 30 a 500 mg vápníku. 
 
 ```py
 calcium_limit = calcium[(calcium["amount"] > 30) & (calcium["amount"] < 500)]
-calcium_limit
 ```
 
 Podmínek můžeme zkombinovat i více, například tři. Předchozí dva kroky můžeme díky tomu spojit do jednoho, tj. z původní tabulky `food_nutrient` vybereme řádky, které:
@@ -130,7 +127,6 @@ Mezi každou dvojici podmínek vložíme symbol `&`, tento symbol tedy použijem
 
 ```py
 calcium_limit = food_nutrient[(food_nutrient["name"] == "Calcium, Ca") & (food_nutrient["amount"] > 30) & (food_nutrient["amount"] < 500)]
-calcium_limit
 ```
 
 Pokud chceme, aby stačilo splnění jedné podmínky, použijeme symbol `|`.
