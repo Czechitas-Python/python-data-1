@@ -41,21 +41,20 @@ Jakmile máme tabulku načtenou, budeme o ní chtít vědět nějaké úplně z�
 food.info()
 ```
 
-Výsledek je vidět níže. Takto vypadá výsledek v případě, že nenastavíme sloupec `fdc_id` jako index. Pokud bychom to udělali, v seznamu sloupců `fdc_id` neuvidíme.
+Výsledek je vidět níže.
 
-```shell
+```
 <class 'pandas.core.frame.DataFrame'>
-Index: 100 entries, 0 to 7858
-Data columns (total 5 columns):
- #   Column            Non-Null Count  Dtype  
----  ------            --------------  -----  
- 0   fdc_id            100 non-null    int64  
- 1   data_type         100 non-null    object 
- 2   description       100 non-null    object 
- 3   food_category_id  99 non-null     float64
- 4   publication_date  100 non-null    object 
-dtypes: float64(1), int64(1), object(3)
-memory usage: 4.7+ KB
+Index: 100 entries, 2644829 to 328565
+Data columns (total 4 columns):
+ #   Column            Non-Null Count  Dtype
+---  ------            --------------  -----
+ 0   data_type         100 non-null    object
+ 1   description       100 non-null    object
+ 2   food_category_id  99 non-null     float64
+ 3   publication_date  100 non-null    object
+dtypes: float64(1), object(3)
+memory usage: 3.9+ KB
 ```
 
 **Poznámka:** Pokud znáš základy objektově orientovaného programování, pak věz, že `info` je ve skutečnosti metoda třídy `DataFrame`.
@@ -68,8 +67,8 @@ print(food.shape)
 
 Výsledek je opět níže.
 
-```shell
-(100, 5)
+```
+(100, 4)
 ```
 
 `pandas` nám vrací výsledky v sekvenci, která se jmenuje `tuple`. Nám stačí vědět, že si z ní data můžeme načíst stejně jako ze seznamu. Na prvním místě je vždy počet řádků a na druhém počet sloupců. Pokud by nás třeba zajímal jen počet řádků, napíšeme:
@@ -90,10 +89,10 @@ Názvy všech sloupců pak z vlastnosti `columns`:
 print(food.columns)
 ```
 
-Níže je výstup příkazu. Opět platí, že kdybychom nastavili sloupec `fdc_id` jako index, tak tímto příkazem vypsán nebude.
+Níže je výstup příkazu.
 
-```shell
-Index(['fdc_id', 'data_type', 'description', 'food_category_id', 'publication_date'], dtype='object')
+```
+Index(['data_type', 'description', 'food_category_id', 'publication_date'], dtype='object')
 ```
 
 ### Začátek a konec
@@ -104,13 +103,14 @@ Na prvních a posledních několik řádků se chceme podívat často, hlavně v
 print(food.head())
 ```
 
-```shell
-    fdc_id        data_type    description  food_category_id publication_date
-0  2644829  sub_sample_food   lentils, dry              16.0       2023-10-19
-1  2347263  sub_sample_food    heavy cream               1.0       2022-10-28
-2  2261954  sub_sample_food  Flour, potato              11.0       2022-04-28
-3   321470  sub_sample_food  Salt, Iodized               2.0       2019-04-01
-4   322951  sub_sample_food  Hot dogs beef               7.0       2019-04-01
+```
+               data_type    description  food_category_id publication_date
+fdc_id
+2644829  sub_sample_food   lentils, dry              16.0       2023-10-19
+2347263  sub_sample_food    heavy cream               1.0       2022-10-28
+2261954  sub_sample_food  Flour, potato              11.0       2022-04-28
+321470   sub_sample_food  Salt, Iodized               2.0       2019-04-01
+322951   sub_sample_food  Hot dogs beef               7.0       2019-04-01
 ```
 
 Metoda `head` má parametr `n`, což je počet řádků, které mají být vypsány. Tento parametr je ale *nepovinný*. Nepovinné parametry mají vždy nějakou výchozí hodnotu, v případě parametru `n` metody `head` je tato výchozí hodnota 5. Můžem ale zvolit libovolnou vlastní, například 20.

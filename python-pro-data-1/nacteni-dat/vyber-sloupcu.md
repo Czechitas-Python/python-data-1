@@ -8,18 +8,19 @@ K tomu použijeme výběr sloupců pomocí hranatých závorek. Zápis připomí
 food['description']
 ```
 
-```shell
-0                                             lentils, dry
-1                                              heavy cream
-2                                            Flour, potato
-3                                            Salt, Iodized
-4                                            Hot dogs beef
-                               ...                        
-38914                            Yogurt, whole milk, plain
-58027                  chicken, breast, boneless, skinless
-58591                                 pork, loin, boneless
-46593             Oats, whole grain, rolled, old fashioned
-7858     Cheese, cheddar, mild, block/chunk, store bran...
+```
+fdc_id
+2644829                                         lentils, dry
+2347263                                          heavy cream
+2261954                                        Flour, potato
+321470                                         Salt, Iodized
+322951                                         Hot dogs beef
+                                 ...
+2260615                            Yogurt, whole milk, plain
+2646468                  chicken, breast, boneless, skinless
+2647032                                 pork, loin, boneless
+2349564             Oats, whole grain, rolled, old fashioned
+328565     Cheese, cheddar, mild, block/chunk, store bran...
 Name: description, Length: 100, dtype: object
 ```
 
@@ -28,22 +29,23 @@ Zde je důležité říct, že pokud vybíráme pouze jeden sloupec, vrátí se 
 Pro výběr více sloupců musíme do indexace DataFrame vložit seznam s názvy sloupců.
 
 ```py
-food[["fdc_id", "description"]]
+food[['description', 'publication_date']]
 ```
 
-```shell
-        fdc_id                                        description
-0      2644829                                       lentils, dry
-1      2347263                                        heavy cream
-2      2261954                                      Flour, potato
-3       321470                                      Salt, Iodized
-4       322951                                      Hot dogs beef
-...        ...                                                ...
-38914  2260615                          Yogurt, whole milk, plain
-58027  2646468                chicken, breast, boneless, skinless
-58591  2647032                               pork, loin, boneless
-46593  2349564           Oats, whole grain, rolled, old fashioned
-7858    328565  Cheese, cheddar, mild, block/chunk, store bran...
+```
+                                               description publication_date
+fdc_id
+2644829                                       lentils, dry       2023-10-19
+2347263                                        heavy cream       2022-10-28
+2261954                                      Flour, potato       2022-04-28
+321470                                       Salt, Iodized       2019-04-01
+322951                                       Hot dogs beef       2019-04-01
+...                                                    ...              ...
+2260615                          Yogurt, whole milk, plain       2022-04-28
+2646468                chicken, breast, boneless, skinless       2023-10-19
+2647032                               pork, loin, boneless       2023-10-19
+2349564           Oats, whole grain, rolled, old fashioned       2022-10-28
+328565   Cheese, cheddar, mild, block/chunk, store bran...       2019-04-01
 
 [100 rows x 2 columns]
 ```
@@ -54,19 +56,20 @@ Tady se nám již vrátil datový typ DataFrame. Tohoto triku můžeme využít,
 food[['description']]
 ```
 
-```shell
-                                             description
-0                                           lentils, dry
-1                                            heavy cream
-2                                          Flour, potato
-3                                          Salt, Iodized
-4                                          Hot dogs beef
-...                                                  ...
-38914                          Yogurt, whole milk, plain
-58027                chicken, breast, boneless, skinless
-58591                               pork, loin, boneless
-46593           Oats, whole grain, rolled, old fashioned
-7858   Cheese, cheddar, mild, block/chunk, store bran...
+```
+                                               description
+fdc_id
+2644829                                       lentils, dry
+2347263                                        heavy cream
+2261954                                      Flour, potato
+321470                                       Salt, Iodized
+322951                                       Hot dogs beef
+...                                                    ...
+2260615                          Yogurt, whole milk, plain
+2646468                chicken, breast, boneless, skinless
+2647032                               pork, loin, boneless
+2349564           Oats, whole grain, rolled, old fashioned
+328565   Cheese, cheddar, mild, block/chunk, store bran...
 
 [100 rows x 1 columns]
 ```
