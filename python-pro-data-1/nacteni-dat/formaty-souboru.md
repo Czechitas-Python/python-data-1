@@ -1,6 +1,6 @@
 ## Odkud data bereme
 
-Data se nejčastěji nachází v databázích nebo v souborech. V rámci tohoto kurzu budeme pracovat se soubory, proto si o nich řekneme něco víc. Budeme zabývat textovými daty, protože ty jsou pro zpracování nejjednodušší.
+Data se nejčastěji nachází v databázích nebo v souborech. V rámci tohoto kurzu budeme pracovat se soubory, proto si o nich řekneme něco víc. Budeme se zabývat textovými daty, protože ty jsou pro zpracování nejjednodušší.
 
 V rámci kurzu budeme používat data o potravinách, která [zveřejňuje americké ministerstvo zemědělství](https://fdc.nal.usda.gov/download-datasets.html).
 
@@ -26,6 +26,9 @@ Význam sloupců je následující:
 
 S tabulkami pracujeme v software Microsoft Excel (soubory mají příponu `.xlsx`), případně v alternativách jako Google Spreadsheet, Libre Office Calc atd. Python umí pracovat přímo se soubory XLSX, slouží k tomu modul `openpyxl` (můžete ho stáhnout [zde](https://openpyxl.readthedocs.io/en/stable/)), případně s nimi lze pracovat i v `pandas`. Práce s nimi je ale poměrně komplexní, proto budeme používat soubory CSV.
 
+
+### CSV
+
 Soubor CSV obsahuje data v textové podobě ve struktuře podobné tabulce. Jednotlivé buňky jsou odděleny **středníky** nebo **čárkami**. V rámci České republiky se častěji setkáváme se středníkem, protože čárky používáme pro zápis desetinných míst. Celosvětově je oblíbenější spíše čárka.
 
 ```
@@ -37,6 +40,8 @@ fdc_id,data_type,description,food_category_id,publication_date
 322951,sub_sample_food,Hot dogs beef,7.0,2019-04-01
 ```
 
+
+### JSON
 
 Formát JSON ti bude povědomý, pokud už jsi v Pythonu pracoval(a) se slovníky (`dict`). Na první pohled vypadají téměř stejně. Python ti navíc jednoduše umožní data ve formátu JSON převést na slovníky a seznamy. K tomu slouží modul příhodně pojmenovaný `json`. S tímto formátem si ale hravě poradí i `pandas`.
 
@@ -80,7 +85,10 @@ Formát JSON ti bude povědomý, pokud už jsi v Pythonu pracoval(a) se slovník
 ]
 ```
 
-Dalším používaným formátem je XML. XML je velmi podobné HTML, tedy jazyku, kterým určujeme, jak má vypadat webová stránka.
+
+### XML
+
+Dalším používaným formátem je XML. XML je velmi podobné HTML, tedy jazyku, kterým určujeme obsah webové stránky.
 
 ```xml
 <?xml version='1.0' encoding='utf-8'?>
@@ -118,7 +126,7 @@ Protože data zapisujeme jako hodnoty a atributy, můžeme jednu tabulku zapsat 
 
 U obou formátů musíme dodržovat základní pravidla, jinak bude soubor pro počítač nečitelný.
 
-### Čtení na doma - formát YAML
+### YAML
 
 Nejnovějším z formátů je YAML (YAML Ain't Markup Language), který vznikl v roce 2011. Byl vyvinut s ohledem pro snadnou čtenost člověkem.
 
