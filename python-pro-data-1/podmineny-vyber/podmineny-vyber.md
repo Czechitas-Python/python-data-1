@@ -87,9 +87,9 @@ magnesium["amount"].describe()
 
 V datech se zobrazují tyto hodnoty: 
 
-- `count`: Počet hodnot,
+- `count`: Počet hodnot.
 - `mean`: Aritmetický průměr hodnot.
-- `std`: Směrodatná odchylka. Pomocí ní měříme různorodost (variabilitu) dat.
+- `std`: :term{cs="Směrodatná odchylka" en="standard deviation"}. Pomocí ní měříme :term{cs="různorodost" en="variability"} dat.
 - `min`: Nejmenší hodnota.
 - `25%`: Toto číslo rozděluje data na 25 % menších hodnot a 75 % větších hodnot.
 - `50%`: Medián. Jde o číslo, které by leželo přesně uprostřed seřazených hodnot, tj. rozděluje data na 50 % menších hodnot a 50 % větších hodnot.
@@ -140,3 +140,4 @@ Pokud chceme, aby stačilo splnění jedné podmínky, použijeme symbol `|`.
 ## Bonusy
 
 ::exc[excs/ceska-jmena]
+::exc[excs/dve-kriteria]

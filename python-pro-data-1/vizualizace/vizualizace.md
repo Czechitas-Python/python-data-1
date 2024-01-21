@@ -10,6 +10,7 @@ import pandas as pd
 import seaborn as sns
 
 food_nutrient = pd.read_csv("food_nutrient.csv")
+branded_food = pd.read_csv("branded_food.csv")
 food = pd.concat([food_sample_100, food_other])
 food_brands = pd.merge(food, branded_food, on="fdc_id")
 
@@ -96,7 +97,7 @@ ax.tick_params(axis='x', rotation=45)
 ax.set(xlabel="Kategorie", ylabel="Množství proteinu (g)", title="Průměrné množství proteinů v potravinách")
 ```
 
-Další z oblíbených grafů je je krabicový graf (`boxplot`). Zkusme pomocí krabicového grafu například porovnat množství proteinu a lipidů (tuků) v energetických tyčinkách. Jak tento graf interpretovat?
+Další z oblíbených grafů je je krabicový graf :term{cs="krabicový graf" en="box plot"}. Zkusme pomocí krabicového grafu například porovnat množství proteinu a lipidů (tuků) v energetických tyčinkách. Jak tento graf interpretovat?
 
 - Černá čára uprostřed udává průměr. Průměrná hodnota pro obě látky je tedy přibližně stejná.
 - Modré obdélníky udávají rozsah, ve kterém se nachází 50 % hodnot. Dolní hrana obdélníku odděluje 25 % nejmenších hodnot od zbývajících 75 %. Horní hrana obdélníku odděluje 75 % nejmenších hodnot od zbývajících 25%. Tento obdélník ukazuje různorost dat. Na našem příkladu vidíme, že z pohledu množství proteinů jsou jednotlivé energetické tyčinky více různorodé než z pohledu množství lipidů (tuků).
