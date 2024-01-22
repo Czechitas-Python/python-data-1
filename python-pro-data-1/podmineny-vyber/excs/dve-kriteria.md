@@ -3,7 +3,7 @@ title: Dvě kritéria
 demand: 3
 ---
 
-Připravujeme seznam potravin pro účely lékařského výzkumu, který se bude zabývat kardiovaskulárním systémem. Chceme vybrat pottraviny, které splňují dvě kritéria:
+Připravujeme seznam potravin pro účely lékařského výzkumu, který se bude zabývat kardiovaskulárním systémem. Chceme vybrat potraviny, které splňují dvě kritéria:
 
 - nízký obsah nasycených mastných kyselin (`"Fatty acids, total saturated"`, uvažuj méně než 1 gram),
 - vysoký obsah vlákniny (`"Fiber, total dietary"`, uvažuj více než 5 gramů).
