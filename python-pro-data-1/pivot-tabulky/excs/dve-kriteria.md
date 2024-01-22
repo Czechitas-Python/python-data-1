@@ -3,7 +3,7 @@ title: Dvě kritéria
 demand: 3
 ---
 
-*Poznámka:* Zadání tohoto příkladu ti možná bude připadat povědomé, bylo již v lekci o podmíněném výběru. Pokud jsi ale příklad neřešil(a), nevedí. Pokud ano, uvidíš, že řešení bude díky funkci `pivot()` mnohem jednodušší.
+*Poznámka:* Zadání tohoto příkladu ti možná bude připadat povědomé, bylo již v lekci o podmíněném výběru. Pokud jsi ale příklad neřešil(a), nevadí. Pokud ano, uvidíš, že řešení bude díky funkci `pivot()` mnohem jednodušší.
 
 Připravujeme seznam potravin pro účely lékařského výzkumu, který se bude zabývat kardiovaskulárním systémem. Chceme vybrat pottraviny, které splňují dvě kritéria:
 
