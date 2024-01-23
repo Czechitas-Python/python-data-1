@@ -13,7 +13,7 @@ To, jaký sloupec má být použit jako index, řeší funkce `set_index()`. Ta 
 ```py
 import pandas
 staty = pandas.read_json("staty.json")
-staty.set_index("alpha2Code", inplace=True)
+staty = staty.set_index("alpha2Code")
 ```
 
 Úspěch našeho počínání si můžeme zkontrolovat pomocí příkazu `staty.index`, který nám zobrazí informace o indexu.
