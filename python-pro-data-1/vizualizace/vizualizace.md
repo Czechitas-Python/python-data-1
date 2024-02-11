@@ -70,6 +70,8 @@ ax.set(xlabel="Kategorie", ylabel="Počet potravin", title="Počty potravin ve 1
 Další z oblíbených grafů je histogram. Uvažujme, že se chceme blíže podívat, jak je to s množstvím proteinů v potravinách. Histogram nám umožní komplexnější pohled než průměr. Na vodorovné ose histogramu vidíme množství proteinu a na svislé ose množství potravin, které takovou hodnotu mají. Z histogramu tedy vidíme, že většina potravin má uvedené velmi nízké množství proteinu. Pouze malé množství potravin má více než 10 gramů proteinu.
 
 ```py
+food_merged_brands = pd.merge(food_brands, food_nutrient, on="fdc_id")
+food_merged_brands = food_merged_brands.rename(columns={"name": "nutrient_name"})
 food_merged_brands_protein = food_merged_brands[food_merged_brands["nutrient_name"] == "Protein"]
 ax = sns.histplot(food_merged_brands_protein, x="amount")
 ax.set(xlabel="Množství proteinu (g)", ylabel="Počet potravin", title="Množství proteinů v potravinách")
@@ -91,8 +93,8 @@ ax.set(xlabel="Množství proteinu (g)", ylabel="Počet potravin", title="Množs
 Dále se můžeme podívat, jak se liší průměrné množství proteinu pro jednotlivé kategorie potravit. K tomu sloučí `barplot`. Ten vypočte průměrné hodnoty dle sloupce, který zadáme jako parametr `x`. Parametr `y` udává, ze kterého sloupce se vypočítá průměr, který udává výšku sloupců. Černá čára v grafu je označovaná jako `errorbar`. Vychází z předpokladu, že v datech máme vždy jen vzorek dat, například v našich datech je jen část potravin, které jsou na trhu k dostání. Sloupec, který udává výšku sloupce, je tedy v podstatě jen odhadem hodnoty, kterou bychom zjistili, pokud bychom analyzovali všechny dostupné postraviny na trhu. Černá čára pak udává tzv. interval spolehlivosti, tedy interval, ve kterém by se ten průměr nacházel s pravděpodobností 95 %.
 
 ```py
-food_brands_top_nut = pd.merge(food_brands_top, food_nutrient, on="fdc_id")
-ax = sns.barplot(food_brands_top_nut, x="branded_food_category", y="amount")
+food_brands_nut = pd.merge(food_brands, food_nutrient, on="fdc_id")
+ax = sns.barplot(food_brands_nut, x="branded_food_category", y="amount")
 ax.tick_params(axis='x', rotation=45)
 ax.set(xlabel="Kategorie", ylabel="Množství proteinu (g)", title="Průměrné množství proteinů v potravinách")
 ```
