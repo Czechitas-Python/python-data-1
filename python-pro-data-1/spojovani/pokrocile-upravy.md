@@ -26,7 +26,7 @@ food_nutrient_incomplete = food_nutrient[food_nutrient["amount"].isna()]
 food_nutrient_incomplete.head()
 ```
 
-Metoda `.notna()` funuje obráceně (tj. vrací hodnotu `False` pro řádek s hodnotou nebo `True` pro prázdný řádek).
+Metoda `.notna()` funguje obráceně (tj. vrací hodnotu `False` pro řádek s hodnotou nebo `True` pro prázdný řádek).
 
 ```py
 food_nutrient_complete = food_nutrient[food_nutrient["amount"].notna()]
@@ -53,8 +53,6 @@ Nyní bychom chtěli všechny tři naše tabulky spojit do jedné. Nejprve si uk
 - Počet **řádků** odpovídá součtu řádků spojovaných tabulek.
 
 V SQL používáme pro danou operaci klíčové slovo `UNION`, `pandas` používáme funkci `concat()`.
-
-Začneme s tím, že každou tabulku uložíme do `DataFrame` s tím, že vyhodíme studenty, kteří na maturitu nedorazili.
 
 My funkci využijeme, abychom si vytvořili větší tabulku s názvy potravin. V naší tabulce `food_sample_100.csv` máme pouze 100 vybraných potravin. My si k nim přidáme data z tabulky [food_other.csv](assets/food_other.csv).
 
