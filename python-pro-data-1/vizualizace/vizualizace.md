@@ -18,14 +18,14 @@ top_cat_list = ['Candy', 'Popcorn, Peanuts, Seeds & Related Snacks', 'Cheese', '
 food_top_cat = food_brands[food_brands["branded_food_category"].isin(top_cat_list)]
 ```
 
-Graf vytvoříme pomocí funkce `countplot`. Jako první hodnotu zadáme název tabulku s daty a jako parametr `x` název sloupce, podle kterého se vygenerují sloupce grafu. V předchozí lekci to odpovídalo sloupci, který jsme zadávali do metody `groupby().` Výsledek uložíme do proměnné `ax`. Jde o zkratku slova axis, která obsahuje odkaz na vytvořený graf. Pomocí metody `tick_params()` otočíme popisky osy *x* o 90 stupňů, protože jinak by se popisy vzájemně překrývaly.
+Graf vytvoříme pomocí funkce `countplot`. Jako první hodnotu zadáme název tabulku s daty a jako parametr `x` název sloupce, podle kterého se vygenerují sloupce grafu. V předchozí lekci to odpovídalo sloupci, který jsme zadávali do metody `groupby()`. Výsledek uložíme do proměnné `ax`. Jde o zkratku slova axis, která obsahuje odkaz na vytvořený graf. Pomocí metody `tick_params()` otočíme popisky osy *x* o 90 stupňů, protože jinak by se popisy vzájemně překrývaly.
 
 ```py
 ax = sns.countplot(food_top_cat, x="branded_food_category")
 ax.tick_params(axis='x', rotation=90)
 ```
 
-Pokud píšeme program jako skript, je nutné ještě přidat řádke `plt.show()`. Ten zajistí, že se graf zobrazí v samostatném okně. Pozor ale na to, že program se pozastaví, dokud okno s grafem neuzavřeme. Pokud používáme Jupyter notebook, tento řádek přidávat nemusíme.
+Pokud píšeme program jako skript, je nutné ještě přidat řádek `plt.show()`. Ten zajistí, že se graf zobrazí v samostatném okně. Pozor ale na to, že program se pozastaví, dokud okno s grafem neuzavřeme. Pokud používáme Jupyter notebook, tento řádek přidávat nemusíme.
 
 Vygenerovaný graf je poměrně špatně čitelný. Můžeme ale zkusit názvy kategorií zkrátit. V rámci toho rovnou provedeme překlad do češtiny. K přejmenování použijeme metodu `.replace()`. Hodnoty můžeme vložit jako slovník. Vložíme do něj původní hodnotu a jejích náhradu, obojí opět oddělíme dvojtečkou. Protože chceme přejmenovat více hodnot, vložíme více dvojic, které oddělíme čárkou.
 
@@ -90,7 +90,7 @@ ax = sns.histplot(food_merged_brands_protein, x="amount", bins=range(0, 110, 10)
 ax.set(xlabel="Množství proteinu (g)", ylabel="Počet potravin", title="Množství proteinů v potravinách")
 ```
 
-Dále se můžeme podívat, jak se liší průměrné množství proteinu pro jednotlivé kategorie potravit. K tomu sloučí `barplot`. Ten vypočte průměrné hodnoty dle sloupce, který zadáme jako parametr `x`. Parametr `y` udává, ze kterého sloupce se vypočítá průměr, který udává výšku sloupců. Černá čára v grafu je označovaná jako `errorbar`. Vychází z předpokladu, že v datech máme vždy jen vzorek dat, například v našich datech je jen část potravin, které jsou na trhu k dostání. Sloupec, který udává výšku sloupce, je tedy v podstatě jen odhadem hodnoty, kterou bychom zjistili, pokud bychom analyzovali všechny dostupné postraviny na trhu. Černá čára pak udává tzv. interval spolehlivosti, tedy interval, ve kterém by se ten průměr nacházel s pravděpodobností 95 %.
+Dále se můžeme podívat, jak se liší průměrné množství proteinu pro jednotlivé kategorie potravin. K tomu slouží `barplot`. Ten vypočte průměrné hodnoty dle sloupce, který zadáme jako parametr `x`. Parametr `y` udává, ze kterého sloupce se vypočítá průměr, který udává výšku sloupců. Černá čára v grafu je označovaná jako `errorbar`. Vychází z předpokladu, že v datech máme vždy jen vzorek dat, například v našich datech je jen část potravin, které jsou na trhu k dostání. Sloupec, který udává výšku sloupce, je tedy v podstatě jen odhadem hodnoty, kterou bychom zjistili, pokud bychom analyzovali všechny dostupné potraviny na trhu. Černá čára pak udává tzv. interval spolehlivosti, tedy interval, ve kterém by se ten průměr nacházel s pravděpodobností 95 %.
 
 ```py
 food_brands_nut = pd.merge(food_brands, food_nutrient, on="fdc_id")
@@ -99,11 +99,11 @@ ax.tick_params(axis='x', rotation=45)
 ax.set(xlabel="Kategorie", ylabel="Množství proteinu (g)", title="Průměrné množství proteinů v potravinách")
 ```
 
-Další z oblíbených grafů je je krabicový graf :term{cs="krabicový graf" en="box plot"}. Zkusme pomocí krabicového grafu například porovnat množství proteinu a lipidů (tuků) v energetických tyčinkách. Jak tento graf interpretovat?
+Další z oblíbených grafů je krabicový graf :term{cs="krabicový graf" en="box plot"}. Zkusme pomocí krabicového grafu například porovnat množství proteinu a lipidů (tuků) v energetických tyčinkách. Jak tento graf interpretovat?
 
 - Černá čára uprostřed udává průměr. Průměrná hodnota pro obě látky je tedy přibližně stejná.
-- Modré obdélníky udávají rozsah, ve kterém se nachází 50 % hodnot. Dolní hrana obdélníku odděluje 25 % nejmenších hodnot od zbývajících 75 %. Horní hrana obdélníku odděluje 75 % nejmenších hodnot od zbývajících 25%. Tento obdélník ukazuje různorost dat. Na našem příkladu vidíme, že z pohledu množství proteinů jsou jednotlivé energetické tyčinky více různorodé než z pohledu množství lipidů (tuků).
-- Černé čáry jsou označované jaké *whisker* (kočičí vousy). V našem případě fungují podobně jako obdelník, ale oddělují vždy 5 % nejmenších a největších hodnot od zbývajících 90 %.
+- Modré obdélníky udávají rozsah, ve kterém se nachází 50 % hodnot. Dolní hrana obdélníku odděluje 25 % nejmenších hodnot od zbývajících 75 %. Horní hrana obdélníku odděluje 75 % nejmenších hodnot od zbývajících 25 %. Tento obdélník ukazuje různorodost dat. Na našem příkladu vidíme, že z pohledu množství proteinů jsou jednotlivé energetické tyčinky více různorodé než z pohledu množství lipidů (tuků).
+- Černé čáry jsou označované jako *whisker* (kočičí vousy). V našem případě fungují podobně jako obdélník, ale oddělují vždy 5 % nejmenších a největších hodnot od zbývajících 90 %.
 - Zbývajících 10 % hodnot je vykresleno pomocí černých teček.
 
 Aby byl graf celý v jednom jazyce, pojďme nejprve přejmenovat názvy výživných látek do češtiny
