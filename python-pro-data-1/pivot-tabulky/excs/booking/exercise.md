@@ -3,7 +3,7 @@ title: Booking
 demand: 1
 ---
 
-Stáhni si data ze souboru o rezervacích hotelů ze serveru Booking.com. Data jsou uložená v souboru [hotel_bookings.csv](assets/hotel_bookings.csv). U rezervací evidujeme, jestli byly zrušené, to najdeme ve sloupci `is_canceled` (1 pro zrušené rezervace a 1 pro nezrušené). Vytvoř kontingenční tabulku, která porovná počet zrušených rezervací podle typu hotelu (sloupec `hotel`). Je více rezervací zrušeno pro městské hotely nebo pro hotely v rezortech?
+Stáhni si data ze souboru o rezervacích hotelů ze serveru Booking.com. Data jsou uložená v souboru [hotel_bookings.csv](assets/hotel_bookings.csv). U rezervací evidujeme, jestli byly zrušené, to najdeme ve sloupci `is_canceled` (1 pro zrušené rezervace a 0 pro nezrušené). Vytvoř kontingenční tabulku, která porovná počet zrušených rezervací podle typu hotelu (sloupec `hotel`). Je více rezervací zrušeno pro městské hotely nebo pro hotely v rezortech?
 
 Jako agregační funkci použij funkci `len`. 
 
