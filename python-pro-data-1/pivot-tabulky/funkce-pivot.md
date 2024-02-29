@@ -20,6 +20,12 @@ Funkci `pivot` určíme čtyři parametry, kromě prvního parametru `data` mus�
 - Parametr `columns` bude použit k vytvoření nových sloupečků. Každá unikátní hodnota v tomto sloupci bude znamenat nový sloupeček ve výsledné tabulce. Sem doplníme sloupec `name`.
 - Parametr `value` označuje sloupec, ze kterého budou čteny hodnoty. V našem případě půjde o sloupec `amount`. Funkce `pivot` se pro každý řádek původní tabulky "podívá" na sloupce `fdc_id` a `name`, tj. na číslo potraviny a název výživné látky. Hodnotu, která je ve sloupci `amount`, pak doplní do nové tabulky na řádek se stejným `fdc_id` a do sloupce pro příslušnou výživnou látku.
 
+Pozor na to, že kombinace každé dvojice sloupců `index` a `columns` může být v původní tabulce pouze jednou, jinak by totiž nebylo možné data "přeskládat" - do jednoho políčka tabulky bychom museli nacpat více než jednu hodnotu. Funkce na takovou situaci reaguje chybou. Pokud máme v tabulce malé množství duplicitních hodnot, můžeme je odstranit s využitím metody `drop_duplicates()`. Použijeme metodu pro naše data. Využijeme parametr `subset` a do něj vložíme názvy sloupců, podle kterých má být duplicita rozpoznána.
+
+```py
+food_nutrient = food_nutrient.drop_duplicates(subset=["fdc_id", "name"])
+```
+
 U funkce `pivot()` je důležité, abychom pro každou kombinaci `fdc_id` a `name` měli pouze jeden řádek. Funkce totiž neprovádí žádnou agregaci. Pokud bychom agregaci potřebovali provést, musíme použít některou z funkcí, které si ukážeme dále.
 
 Níže je použití funkce `pivot`.
