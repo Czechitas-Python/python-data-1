@@ -3,7 +3,7 @@ title: Doprava
 demand: 3
 ---
 
-Stáhni si data ze souboru [traffic.csv](traffic.csv), který zobrazuje počet aut v hodinových intervalech na čtyřech různých křižovatkách.
+Stáhni si data ze souboru [traffic.csv](assets/traffic.csv), který zobrazuje počet aut v hodinových intervalech na čtyřech různých křižovatkách.
 
 Pro následující dva úkoly využij funkci `cut`.
 
