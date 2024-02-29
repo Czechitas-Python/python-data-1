@@ -49,6 +49,41 @@ Alternativou k funkci `pivot_table()` je funkce `crosstab()`. Ta se liší od fu
 pd.crosstab(food_merged["branded_food_category"], food_merged["name"], food_merged["amount"], aggfunc=np.mean)
 ```
 
+#### Relativní počty
+
+Vraťme se ještě ke kategoriím potravin v závislosti na množství cholesterolu. I tato data můžeme zobrazit pomocí pivot tabulky. Pro každou kategorii potravit si můžeme vypočítat, kolik je v kategorii potravin s vysokým, středním a nízkám obsahem cholesterolu. K tomu si nejprve musíme připravit data, tj. zopakujeme postup z předchozí části lekce.
+
+```py
+food_nutrient_pivot = pd.pivot(food_nutrient, index="fdc_id", columns="name", values="amount")
+food_brands = pd.merge(food, branded_food, on="fdc_id")
+food_nutrient_pivot = pd.merge(food_nutrient_pivot, food_brands, on="fdc_id")
+
+bins = [0, 20, 100, float('inf')]
+labels = ['Low Cholesterol', 'Moderate Cholesterol', 'High Cholesterol']
+
+food_nutrient_pivot['Cholesterol Category'] = pd.cut(food_nutrient_pivot['Cholesterol'], bins=bins, labels=labels)
+top_cat_list = ['Candy', 'Popcorn, Peanuts, Seeds & Related Snacks', 'Cheese', 'Ice Cream & Frozen Yogurt', 'Chips, Pretzels & Snacks', 'Cookies & Biscuits', 'Pickles, Olives, Peppers & Relishes', 'Breads & Buns', 'Fruit & Vegetable Juice, Nectars & Fruit Drinks', 'Snack, Energy & Granola Bars', 'Chocolate', 'Other Snacks']
+food_nutrient_pivot = food_nutrient_pivot[food_nutrient_pivot["branded_food_category"].isin(top_cat_list)]
+```
+
+Tentokrát chceme spočítat, kolik máme záznamů pro každou dvojici kategorie potraviny a kategorie z pohledu množství cholesterolu. Pokud chceme provést tento výpočet, máme dvě možnosti: použít funkci `pivot_table` a jako agregační funkci `aggfunc` můžeme použít například funkci `len`. Funkce `crosstab` je pro tento účel jednodušší, té nyní zadáme pouze série s popiskem řádku tabulky (indexem) a popiskem sloupců tabulky. Pokud funkce dostane pouze tyto dvě série, dopočítá počty hodnot pro každou dvojici. Tím pádem je pro tento účel jednodušší.
+
+```py
+food_pivot_cholesterol_pivot = pd.crosstab(food_nutrient_pivot["branded_food_category"], food_nutrient_pivot["Cholesterol Category"])
+```
+
+V řadě případů může být jednodušší podívat se na relativní počty, tj. na procentuální zastoupení jednotlivých skupin. Tím sice přijdeme o část informace (z tabulky pak není zřejmé, kolik je výrobků v jednotlivých kategoriích a kolik celkem máme dat), na druhou stranu jsou data lépe čitelná a řádky jsou lépe porovnatelné mezi sebou.
+
+```py
+food_pivot_cholesterol_pivot = pd.crosstab(food_nutrient_pivot["branded_food_category"], food_nutrient_pivot["Cholesterol Category"], normalize="index")
+```
+
+S takto vytvořenou tabulkou můžeme dál pracovat, například můžeme používat dotazy. Pokud bychom například chtěli obecně doporučit kategorie potravin, které mají většinou nízké množství cholesterolu, můžeme využít dotaz. Například si můžeme nechat zobrazit řádky, kde má sloupec `Low Cholesterol` vyšší hodnotu než 0.5.
+
+```py
+food_pivot_cholesterol_pivot[food_pivot_cholesterol_pivot["Low Cholesterol"] > 0.5]
+```
+
 ### Standardizace a teplotní mapa
 
 Kontingenční tabulka je časově náročná na čtení, především v případě, že má poměrně hodně řádků nebo sloupců. Pro rychlý přehled může být užitečnější typ vizualizace označovaný jako :term{cs="teplotní mapa" en="heat map"}. Ten převede hodnotu na barevnou škálu. V teplotní mapě můžeme rychle nalézt především výrazně nadprůměrné či podprůměrné hodnoty. U našich dat ale může být problém v tom, že máme v různých sloupcích řádově odlišné hodnoty. Je to samozřejmě ovlivněno tím, že některé výživné látky jsou zobrazné v odlišných jednotkách (množství látky v gramech a miligramech na 100 gramů potraviny). Problém bychom nevyřešili ani převodem na stejné jednotky. Vápníku nebo sodíku totiž bude v potravinách většinou řádově méně než proteinů nebo cukrů.
@@ -75,3 +110,14 @@ ax.set(xlabel="Výživná látka", ylabel="Kategorie", title="Množství průmě
 ```
 
 Pro lepší čitelnost můžeme změnit výchozí barevnou škálu pomocí parametru `cmap`. Můžeme použít například škálu `"Blues"`, která je postavená na sytosti modré barvy.
+
+
+## Cvičení
+
+::exc[excs/booking]
+::exc[excs/titanic]
+
+## Bonusy
+
+::exc[excs/doprava]
+::exc[excs/kola]
