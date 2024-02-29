@@ -53,3 +53,41 @@ g.ax_joint.set_ylabel("Cholesterol")
 Výsledný graf je na obrázku níže.
 
 ::fig[HTML značka]{src=assets/scatterplot.png size=60}
+
+
+### Skupiny
+
+Na zakládě nějaké číselné hodnoty můžeme data rozdělit i do skupin. Každá skupina potřebuje dvě věci:
+
+- číselný interval, který udává rozsah pro zařazení do skupiny,
+- označení skupiny.
+
+Uvažujme následující skupiny.
+
+| Obsah cholesterolu     | Kategorie           |
+|------------------------|---------------------|
+| 0-20                   | Low Cholesterol     |
+| 20-100                 | Moderate Cholesterol|
+| 100-inf                | High Cholesterol    |
+
+Každé potravině můžeme přiřadit popisek, která nám usnadní psaní dotazů.
+
+```py
+bins = [0, 20, 100, float('inf')]
+labels = ['Low Cholesterol', 'Moderate Cholesterol', 'High Cholesterol']
+
+food_nutrient_pivot['Cholesterol Category'] = pd.cut(food_nutrient_pivot['Cholesterol'], bins=bins, labels=labels)
+food_nutrient_pivot
+```
+
+Pokud bychom chtěli zkoumat množství cholesterolu v různých typech potravin, můžeme použít vizualizaci `countplot`, kterou už jsme si ukazovali v minulé lekci. V grafu pak uvidíme, kolik je v každé skupině potravin s nízkým obsahem cholesterolu, se středním a vysokým.
+
+```py
+top_cat_list = ['Candy', 'Popcorn, Peanuts, Seeds & Related Snacks', 'Cheese', 'Ice Cream & Frozen Yogurt', 'Chips, Pretzels & Snacks', 'Cookies & Biscuits', 'Pickles, Olives, Peppers & Relishes', 'Breads & Buns', 'Fruit & Vegetable Juice, Nectars & Fruit Drinks', 'Snack, Energy & Granola Bars', 'Chocolate', 'Other Snacks']
+food_nutrient_pivot = food_nutrient_pivot[food_nutrient_pivot["branded_food_category"].isin(top_cat_list)]
+sns.countplot(food_nutrient_pivot, y="branded_food_category", hue="Cholesterol Category")
+```
+
+## Cvičení
+
+::exc[excs/dve-kriteria]
