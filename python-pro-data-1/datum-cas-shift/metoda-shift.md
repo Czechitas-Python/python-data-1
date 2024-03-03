@@ -20,7 +20,7 @@ Pro náš případ bude ideální, pokud posuneme hodnoty sloupce `event_date_ti
 signal_monitoring["event_end_date_time"] = signal_monitoring["event_date_time"].shift(periods=-1)
 ```
 
-Opět v datech ponecháme pouze řádky, které mají ve sloupci `event_type` hodnotu `signal lost`.
+Opět v datech ponecháme pouze řádky, které mají ve sloupci `event_type` hodnotu _signal lost_.
 
 ```py
 signal_monitoring_signal_lost = signal_monitoring[signal_monitoring["event_type"] == "signal lost"]
