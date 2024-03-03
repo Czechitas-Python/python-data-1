@@ -9,7 +9,7 @@ signal_monitoring = pd.read_csv("signal_monitoring.csv")
 signal_monitoring["event_date_time"] = pd.to_datetime(signal_monitoring["event_date_time"])
 ```
 
-Nyní použijeme metodu shift na sloupec event_date_time. Pomocí metody pak přidáme k tabulce nový sloupec. Nejdůležitějším parametrem metody je parametr periods, který může mít kladnou nebo zápornou hodnotu.
+Nyní použijeme metodu `shift()` na sloupec `event_date_time`. Pomocí metody pak přidáme k tabulce nový sloupec. Nejdůležitějším parametrem metody je parametr periods, který může mít kladnou nebo zápornou hodnotu.
 
 - Kladná hodnota parametru periods znamená, že hodnoty budou posunuty směrem dolů.
 - Záporná hodnota parametru periods znamená, že hodnoty budou posunuty směrem nahoru.
