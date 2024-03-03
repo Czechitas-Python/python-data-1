@@ -37,3 +37,5 @@ Typ hodnoty ve sloupci `outage_length` je označovaný jako `timedelta`. Tento t
 ```py
 signal_monitoring_signal_lost.groupby("date")["outage_length"].sum()
 ```
+
+Příklad řešení s využitím ChatGPT je [zde](https://chat.openai.com/share/eb92296b-1968-4387-9cc4-592023d4d104).
