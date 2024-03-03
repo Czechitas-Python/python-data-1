@@ -14,7 +14,7 @@ Nyní použijeme metodu `shift()` na sloupec `event_date_time`. Pomocí metody p
 - Kladná hodnota parametru periods znamená, že hodnoty budou posunuty směrem dolů.
 - Záporná hodnota parametru periods znamená, že hodnoty budou posunuty směrem nahoru.
 
-Pro náš případ bude ideální, pokud posuneme hodnoty sloupce event_date_time o jeden řádek směrem nahoru. Tím zajistíme, že pokud má sloupec event_type hodnotu signal lost, uvidíme v jednom řádku začátek i konec výpadku. Tím padem bude stačit tyto hodnoty od sebe odečíst. Pro event_type signal restored nebude mít tato hodnota smysl, ale to nevadí, tyto řádky můžeme pomocí dotazu z tabulky odfiltrovat.
+Pro náš případ bude ideální, pokud posuneme hodnoty sloupce `event_date_time` o jeden řádek směrem nahoru. Tím zajistíme, že pokud má sloupec `event_type` hodnotu _signal lost_, uvidíme v jednom řádku začátek i konec výpadku. Tím pádem bude stačit tyto hodnoty od sebe odečíst. Pro `event_type` _signal restored_ nebude mít tato hodnota smysl, ale to nevadí, tyto řádky můžeme pomocí dotazu z tabulky odfiltrovat.
 
 ```py
 signal_monitoring["event_end_date_time"] = signal_monitoring["event_date_time"].shift(periods=-1)
