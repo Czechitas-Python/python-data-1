@@ -1,6 +1,6 @@
 ## Datum a čas
 
-Mnoho datových sad obsahuje nějaké časové údaje. Např.:term{cs="časové razítko" en="time stamp"} je údaj, které indikuje, kdy byla data uložena nebo kdy se nějaá událost stala. Tato informace je klíčová pro řadu analýz, jako je sledování trendů v čase, sezónní analýza, předpovídání a časové řady. Pandas umožňuje řadu operací, jak manipulovat s datem a časem. Při načtení ze souboru je ale nutné na začátku provést převod série na typ `datetime`, aby bylo jasné, že se jedná o časový údaj a nikoli o řetězec.
+Mnoho datových sad obsahuje nějaké časové údaje. Např. :term{cs="časové razítko" en="time stamp"} je údaj, které indikuje, kdy byla data uložena nebo kdy se nějaká událost stala. Tato informace je klíčová pro řadu analýz, jako je sledování trendů v čase, sezónní analýza, předpovídání a časové řady. Pandas umožňuje řadu operací, jak manipulovat s datem a časem. Při načtení ze souboru je ale nutné na začátku provést převod série na typ `datetime`, aby bylo jasné, že se jedná o časový údaj a nikoli o řetězec.
 
 Uvažujme data o monitorování příjmu nějakého (např. televizního) signálu. Máme data o tom, kdy došlo ke ztrátě signálu (začátek výpadku) a kdy byl signál obnoven (konec výpadku). data jsou uložena v souboru [signal_monitoring.csv](assets/signal_monitoring.csv)
 
