@@ -106,7 +106,6 @@ Prakticky normalizace obsahuje dva kroky:
 Zde je kompletní kód na přípravu výchozí tabulky.
 
 ```py
-
 food_nutrient = pd.read_csv("food_nutrient.csv")
 branded_food = pd.read_csv("branded_food.csv")
 food = pd.concat([pd.read_csv("food_sample_100.csv"), pd.read_csv("food_other.csv")], ignore_index=True)
