@@ -133,7 +133,7 @@ A ve druhém kroku vytvoříme teplotní mapu.
 ```py
 import seaborn as sns
 food_nutrient_pivot = pd.crosstab(food_merged["branded_food_category"], food_merged["name"], food_merged["amount"], aggfunc=np.mean)
-ax = sns.heatmap(food_pivot_norm, cmap="Blues")
+ax = sns.heatmap(food_pivot_norm, cmap="Blues", cbar=False)
 ax.set(xlabel="Výživná látka", ylabel="Kategorie", title="Množství průměrných látek dle kategorií")
 ```
 
