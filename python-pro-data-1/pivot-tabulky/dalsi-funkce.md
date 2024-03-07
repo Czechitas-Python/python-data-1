@@ -25,6 +25,13 @@ Protože v datech máme obrovské množství různých kategorií i výživných
 - `Calcium, Ca` (vápník, Ca),
 - `Iron, Fe` (železo, Fe).
 
+Filtrování je níže.
+
+```py
+top_nutrient_list = ["Protein", "Sodium, Na", "Total lipid (fat)", "Carbohydrate, by difference", "Sugars, total including NLEA", "Fatty acids, total saturated", "Cholesterol", "Fiber, total dietary", "Calcium, Ca", "Iron, Fe"]
+food_merged = food_merged[food_merged["name"].isin(top_nutrient_list)]
+```
+
 Nejprve si vyzkoušíme funkci `pivot_table()`. Pozor, jedná se o odlišnou funkci, než kterou jsme využívali v předchozí lekci. Funkci `pivot_table` určíme pět parametrů, tj. o jeden parametr víc, než kolik jsme zadávali funkci `pivot()`.
 
 - Prvním parametrem (`data`) určujeme tabulku, se kterou bude funkce pracovat.
@@ -54,6 +61,7 @@ pd.crosstab(food_merged["branded_food_category"], food_merged["name"], food_merg
 Vraťme se ještě ke kategoriím potravin v závislosti na množství cholesterolu. I tato data můžeme zobrazit pomocí pivot tabulky. Pro každou kategorii potravit si můžeme vypočítat, kolik je v kategorii potravin s vysokým, středním a nízkám obsahem cholesterolu. K tomu si nejprve musíme připravit data, tj. zopakujeme postup z předchozí části lekce.
 
 ```py
+food_nutrient = food_nutrient.drop_duplicates(subset=["fdc_id", "name"])
 food_nutrient_pivot = pd.pivot(food_nutrient, index="fdc_id", columns="name", values="amount")
 food_brands = pd.merge(food, branded_food, on="fdc_id")
 food_nutrient_pivot = pd.merge(food_nutrient_pivot, food_brands, on="fdc_id")
@@ -95,6 +103,25 @@ Prakticky normalizace obsahuje dva kroky:
 - Od hodnot odečteme průměr. Tím pádem se normalizované hodnoty budou pohybovat kolem nuly. Pokud bude nějaká normalizovaná hodnota záporná, v původních datech byla podprůměrná. Pokud bude normalizovaná hodnota kladná, v původních datech byla nadprůměrná.
 - Vydělíme data jejich variabilitou, konkrétně směrodatnou odchylkou. Tím data převedeme na stejné jednotky. Data se budou pohybovat ve stejných jednotkách, ať už byla původní data v desetinných číslech nebo v milionech.
 
+Zde je kompletní kód na přípravu výchozí tabulky.
+
+```py
+
+food_nutrient = pd.read_csv("food_nutrient.csv")
+branded_food = pd.read_csv("branded_food.csv")
+food = pd.concat([pd.read_csv("food_sample_100.csv"), pd.read_csv("food_other.csv")], ignore_index=True)
+food_merged = pd.merge(food, food_nutrient, on="fdc_id")
+food_merged = pd.merge(food_merged, branded_food, on="fdc_id")
+
+top_nutrient_list = ["Protein", "Sodium, Na", "Total lipid (fat)", "Carbohydrate, by difference", "Sugars, total including NLEA", "Fatty acids, total saturated", "Cholesterol", "Fiber, total dietary", "Calcium, Ca", "Iron, Fe"]
+food_merged = food_merged[food_merged["name"].isin(top_nutrient_list)]
+
+top_cat_list = ['Candy', 'Popcorn, Peanuts, Seeds & Related Snacks', 'Cheese', 'Ice Cream & Frozen Yogurt', 'Chips, Pretzels & Snacks', 'Cookies & Biscuits', 'Pickles, Olives, Peppers & Relishes', 'Breads & Buns', 'Fruit & Vegetable Juice, Nectars & Fruit Drinks', 'Snack, Energy & Granola Bars', 'Chocolate', 'Other Snacks']
+food_merged = food_merged[food_merged["branded_food_category"].isin(top_cat_list)]
+
+food_pivot = pd.crosstab(food_merged["branded_food_category"], food_merged["name"], food_merged["amount"], aggfunc=np.mean)
+```
+
 Nejprve tedy provedeme normalizaci dat.
 
 ```py
@@ -105,7 +132,8 @@ A ve druhém kroku vytvoříme teplotní mapu.
 
 ```py
 import seaborn as sns
-ax = sns.heatmap(food_pivot_norm)
+food_nutrient_pivot = pd.crosstab(food_merged["branded_food_category"], food_merged["name"], food_merged["amount"], aggfunc=np.mean)
+ax = sns.heatmap(food_pivot_norm, cmap="Blues")
 ax.set(xlabel="Výživná látka", ylabel="Kategorie", title="Množství průměrných látek dle kategorií")
 ```
 
