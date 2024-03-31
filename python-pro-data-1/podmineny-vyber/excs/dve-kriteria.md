@@ -30,5 +30,5 @@ Pokud se úvaze o priotách chceš vyhnout, je možné to vyřešit přidanými 
 
 ```py
 food_nutrient_filtered = food_nutrient[((ve sloupci "name" je hodnota "Fatty acids, total saturated") & (ve sloupci "amount" je hodnota menší než 1)) |
-                        ((ve sloupci "name" je hodnota "Fiber, total dietary") & (ve sloupci "amount" je hodnota větší než 4))]
+                        ((ve sloupci "name" je hodnota "Fiber, total dietary") & (ve sloupci "amount" je hodnota větší než 5))]
 ```
