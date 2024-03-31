@@ -6,7 +6,7 @@ demand: 3
 Připravujeme seznam potravin pro účely lékařského výzkumu, který se bude zabývat kardiovaskulárním systémem. Chceme vybrat potraviny, které splňují dvě kritéria:
 
 - nízký obsah nasycených mastných kyselin (`"Fatty acids, total saturated"`, uvažuj méně než 1 gram),
-- vysoký obsah vlákniny (`"Fiber, total dietary"`, uvažuj více než 5 gramů).
+- vysoký obsah vlákniny (`"Fiber, total dietary"`, uvažuj více než 4 gramy).
 
 Zatímco nasycené mastné kyseliny jsou považovány za spíše škodlivé pro kardiovaskulární systém, vláknina je považována spíše za prospěšnou.
 
@@ -30,5 +30,5 @@ Pokud se úvaze o priotách chceš vyhnout, je možné to vyřešit přidanými 
 
 ```py
 food_nutrient_filtered = food_nutrient[((ve sloupci "name" je hodnota "Fatty acids, total saturated") & (ve sloupci "amount" je hodnota menší než 1)) |
-                        ((ve sloupci "name" je hodnota "Fiber, total dietary") & (ve sloupci "amount" je hodnota větší než 5))]
+                        ((ve sloupci "name" je hodnota "Fiber, total dietary") & (ve sloupci "amount" je hodnota větší než 4))]
 ```
