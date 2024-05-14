@@ -123,7 +123,7 @@ Otazníky nám pomůžou vypořádat se s nepovinnou mezerou, kterou píšeme na
 
 Často chceme označit několik slov do jednoho bloku. Skupina `\w` nezahrnuje mezery, musíme ji tedy rozšířit na `[\w ]*`. Například adresu `Václavské náměstí 11, 110 00 Nové Město` tak rozdělíme na dva samostatné bloky.
 
-Nyní už umíme sestavit výraz, kterým vybereme celý řádek s kurzem dolaru nebo eura: `1 [€$] += +\d+.\d+ Kč`.
+Nyní už umíme sestavit výraz, kterým vybereme celý řádek s kurzem dolaru nebo eura: `1 [€$] += +\d+\.\d+ Kč`.
 
 Číslo bankovního účtu má v Česku tvar:
 
