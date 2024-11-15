@@ -1,6 +1,6 @@
 ## Podmíněný výběr
 
-Nyní si vyzkoušíme jeden z hlavních nástrojů zpracování dat, a to je **psaní dotazů**. Logika psaní dotazů je v různých prostředích stejná, liší se pouze to, jak ji provádíme. Podívejme se na konkrétní příklady.
+Nyní si vyzkoušíme jeden z hlavních nástrojů zpracování dat, a to je psaní :term{cs="dotazů" en="query"}. Logika psaní dotazů je v různých prostředích stejná, liší se pouze to, jak ji provádíme. Podívejme se na konkrétní příklady.
 
 Budeme se dále věnovat potravinám, tentokrát jejich výživovým hodnotám. Data jsou uložena v souboru [food_nutrient.csv](assets/food_nutrient.csv). Níže je stručný popis sloupců tabulky.
 
