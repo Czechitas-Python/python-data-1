@@ -1,4 +1,4 @@
-## Pokročilé úpravy
+## Sjednocení dat
 
 V předchozí lekci jsme si ukázali, jak v `pandas` načteme data do tabulky (`DataFrame`) a jak z něj můžeme vybírat data pomocí různých způsobů dotazování. Nyní se posuneme o kus dále a ukážeme si, jak můžeme s `DataFrame` dělat složitější operace jako je filtrování chybějících hodnot, spojování a agregace.
 
@@ -45,7 +45,7 @@ Jako hodnotu  můžeme dát název jednoho sloupce jako řetězec nebo seznam n�
 food_nutrient = food_nutrient.dropna(subset="amount")
 ```
 
-### Spojení dat
+### Sjednocení dat
 
 Nyní bychom chtěli všechny tři naše tabulky spojit do jedné. Nejprve si ukážeme, jak spojit tabulky **pod sebe**. Jaké budou rozměry výsledné tabulky?
 
@@ -65,4 +65,6 @@ food = pd.concat([food_sample_100, food_other], ignore_index=True)
 ```
 
 K čemu je spojování vlastně dobré? Některé programy například ukládají data za každý den do samostatného souboru, takže pokud potřebujeme data za jeden týden, stačí nám stáhnout a spojit 7 souborů a ostatní stovky souborů a gigabajty dat můžeme ignorovat.
+
+Různé typy operace merge si můžeš procvičit na [této stránce](https://pesikj.github.io/Visual-JOIN/).
 

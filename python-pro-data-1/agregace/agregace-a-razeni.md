@@ -1,6 +1,26 @@
 ## Agregace a řazení
 
-V této části si ukážeme další dvě důležité metody pro práci s daty - agregaci a řazení.
+V této části si ukážeme další dvě důležité metody pro práci s daty - agregaci a řazení. Začneme přípravou dat. V rámci této lekce budeme uvažovat úpravy, které jsme provedli v předchozích lekcích.
+
+```py
+# Načteme tabulky o potravinách
+food_sample_100 = pd.read_csv("food_sample_100.csv")
+food_other = pd.read_csv("food_other.csv")
+# Sjednotíme tabulky o potravinách do jedné tabulky food
+food = pd.concat([food_sample_100, food_other], ignore_index=True)
+# Načteme data o výživných látkách
+food_other = pd.read_csv("food_nutrient.csv")
+# Propojíme tabulky o potravinách a výživných látkách
+food_merged = pd.merge(food, food_nutrient, on="fdc_id")
+# Načteme tabulku o značkách potravin
+branded_food = pd.read_csv("branded_food.csv")
+# Propojíme tabulku o značkách potravin a tabulkou o potravinách a výživných látkách
+food_merged_brands = pd.merge(food_merged, branded_food, right_on="fdc_id", left_on="fdc_id", how="left")
+# Přejmenujeme sloupec name na nutrient_name
+food_merged_brands = food_merged_brands.rename(columns={"name": "nutrient_name"})
+# NEPOVINNÝ KROK: Odstraníme nepotřebné sloupce footnote a min_year_acquired
+food_merged_brands = food_merged_brands.drop(columns=["footnote", "min_year_acquired"])
+```
 
 ### Agregace
 
@@ -40,10 +60,6 @@ Níže je přehled všech funkcí, které lze pro agregaci použít.
 Dále se pojďme podívat, které kategorie potravin obsahuje v průměru nejvíce proteinů. K tomu použijeme řazení. Data můžeme řadit s využitím metody `sort_values()`. U tabulky, která vznikla agregací a máme v ní jen jeden sloupec (název kategorie je index a mezi sloupce se nepočítá), nemusíme zadávat, podle jakého sloupce má být řazení provedeno. Výchozí způsob řazení je vzestupný, tj. nejmenší hodnoty jsou nahoře. Abychom viděli nahoře nejvyšší hodnoty, použijeme parametr `ascending` a nastavíme mu hodnotu `False`. Nakonec použijeme metodu `head()` a zobrazíme si prvních 10 záznamů.
 
 ### Řazení
-
-```py
-food_merged_brands_protein_agg.sort_values(ascending=False).head(10)
-```
 
 Při řazení dat v původní tabulce je třeba uvést, podle jakého sloupečku chceme data seřadit. Název sloupce nebo sloupců zadáváme jako první parametr. Pokud chceme řadit podle více sloupců, vložíme jejich názvy do seznamu.
 
