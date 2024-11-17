@@ -13,6 +13,17 @@ Na to neexistuje univerzální odpověď, vždy záleží na konkrétní situaci
 - `outer` zachová všechny řádky z obou tabulek.
 
 ```py
+# Načtení dat o potravinách
+food_sample_100 = pd.read_csv("food_sample_100.csv")
+food_other = pd.read_csv("food_other.csv")
+
+# Sjednocení dat
+food = pd.concat([food_sample_100, food_other], ignore_index=True)
+
+# Načtení dat o výživných látkách
+food_nutrient = pd.read_csv("food_nutrient.csv")
+
+# Propojení dat
 food_merged = pd.merge(food, food_nutrient, on="fdc_id")
 ```
 
