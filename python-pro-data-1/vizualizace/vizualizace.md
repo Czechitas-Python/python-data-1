@@ -11,6 +11,8 @@ import seaborn as sns
 
 food_nutrient = pd.read_csv("food_nutrient.csv")
 branded_food = pd.read_csv("branded_food.csv")
+food_sample_100 = pd.read_csv("food_sample_100.csv")
+food_other = pd.read_csv("food_other.csv")
 food = pd.concat([food_sample_100, food_other])
 food_brands = pd.merge(food, branded_food, on="fdc_id")
 
