@@ -9,7 +9,7 @@ food_other = pd.read_csv("food_other.csv")
 # Sjednotíme tabulky o potravinách do jedné tabulky food
 food = pd.concat([food_sample_100, food_other], ignore_index=True)
 # Načteme data o výživných látkách
-food_other = pd.read_csv("food_nutrient.csv")
+food_nutrient = pd.read_csv("food_nutrient.csv")
 # Propojíme tabulky o potravinách a výživných látkách
 food_merged = pd.merge(food, food_nutrient, on="fdc_id")
 # Načteme tabulku o značkách potravin
@@ -35,7 +35,7 @@ food_merged_brands_protein = food_merged_brands[food_merged_brands["nutrient_nam
 Při agregaci se musíme nejprve rozhodnout, podle jakého sloupce chceme řádky sloučit. V našem případě to bude `branded_food_category`. Poté vybereme sloupec, jehož hodnoty mají být sloučeny, a početní operaci, která k tomu bude použita. Vybereme si sloupec `amount` (množství výživné látky) a operaci výpočtu aritmetického průměru (`.mean()`). Zápis je uvedený v řádku níže.
 
 ```py
-food_merged_brands_protein.groupby("branded_food_category")["amount"].mean()
+food_merged_brands_protein_agg = food_merged_brands_protein.groupby("branded_food_category")["amount"].mean()
 ```
 
 Ve výsledné tabulce vidíme průměrné množství proteintů v jednotlivých kategoriích potravin. 
@@ -64,5 +64,5 @@ Dále se pojďme podívat, které kategorie potravin obsahuje v průměru nejví
 Při řazení dat v původní tabulce je třeba uvést, podle jakého sloupečku chceme data seřadit. Název sloupce nebo sloupců zadáváme jako první parametr. Pokud chceme řadit podle více sloupců, vložíme jejich názvy do seznamu.
 
 ```py
-food_merged_brands_protein_agg.sort_values("amount", ascending=False)
+food_merged_brands_protein_agg.sort_values(ascending=False)
 ```
