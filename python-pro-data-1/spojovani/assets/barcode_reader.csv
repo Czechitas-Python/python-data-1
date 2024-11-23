@@ -1,0 +1,13 @@
+timestamp,user_name,action
+2023-10-15 08:00,Alice,sign_in
+2023-10-15 08:05,,pick_item
+2023-10-15 08:10,,pack_item
+2023-10-15 08:15,,sign_out
+2023-10-15 09:00,Bob,sign_in
+2023-10-15 09:10,,receive_item
+2023-10-15 09:20,,stock_item
+2023-10-15 09:30,,sign_out
+2023-10-15 10:00,Charlie,sign_in
+2023-10-15 10:10,,pick_item
+2023-10-15 10:20,,pack_item
+2023-10-15 10:30,,sign_out

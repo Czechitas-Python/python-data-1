@@ -8,7 +8,7 @@ V našem případě budeme chtít vedle průměrného množství proteinů věd�
 food_merged_brands_protein_agg = food_merged_brands_protein.groupby("branded_food_category").agg({"amount": ["mean", "count"]})
 ```
 
-Nyní již máme v tabulce (kromě indexu) dva sloupce, při řazení bude potřeba uvést, podle kterého chceme řadit. Podívejme se na vlastnost `.columns`. Sloupce, které máme v tabulce, jsou specifické, protože jejich názvy se skládají ze dvou řetězců - názvu sloupce, ze kterého jsou hodnoty počítány, a názvu agregace. Pokud bychom chtěli například řadit podle průměrného množství, musíme zadat název sloupce jako dva řetězce v kulatých závorkách. Kulaté závorky ve skutečnosti znamenají, že vytváříme typ hodnoty označovaný jako n-tice (*tuple*).
+V tomto případě je výsledkem tabulka, nikoli série. V tabulce máme (kromě indexu) dva sloupce, při řazení bude potřeba uvést, podle kterého chceme řadit. Podívejme se na vlastnost `.columns`. Sloupce, které máme v tabulce, jsou specifické, protože jejich názvy se skládají ze dvou řetězců - názvu sloupce, ze kterého jsou hodnoty počítány, a názvu agregace. Pokud bychom chtěli například řadit podle průměrného množství, musíme zadat název sloupce jako dva řetězce v kulatých závorkách. Kulaté závorky ve skutečnosti znamenají, že vytváříme typ hodnoty označovaný jako :term{cs="n-tice" en="tuple"}.
 
 ```py
 food_merged_brands_protein_agg = food_merged_brands_protein_agg.sort_values(by=("amount", "mean"), ascending=False)
