@@ -9,7 +9,11 @@ Nyní si zkus vytvořit :term{cs="prstencový graf" en="donut chart"}. Tento gra
 import matplotlib.pyplot as plt
 ```
 
-Vyzkoušíme si pomocí prstencového grafu zobrazit poměr výživných látek, a to konkrétně pro čokoládu s `fdc_id` 885174. Vytvoř tedy tabulku `data_pie_plot` (použij prosím tento název, aby ti fungovalo doplnění do kódu níže), do které ulož z tabulky `food_merged_brands` řádky z `fdc_id` rovné 885174. Dále ponech v tabulce pouze řádky, které ve sloupci `nutrient_name` nemají hodnotu `Energy`, protože nás zajímají výživné látky jako proteiny atd.
+Vyzkoušíme si pomocí prstencového grafu zobrazit poměr výživných látek, a to konkrétně pro čokoládu s `fdc_id` 885174. Vytvoř tedy tabulku `data_pie_plot` (použij prosím tento název, aby ti fungovalo doplnění do kódu níže), do které ulož z tabulky `food_merged_brands` řádky z `fdc_id` rovné 885174 (tmavá čokoláda s pistáciemi). Dále ponech v tabulce pouze řádky, které ve sloupci `nutrient_name` mají hodnotu z následujícího seznamu. Jinak totiž hrozí, že bychom některé výživné látky měli započítané dvakrát (např. protože vláknina a cukr patří mezi karbohydráty).
+
+```py
+["Carbohydrate, by difference", "Total lipid (fat)", "Protein", "Potassium, K", "Iron, Fe", "Calcium, Ca"]
+```
 
 Aby graf nebyl zkreslený, je potřeba převést všechna data na stejné jednotky, např. na grafy. To uděláme ve třech krocích.
 
@@ -46,7 +50,5 @@ ax.legend(__________, loc="center left", bbox_to_anchor=(1, 0.5))
 ```
 
 Nakonec nastav nadpis grafu. Pomocí metody `ax.set_title` nastav nadpis, do volání metody vlož nadpis, který by se ti pro graf líbil. 
-
-Příklad výsledku najdeš níže.
 
 ::fig[Přiklad výsledku]{src=assets/output.png}
