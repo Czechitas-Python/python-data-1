@@ -3,8 +3,19 @@ title: Odstín
 demand: 3
 ---
 
-V rámci lekce jsme porovnávali množství proteinů a lipidů (tuků) v energetických tyčinkách. Potřebná data máme v tabulce `food_merged_brands`. Podobné srování můžeme udělat i s využitím histogramu. Použij funkci histogram pro tabulku `food_merged_brands_box`. Abys dokázal(a) rozlišit mezi oběma výživnými látkami, použij parametr `hue`, kterému zadáš jako hodnotu `nutrient_name`. Díky tomu bude mít každá výživná látka samostatný sloupec se svojí barvou. Dále použij funkci `range`, tentokrát ale rozděl hodnoty po pěti, tj. hranice intervalů budou 0, 5, 10, 15 atd. Zobraz si výsledný graf. Protože toto zobrazení může být poněkud nepřehledné, vyzkoušej ještě přidat parametr `multiple` s hodnotou `stack`.
+V rámci lekce jsme porovnávali množství proteinů.
 
-::fig[Příklad výsledku]{src=assets/output.png}
+Vytvoř tabulku `food_merged_brands_protein_lipid`, která bude obsahovat data o množství proteinů (`Protein`) a lipidů (`Total lipid (fat)`), tj. z tabulky `food_merged_brands` vyber řádky, které obsahují buď `Protein` nebo `Total lipid (fat)` ve sloupci `nutrient_name`. K vytvoření je nejlepší metoda `isin()`. Pokud si na metodu nepamatuješ, můžeš se inspirovat řádkem níže.
 
+```py
+food_merged_brands_protein_lipid = food_merged_brands[food_merged_brands["nutrient_name"].isin("sem_vloz_seznam_s_nazvy_filtrovanych_vyzivnych_latek")]
+```
+
+Nyní zkus pomocí histogramu porovnat, jestli je v potravinách více proteinů nebo lipidů. Nejprve zkus vytvořit histogram stejným způsobem, jako jsme to dělali v lekci. Dostaneš obrázek podobný tomu níže.
+
+::fig[První histogram]{src=assets/output_1.png}
+
+Tento obrázek nám ale neříká, kolik je v potravinách tuků a kolik lipidů, protože obě výživné látky jsou smíchané dohromady. Abys dokázal(a) rozlišit mezi oběma výživnými látkami, použij parametr `hue`, kterému zadáš jako hodnotu `nutrient_name`. Díky tomu bude mít každá výživná látka samostatný sloupec se svojí barvou.
+
+::fig[Příklad výsledku]{src=assets/output_2.png}
 
