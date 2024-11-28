@@ -31,3 +31,20 @@ Vytvoř tabulku `food_merged_brands_carb`, která z tabulky `food_merged_brands`
 ::fig[Přiklad výsledku]{src=assets/output.png}
 
 Pokud ti připadá, že graf data zkresluje tím, že každý podgraf má svůj rozsah vodorovné osy, vyzkoušej parametr `sharex` u funkce `subplots()`.
+
+:::solution
+
+```py
+import matplotlib.pyplot as plt
+
+food_merged_brands_protein = food_merged_brands[food_merged_brands["nutrient_name"] == "Protein"]
+food_merged_brands_carb = food_merged_brands[food_merged_brands["nutrient_name"] == "Carbohydrate, by difference"]
+
+fig, (ax1, ax2) = plt.subplots(1, 2, sharey=True)
+sns.barplot(food_merged_brands_protein, y="branded_food_category", x="amount", ax=ax1)
+ax1.set_xlabel("Množství proteinů (g)")
+
+sns.barplot(food_merged_brands_carb, y="branded_food_category", x="amount", ax=ax2)
+ax2.set_xlabel("Množství karbohydrátů (g)")
+```
+:::

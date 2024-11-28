@@ -19,3 +19,13 @@ Tento obrázek nám ale neříká, kolik je v potravinách tuků a kolik lipidů
 
 ::fig[Příklad výsledku]{src=assets/output_2.png}
 
+:::solution
+
+```py
+food_merged_brands_protein_lipid = food_merged_brands[
+    food_merged_brands["nutrient_name"].isin(["Protein", "Total lipid (fat)"])]
+# Šířka intervalu je nastavená na 5, ale můžeš zvolit libovolnou jinou hodnotu nebo parametr bins úplně vynechat
+sns.histplot(food_merged_brands_protein_lipid, x="amount", hue="nutrient_name", bins=range(0, 105, 5))
+```
+
+:::

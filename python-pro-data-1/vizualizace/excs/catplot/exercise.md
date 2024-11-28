@@ -18,3 +18,31 @@ Prohlédni si graf a odpověz na otázky:
 1. Existuje nějaká kategorie, kde je na výběr alespoň několik produktů s větším množství karbohydrátů než proteinů, ale i několik produktů s větším množstvím proteinů než karbohydrátů?
 
 ::fig[Přiklad výsledku]{src=assets/output.png}
+
+
+:::solution
+
+```py
+food_merged_brands_protein_carb = food_merged_brands[
+    food_merged_brands["nutrient_name"].isin(["Protein", "Carbohydrate, by difference"])]
+food_merged_brands_protein_carb["nutrient_name"] = food_merged_brands_protein_carb["nutrient_name"].replace("Carbohydrate, by difference", "Karbohydráty")
+
+ax = sns.catplot(
+    data=food_merged_brands_protein_carb,
+    x="branded_food_category",
+    y="amount",
+    hue="nutrient_name",
+    s=2,
+)
+ax.tick_params(axis="x", rotation=45)
+ax._legend.set_title("Výživná látka")
+
+
+ax.set(
+    xlabel="Kategorie",
+    ylabel="Množství látky (g)",
+    title="Množství výživných látek",
+)
+```
+
+:::

@@ -52,3 +52,27 @@ ax.legend(__________, loc="center left", bbox_to_anchor=(1, 0.5))
 Nakonec nastav nadpis grafu. Pomocí metody `ax.set_title` nastav nadpis, do volání metody vlož nadpis, který by se ti pro graf líbil. 
 
 ::fig[Přiklad výsledku]{src=assets/output.png}
+
+:::solution
+
+```py
+import matplotlib.pyplot as plt
+
+nutrient_list = ["Carbohydrate, by difference", "Total lipid (fat)", "Protein", "Potassium, K", "Iron, Fe", "Calcium, Ca"]
+data_pie_plot = food_merged_brands[(food_merged_brands["fdc_id"] == 885174) & food_merged_brands["nutrient_name"].isin(nutrient_list)]
+
+# Definujeme převodní koeficienty pro jednotky hmotnosti (z miligramů na gramy)
+coefficient = {"G": 1, "MG": 0.001}
+
+# Vytvoříme nový sloupec "coefficient" s koeficienty na základě jednotky ve sloupci "unit_name"
+data_pie_plot["coefficient"] = data_pie_plot["unit_name"].map(coefficient)
+
+# Přepočítáme množství živin na gramy pomocí koeficientů
+data_pie_plot["amount"] = data_pie_plot["amount"] * data_pie_plot["coefficient"]
+
+fig, ax = plt.subplots()
+ax.pie(data_pie_plot["amount"], wedgeprops={"width": 0.3})
+ax.legend(data_pie_plot["nutrient_name"], loc="center left", bbox_to_anchor=(1, 0.5))
+```
+
+:::
