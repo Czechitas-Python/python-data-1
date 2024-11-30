@@ -1,4 +1,4 @@
-## Další funkce pro tvorbu pivot tabulek
+## Čtení na doma: Další funkce pro tvorbu pivot tabulek
 
 Pivot tabulky velmi často provádíme v kombinaci s nějakou agregací. Uvažujme například, že by nás zajímal průměrný obsah výživných látek za jednotlivé kategorie, nikoli za konkrétní potraviny. 
 
