@@ -16,3 +16,26 @@ Vytvoř tabulky, které budou zobrazovat následující data.
 2. Celkový počet odevzdaných hlasů pro kandidáty a kandidátky jednotlivých stran pro volby v roce 2020.
 3. Celkový počet odevzdaných hlasů pro kandidáty dvou hlavních stran (`DEMOCRAT` a `REPUBLICAN`) pro všechny volby od roku 2020.
 4. Celkový počet odevzdaných hlasů pro stát `MONTANA` pro všechny roky. 
+
+:::solution
+```py
+import pandas as pd
+
+data = pd.read_csv('votes.csv')
+
+#Celkový počet odevzdaných hlasů v jednotlivých letech.
+data.groupby('year')['totalvotes'].sum()
+
+#Celkový počet odevzdaných hlasů pro kandidáty a kandidátky jednotlivých stran pro volby v roce 2020.
+data[data['year']==2020].groupby('party_detailed')['candidatevotes'].sum().sort_values(ascending=False)
+
+# Celkový počet odevzdaných hlasů pro kandidáty dvou hlavních stran (DEMOCRAT a REPUBLICAN) pro všechny volby od roku 2020.
+# actully for now data has only year 2020 (for condition  od roku 2020)
+year = 2020
+filter = (data['party_detailed'].isin(['DEMOCRAT','REPUBLICAN'])) &  (data['year']>=year)
+data[filter].groupby('year')['candidatevotes'].sum().sort_values(ascending=False)
+
+#Celkový počet odevzdaných hlasů pro stát MONTANA pro všechny roky.
+data[data['state']=='MONTANA']['candidatevotes'].sum()
+```
+:::

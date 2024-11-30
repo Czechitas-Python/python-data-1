@@ -14,3 +14,14 @@ data["jmeno_noveho_sloupce"] = data.groupby(["sloupec_1", "sloupec_2"])["sloupec
 ```
 
 Následně vytvoř tabulku, která bude obsahovat vítěznou stranu v jednotlivých státech ve volbách v roce 2020.
+
+
+:::solution
+```py
+import pandas as pd
+data = pd.read_csv('votes.csv')
+data["rank"] = data.groupby(["state", "year"])["candidatevotes"].rank(ascending=False)
+winners_by_state_2020 = data[(data1["rank"]==1) & (data["year"]==2020)][["state", "party_detailed"]]
+```
+:::
+
