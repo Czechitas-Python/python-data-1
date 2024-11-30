@@ -16,8 +16,6 @@ pip3 install geopandas
 
 Dále si stáhni soubor [EU.csv](assets/EU.csv) a překopíruj ho do svého adresáře ve VS code. Soubor rozděluje státy světa na státy v eurozóně, státy EU mimo eurozónu a státy mimo EU. Nakonec si z webu [Natural Earth](https://www.naturalearthdata.com/) stáhni data o státech světa z [této stránky](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/) pomocí odkazu `Download data`. Data jsou zabalená v zip archivu, který si rozbal a celou rozbalenou složku přesuň do VS Code. Po přesunutí složky bys měl(a) ve VS Code vidět podobný výsledek jako na obrázku níže.
 
-::fig[První histogram]{src=assets/output_1.png}
-
 Nyní se můžeme pustit do psaní programu. Začneme importem a načtením dat. `geopandas` je rozšířením `pandas` pro geografická data, takže zde můžeme uplatnit své znalosti pro práci s tabulkami. Vytvoříme tedy novou tabulku `world_merged`, která propojí geografická data s daty o členství v EU.
 
 ```py
