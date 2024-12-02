@@ -30,7 +30,7 @@ Příklad konverzace, kde žádáme o pomoc s napsáním kódu, je [zde](https:/
 
 Můžeme požádat i o vylepšení kódu, který jsme vytvořili, protože v něm vidíme určité nedostatky. Příklad konverzace je [zde](https://chatgpt.com/share/674cda14-c3b0-800d-931f-39b3c415b603).
 
-Můžeme požádat i o přepis kódu do jiného jazyka, který známe lépe, např. do SQL. Příklad konverzace je [zde](https://chatgpt.com/c/674cd72e-6f54-800d-9361-9871371973e2).
+Můžeme požádat i o přepis kódu do jiného jazyka, který známe lépe, např. do SQL. Příklad konverzace je [zde](https://chatgpt.com/share/674dc519-90c4-800d-97e5-88e0dd3bd7c6).
 
 #### Vysvětlení kódu a doplnění komentářů
 
