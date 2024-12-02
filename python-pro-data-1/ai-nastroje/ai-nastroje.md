@@ -47,3 +47,5 @@ Pozor na následující:
 
 Příklad konverzace je [zde](https://chatgpt.com/share/674cd895-7824-800d-810e-21dc51300ba5).
 
+### Cvičení
+::exc[excs/speedating]

@@ -29,5 +29,3 @@ Příklad promptu a odpovědi najzdeš [zde](https://chatgpt.com/share/674e1db6-
 
 :::
 
-### Cvičení
-::exc[excs/speedating]
