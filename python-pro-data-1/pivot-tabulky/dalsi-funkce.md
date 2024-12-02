@@ -138,12 +138,6 @@ ax.set(xlabel="Výživná látka", ylabel="Kategorie", title="Množství průmě
 
 Pro lepší čitelnost můžeme změnit výchozí barevnou škálu pomocí parametru `cmap`. Můžeme použít například škálu `"Blues"`, která je postavená na sytosti modré barvy.
 
-
-## Cvičení
-
-::exc[excs/booking]
-::exc[excs/titanic]
-
 ## Bonusy
 
 ::exc[excs/doprava]

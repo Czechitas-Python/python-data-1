@@ -32,9 +32,11 @@ Můžeme požádat i o vylepšení kódu, který jsme vytvořili, protože v ně
 
 Můžeme požádat i o přepis kódu do jiného jazyka, který známe lépe, např. do SQL. Příklad konverzace je [zde](https://chatgpt.com/share/674dc519-90c4-800d-97e5-88e0dd3bd7c6).
 
-#### Vysvětlení kódu a doplnění komentářů
+#### Vysvětlení a oprava kódu a doplnění komentářů
 
-Pokud máme nějaký kód (např. najdeme ho na internetu, ve firemním projektu atd.), kterému nerozumíme, můžeme požádat ChatGPT o jeho vysvětlení. ChatGPT umí doplnit do kódu komentáře (obvykle dopíše vysvětlení ke každému řádku) nebo vypíše souvislý text, který vysvětluje, co kód dělá.
+Často se stává, že dlouho editujeme nějaký kód a nevidíme v něm chybu, která by byla někomu jinému jasné. AI nástroj může posloužit jako "druhý pár očí", který nám může pomoc odhalit chybu. Příklad konverzace je [zde](https://chatgpt.com/share/674ddf18-ea18-800d-918a-43b3835c8ced).
+
+Pokud máme nějaký kód (např. najdeme ho na internetu, ve firemním projektu atd.), kterému nerozumíme, můžeme požádat ChatGPT o jeho vysvětlení. ChatGPT umí doplnit do kódu komentáře (obvykle dopíše vysvětlení ke každému řádku) nebo vypíše souvislý text, který vysvětluje, co kód dělá. Příklad konverzace je [zde](https://chatgpt.com/share/674de060-d878-800d-bffa-ddba6f06eac9).
 
 Pozor na následující:
 
