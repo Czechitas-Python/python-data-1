@@ -1,8 +1,4 @@
-## Pivot tabulky
-
-Pivot tabulka (často se též používá termín kontingenční tabulka) je nástroj, který vám umožní rychle a efektivně shrnovat, analyzovat, prozkoumávat a prezentovat souhrnná data.
-
-Jak bychom pivot tabulky mohli využít pro naše data? Pivot tabulky dokážou zobrazit vztah mezi dvěma sloupci tabulky (dvěma proměnnými), v našem případě můžeme například sledovat vztah mezi dvěma výživnými látkami. Mohli bychom tedy zkoumat, jestli při růstu množství jedné výživné látky roste (nebo naopak klesá) množství jiné výživné látky. Dále nám tabulka může usnadnit hledání vhodných potravin na základě více než jednoho kritéria. Pokud bychom například hledali potravinu, která má hodně vlákniny a současně málo nasycených tuků, museli bychom napsat poměrně složitou podmínku. Pivot tabulka nám situaci zjednoduší. Poslední příklad je zkoumání průměrného množství výživných látek v jednotlivých kategoriích potravin, kontingenční tabulky tedy mohou být alternativou k vizualizacím, které jsme si ukázali v minulé lekci.
+## Čtení na doma: Funkce pivot
 
 Začneme tím, že si načteme data ze souboru `food_nutrient.csv` do tabulky `food_nutrient`.
 
@@ -11,7 +7,7 @@ import pandas as pd
 food_nutrient = pd.read_csv("food_nutrient.csv")
 ```
 
-V `pandas` existuje několik funkcí. My začneme s funkcí `pivot()`. Tato funkce slouží k "přeskládání" tabulky. Výsledná tabulka nebude mít samostatný řádek pro každou kombinaci potraviny a výživné látky. Tabulku přeskládáme tak, aby každá potravina měla pouze jeden řádek a jednotlivé výživné látky budou uloženy ve sloupcích. Namísto sloupce `name` s názvem výživné látky budeme mít názvy výživných látek přímo ve sloupcích. 
+Pokračujme nyní funkce `pivot()`. Tato funkce slouží k "přeskládání" tabulky. Výsledná tabulka nebude mít samostatný řádek pro každou kombinaci potraviny a výživné látky. Tabulku přeskládáme tak, aby každá potravina měla pouze jeden řádek a jednotlivé výživné látky budou uloženy ve sloupcích. Namísto sloupce `name` s názvem výživné látky budeme mít názvy výživných látek přímo ve sloupcích. 
 
 Funkci `pivot` určíme čtyři parametry, kromě prvního parametru `data` musíme všechny psát jako pojmenované:
 
@@ -59,40 +55,6 @@ g.ax_joint.set_ylabel("Cholesterol")
 Výsledný graf je na obrázku níže.
 
 ::fig[HTML značka]{src=assets/scatterplot.png size=60}
-
-
-### Skupiny
-
-Na zakládě nějaké číselné hodnoty můžeme data rozdělit i do skupin. Každá skupina potřebuje dvě věci:
-
-- číselný interval, který udává rozsah pro zařazení do skupiny,
-- označení skupiny.
-
-Uvažujme následující skupiny.
-
-| Obsah cholesterolu     | Kategorie           |
-|------------------------|---------------------|
-| 0-20                   | Low Cholesterol     |
-| 20-100                 | Moderate Cholesterol|
-| 100-inf                | High Cholesterol    |
-
-Každé potravině můžeme přiřadit popisek, která nám usnadní psaní dotazů.
-
-```py
-bins = [0, 20, 100, float('inf')]
-labels = ['Low Cholesterol', 'Moderate Cholesterol', 'High Cholesterol']
-
-food_nutrient_pivot['Cholesterol Category'] = pd.cut(food_nutrient_pivot['Cholesterol'], bins=bins, labels=labels)
-food_nutrient_pivot
-```
-
-Pokud bychom chtěli zkoumat množství cholesterolu v různých typech potravin, můžeme použít vizualizaci `countplot`, kterou už jsme si ukazovali v minulé lekci. V grafu pak uvidíme, kolik je v každé skupině potravin s nízkým obsahem cholesterolu, se středním a vysokým.
-
-```py
-top_cat_list = ['Candy', 'Popcorn, Peanuts, Seeds & Related Snacks', 'Cheese', 'Ice Cream & Frozen Yogurt', 'Chips, Pretzels & Snacks', 'Cookies & Biscuits', 'Pickles, Olives, Peppers & Relishes', 'Breads & Buns', 'Fruit & Vegetable Juice, Nectars & Fruit Drinks', 'Snack, Energy & Granola Bars', 'Chocolate', 'Other Snacks']
-food_nutrient_pivot = food_nutrient_pivot[food_nutrient_pivot["branded_food_category"].isin(top_cat_list)]
-sns.countplot(food_nutrient_pivot, y="branded_food_category", hue="Cholesterol Category")
-```
 
 ## Cvičení
 
