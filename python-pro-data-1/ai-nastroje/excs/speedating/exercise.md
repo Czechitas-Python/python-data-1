@@ -17,15 +17,14 @@ Požádej AI nástroj o vytvoření kódu, který spočítá následující:
 
 Do svého promptu vlož následující informace:
 
-- název tabulky,
-- názvy a významy sloupečků,
+- název tabulky a názvy a významy sloupečků,
 - požadavek na vytvoření kódu v pandas.
 
 Pokud máš možnost, můžeš do nástroje data vložit. Pokud ne, prohlédni si výsledný kód a zkus ho spustit u sebe v počítači a zkontroluj, zda funguje. Pokud ti v kódu není něco jasné, požádej o vysvětlení.
 
 :::solution
 
-Příklad promptu a odpovědi najzdeš [zde](https://chatgpt.com/share/674e1db6-0608-800d-99a7-fa9750cbe0e0).
+Příklad promptu a odpovědi najdeš [zde](https://chatgpt.com/share/674e1db6-0608-800d-99a7-fa9750cbe0e0).
 
 :::
 
