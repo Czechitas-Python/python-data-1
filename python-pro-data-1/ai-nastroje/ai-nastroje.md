@@ -54,3 +54,4 @@ Příklad konverzace je [zde](https://chatgpt.com/share/674cd895-7824-800d-810e-
 ### Bonusy
 
 ::exc[excs/speedating-2]
+::exc[excs/speedating-3]
