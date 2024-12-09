@@ -67,7 +67,6 @@ data_pen[data_pen["swing"] == 1]
 data_pen["swing"].sum()
 
 data["party_simplified_previous_election"] = data.groupby("state")["party_simplified"].shift(1)
-data["party_simplified_previous_election"] = data.groupby("state")["party_simplified"].shift(1)
 data = data.dropna()
 data["swing"] = data["party_simplified"] != data["party_simplified_previous_election"]
 data.groupby("state")["swing"].sum().sort_values(ascending=False)
