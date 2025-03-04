@@ -1,28 +1,22 @@
 ---
-title: Speedating 2
+title: Speedating 3
 demand: 3
 ---
 
 Pokračuj v práci se souborem s daty o speedatingu. Tentokrát nás budou zajímat následující sloupce.
 
-- `attractive_partner`: hodnocení atraktivity protějšku,
-- `decision`: rozhodnutí osoby se s protějškem znovu sejít.
+* `funny_partner`: hodnocení zábavnosti (vtipnosti) protějšku,
+* `decision`: rozhodnutí osoby se s protějškem znovu sejít.
 
-Požádej AI nástroj o vytvoření vizualizace, která ukáže, jak je hodnocení atraktivity důležité pro rozhodnutí znovu se s protějškem sejít.
+Chceme vědět, jaká jsou průměrná hodnocení zábavnosti u protějšků, se kterými se osoba chce nebo nechce sejít. Požádej AI o vytvoření vizualizace. Tentokrát dej AI podrobnější instrukce - řekni, jaký typ grafu by měl použit (např. sloupcový), jaký mají být popisky os, název grafu, barvy sloupců. Zkontroluj kód a podívej se, jak jsou jednotlivé parametry grafu do kódu vloženy.
 
-Do svého promptu vlož následující informace:
-
-- název tabulky a názvy a významy sloupečků,
-- požadavek na vytvoření kódu s použitím seaborn a pandas.
-
-Podívej se, jakou (nebo jaké) vizualizace ti nástroj navrhuje použít. Pokud jsi s výběrem spokojen(a), vyber kód jedné z nabízených vizualizací a zkus ho spustit. Pokud bys chtěl(a) jinou vizualizaci, požádej AI nástroj o její doplnění.
-
-Příklad výsledku najdeš níže. Pozor na to, že tvůj výsledek může být úplně jiný, v tomto případě neexistuje jediné správné řešení.
+Příklad výsledku je níže, tvůj graf ale může vypadat úplně jinak.
 
 ::fig[Příklad výsledku]{src=assets/output.png}
 
 :::solution
 
-Příklad konverzace najdeš [zde](https://chatgpt.com/share/674e9e88-bf5c-800d-802f-53e2f3e0af9d).
+Příklad konverzace najdeš [zde](https://chatgpt.com/share/674eb08a-e42c-800d-8b41-9bf5130aa16f).
 
 :::
+
