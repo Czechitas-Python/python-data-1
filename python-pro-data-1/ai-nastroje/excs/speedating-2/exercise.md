@@ -1,6 +1,6 @@
 ---
 title: Speedating 3
-demand: 3
+demand: 2
 ---
 
 Pokračuj v práci se souborem s daty o speedatingu. Tentokrát nás budou zajímat následující sloupce.

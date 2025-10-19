@@ -1,9 +1,14 @@
 ---
-title: Speedating 2
+title: Speedating 1
 demand: 3
 ---
 
-Pokračuj v práci se souborem s daty o speedatingu. Tentokrát nás budou zajímat následující sloupce.
+
+Dataset obsahuje data z experimentu speed datingu, kde se účastníci setkávali v krátkých intervalech (typicky po 4 minutách). Po každém setkání hodnotili své protějšky podle různých kritérií a rozhodovali se, zda by se s danou osobou chtěli znovu setkat. Dataset zahrnuje demografické informace o účastnících, jejich hodnocení protějšků a výsledná rozhodnutí. Celkem obsahuje údaje z několika set speed dating setkání.
+
+Data si můžeš stáhnout [zde](assets/speeddating.csv).
+
+Tentokrát nás budou zajímat následující sloupce.
 
 - `attractive_partner`: hodnocení atraktivity protějšku,
 - `decision`: rozhodnutí osoby se s protějškem znovu sejít.
