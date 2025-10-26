@@ -73,3 +73,20 @@ fdc_id
 
 [100 rows x 1 columns]
 ```
+
+### `.iat` – přístup k jediné hodnotě
+
+Někdy potřebujeme z tabulky vytáhnout nebo přepsat jen jednu konkrétní hodnotu. Pro tyto situace je určen *atribut* `.iat`, který pracuje s pozicemi. Číslování odpovídá Python seznamům – začíná na 0 a lze použít i záporné indexy. Pro lepší čitelnost si nejprve vybereme sloupec, se kterým chceme pracovat, a teprve pak z něj získáme konkrétní hodnotu pomocí `.iat`.
+
+```py
+description_row_0 = food['description'].iat[0]
+```
+
+V proměnné `description_row_0` je nyní hodnota `"lentils, dry"` uložená jako řetězec. S ním můžeme pracovat jako s jakýmkoli jiným řetězcem. V případě číselného sloupce bychom s výslednou hodnotou mohli provádět výpočty, na jaké jsme zvyklí při práci s čísly.
+
+Hodnotu můžeme také přímo změnit – stačí sloupec uložit do proměnné a následně použít `.iat`, například:
+
+```py
+publication_date = food['publication_date']
+publication_date.iat[0] = '2023-10-20'
+```
