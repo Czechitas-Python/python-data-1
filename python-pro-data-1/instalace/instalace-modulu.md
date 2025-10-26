@@ -6,7 +6,7 @@ Pokud zatím nemáš nainstalovaný Python a Visual Studio Code, postupuj dle in
 
 ## Instalace modulů
 
-V rámci kurzu budeme používat modul pro práci s daty `pandas` a moduly pro tvorbu grafů `matplotlib` a `seaborn`. `pandas`, `matplotlib` a `seaborn` jsou externí moduly, které musíme nejdříve nainstalovat.
+V rámci kurzu budeme používat modul pro práci s daty `pandas` a moduly pro tvorbu grafů `matplotlib` a `seaborn`. `pandas`, `matplotlib` a `seaborn` jsou externí moduly, které musíme nejdříve nainstalovat. Doporučuji též instalaci modulů `jupyterlab` a `ipykernel` pro práci s Jupyter notebooky.
 
 Spusťte Visual Studio Code a otevřete si nový terminál (z horní lišty vyberte **Terminal → New Terminal**).
 
@@ -17,6 +17,8 @@ Napište **postupně** následující příkazy a po každém z nich stiskni **E
 pip install pandas
 pip install matplotlib
 pip install seaborn
+pip install jupyterlab
+pip install ipykernel
 ```
 
 ### Mac OS, Linux
@@ -26,6 +28,8 @@ Napište **postupně** následující příkazy a po každém z nich stiskni **E
 pip3 install pandas
 pip3 install matplotlib
 pip3 install seaborn
+pip3 install jupyterlab
+pip3 install ipykernel
 ```
 
 `pandas` je relativně veliký modul, který obsahuje mnoho dalších modulů, takže instalace bude nějakou chvíli trvat. Terminál během instalace vypíše spoustu textu. Někde na konci bychom pak měli vidět text podobný tomuto:

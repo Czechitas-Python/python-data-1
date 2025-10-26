@@ -4,4 +4,7 @@ sections:
   - sjednoceni-dat
   - propojeni-dat
   - doplneni-hodnot
-  - excs
+  - excs-propojeni
+  - agregace-a-razeni
+  - excs-agregace
+  - cteni-na-doma
