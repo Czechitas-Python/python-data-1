@@ -37,3 +37,25 @@ Pokud druhý parametr vynecháš, dostaneš všechny sloupce. Stejně tak může
 * Použij `loc` k zobrazení řádků mezi "Gevin Harlaw" a "Gillam".
 * Použij `loc` k zobrazení řádků mezi "Gevin Harlaw" a "Gillam" a sloupce `Death Year`.
 * Použij `loc` k zobrazení řádků mezi "Gevin Harlaw" a "Gillam" a informace o tom, v jakých knihách se postava vyskytuje, tj. vypiš všechny sloupce mezi `GoT` a `DwD`.
+
+:::solution
+
+```py
+import pandas as pd
+
+data = pd.read_csv("character-deaths.csv")
+data = data.set_index("Name")
+
+sloupce = data.columns.tolist()
+
+# Informace o smrti Hali
+hali = data.loc["Hali"]
+# Řádky mezi "Gevin Harlaw" a "Gillam".
+usek = data.loc["Gevin Harlaw":"Gillam"]
+# Řádky mezi "Gevin Harlaw" a "Gillam", sloupec "Death Year".
+deaths = data.loc["Gevin Harlaw":"Gillam", "Death Year"]
+# V jakých knihách se postava vyskytují postavy "Gevin Harlaw" až "Gillam".
+books = data.loc["Gevin Harlaw":"Gillam", "GoT":"DwD"]
+```
+
+:::
