@@ -11,8 +11,8 @@ Budeme se dále věnovat potravinám, tentokrát jejich výživovým hodnotám. 
 - `data_points`: Počet datových bodů použitých pro výpočet průměru.
 - `derivation_id`: Identifikační číslo metody, kterou byla hodnota živiny odvozena.
 - `standard_error`: Standardní chyba měření množství živiny.
-- `min`: Minimální hodnota množství živiny nalezlá v potravině.
-- `max`: Maximální hodnota množství živiny nalezlá v potravině.
+- `min`: Minimální hodnota množství živiny nalezená v potravině.
+- `max`: Maximální hodnota množství živiny nalezená v potravině.
 - `median`: Medián hodnot množství živiny v potravině.
 - `footnote`: Poznámka nebo dodatečné informace o živině.
 - `name`: Název živiny.
@@ -37,7 +37,7 @@ Podívejme se na sloupec `name`, který obsahuje názvy jednotlivých výživný
 food_nutrient["name"]
 ```
 
-Nás by mohlo zajímat, jaké všechny výživné látky v datech jsou. K tomu nám snaží vidět každý název jenom jednou. Jinak řečeno, potřebujeme unikátní hodnoty. K tomu můžeme využít metodu `.unique()`.
+Nás by mohlo zajímat, jaké všechny výživné látky v datech jsou. K tomu nám stačí vidět každý název jenom jednou. Jinak řečeno, potřebujeme unikátní hodnoty. K tomu můžeme využít metodu `.unique()`.
 
 ```py
 food_nutrient["name"].unique()
@@ -53,7 +53,7 @@ food_nutrient["name"].value_counts()
 
 Při zpracovávání dat podmínkám rozhodně neutečeš. Podmínky jsou velmi užitečné, protože bez nich bychom museli pracovat se všemi daty, co jsme dostali, což není vždy žádoucí.
 
-- Data často obsahují chyby, která vzniknou třeba špatným nastavením stroje nebo překlepem pracovníka, který je zadával. Pokud bychom chyby nechali v datech a dále s nimi pracovali, udělaly by nám tam pěknou paseku.
+- Data často obsahují chyby, které vzniknou třeba špatným nastavením stroje nebo překlepem pracovníka, který je zadával. Pokud bychom chyby nechali v datech a dále s nimi pracovali, udělaly by nám tam pěknou paseku.
 - Často chceme zpracovat jen část dat. Například u výživných látek nás můžou zajímat jen ty, které jsou zdraví prospěšné (chceme jich konzumovat nějaké doporučené množství), nebo naopak ty zdraví škodlivé (chceme jich konzumovat co nejméně).
 
 V jazyce SQL píšeme podmínky za klíčové slovo `WHERE`, v Excelu můžeme použít funkce Filtr atd. V `pandas` můžeme použít metodu `query` nebo zápis s využitím hranatých závorek.
@@ -79,7 +79,7 @@ magnesium = food_nutrient[food_nutrient["name"] == "Magnesium, Mg"]
 
 Pokud pracujeme s číselnými ukazateli, je dobré podívat se na ukazatele popisné statistiky. Ač to může znít hrozivě, jsou to hodnoty, se kterými se setkáváme poměrně běžně. Zjistíme je pomocí metody `describe()`. Metodu je možné použít pro více sloupců, ale ne vždy dávají smysl. Například pro sloupec `fdc_id` nemá smysl hodnoty počítat, protože to jsou číslá označení ("pojmenování") jednotlivých potravin.
 
-Též by nemělo smysl použít metodu `.describe()` pro všechny řádky najednou, protože by došlo k promíchání dat o různých živinách, navíš měřených v odlišných jednotkách.
+Též by nemělo smysl použít metodu `.describe()` pro všechny řádky najednou, protože by došlo k promíchání dat o různých živinách, navíc měřených v odlišných jednotkách.
 
 ```py
 magnesium["amount"].describe()

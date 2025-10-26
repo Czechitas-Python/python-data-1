@@ -38,7 +38,7 @@ Při agregaci se musíme nejprve rozhodnout, podle jakého sloupce chceme řádk
 food_merged_brands_protein_agg = food_merged_brands_protein.groupby("branded_food_category")["amount"].mean()
 ```
 
-Výsledkem není tabulka, ale série. V ní vidíme průměrné množství proteintů v jednotlivých kategoriích potravin. 
+Výsledkem není tabulka, ale série. V ní vidíme průměrné množství proteinů v jednotlivých kategoriích potravin. 
 
 Níže je přehled všech funkcí, které lze pro agregaci použít.
 
@@ -69,7 +69,7 @@ Uvažujme, že chceme najít konkrétní potravinu s největším obsahem protei
 food_merged_brands_protein.sort_values("amount", ascending=False)
 ```
 
-Nyní chceme znát skupinu potravin s největším obsahem proteinu, protože je např. jednodušší doporučovat skupinu potravin než konkrétní proudukt, který nemusí být v každém obchodě k dispozici. V případě série `food_merged_brands_protein_agg`, kterou jsme vytvořili s využitím metody `groupby()`, není potřeba zadávat název sloupce, to řešíme pouze u tabulek. Využijeme ale parametr `ascending`, který funguje stejně jako v předchozím případě.
+Nyní chceme znát skupinu potravin s největším obsahem proteinu, protože je např. jednodušší doporučovat skupinu potravin než konkrétní produkt, který nemusí být v každém obchodě k dispozici. V případě série `food_merged_brands_protein_agg`, kterou jsme vytvořili s využitím metody `groupby()`, není potřeba zadávat název sloupce, to řešíme pouze u tabulek. Využijeme ale parametr `ascending`, který funguje stejně jako v předchozím případě.
 
 ```py
 food_merged_brands_protein_agg.sort_values(ascending=False)

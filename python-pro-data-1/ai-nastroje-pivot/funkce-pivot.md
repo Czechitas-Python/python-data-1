@@ -7,7 +7,7 @@ import pandas as pd
 food_nutrient = pd.read_csv("food_nutrient.csv")
 ```
 
-Pokračujme nyní funkce `pivot()`. Tato funkce slouží k "přeskládání" tabulky. Výsledná tabulka nebude mít samostatný řádek pro každou kombinaci potraviny a výživné látky. Tabulku přeskládáme tak, aby každá potravina měla pouze jeden řádek a jednotlivé výživné látky budou uloženy ve sloupcích. Namísto sloupce `name` s názvem výživné látky budeme mít názvy výživných látek přímo ve sloupcích. 
+Pokračujme nyní funkcí `pivot()`. Tato funkce slouží k "přeskládání" tabulky. Výsledná tabulka nebude mít samostatný řádek pro každou kombinaci potraviny a výživné látky. Tabulku přeskládáme tak, aby každá potravina měla pouze jeden řádek a jednotlivé výživné látky budou uloženy ve sloupcích. Namísto sloupce `name` s názvem výživné látky budeme mít názvy výživných látek přímo ve sloupcích. 
 
 Funkci `pivot` určíme čtyři parametry, kromě prvního parametru `data` musíme všechny psát jako pojmenované:
 

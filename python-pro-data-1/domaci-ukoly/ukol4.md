@@ -16,7 +16,7 @@ Dále napiš následující dotazy:
 * Dotaz na měření, která byla provedena v Praze. Je na datech něco zvláštního? Napadá tě, čím to může být? [Zde](https://cs.wikipedia.org/wiki/Stupe%C5%88_Fahrenheita) je nápověda.
 * Dotaz na měření, ve kterých je teplota (sloupec `AvgTemperature`) vyšší než 80 stupňů.
 * Dotaz na měření, ve kterých je teplota vyšší než 60 stupňů a současně bylo měření provedeno v regionu (sloupec `Region`) Evropa (Europe).
-* Dotaz na extrémní hodnoty, tj. měření, ve kterých je teplota vyšší než 80 stupňů nebo menší než - 20 stupňů.
+* Dotaz na extrémní hodnoty, tj. měření, ve kterých je teplota vyšší než 80 stupňů nebo menší než -20 stupňů.
 
 **Pokročilá varianta**
 

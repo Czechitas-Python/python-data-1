@@ -15,7 +15,7 @@ Nyní zkus pomocí histogramu porovnat, jestli je v potravinách více proteinů
 
 ::fig[První histogram]{src=assets/output_1.png}
 
-Tento obrázek nám ale neříká, kolik je v potravinách tuků a kolik lipidů, protože obě výživné látky jsou smíchané dohromady. Abys dokázal(a) rozlišit mezi oběma výživnými látkami, použij parametr `hue`, kterému zadáš jako hodnotu `nutrient_name`. Díky tomu bude mít každá výživná látka samostatný sloupec se svojí barvou.
+Tento obrázek nám ale neříká, kolik je v potravinách proteinů a kolik lipidů, protože obě výživné látky jsou smíchané dohromady. Abys dokázal(a) rozlišit mezi oběma výživnými látkami, použij parametr `hue`, kterému zadáš jako hodnotu `nutrient_name`. Díky tomu bude mít každá výživná látka samostatný sloupec se svojí barvou.
 
 ::fig[Příklad výsledku]{src=assets/output_2.png}
 

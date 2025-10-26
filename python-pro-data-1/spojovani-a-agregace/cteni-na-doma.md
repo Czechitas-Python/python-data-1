@@ -1,6 +1,6 @@
 ## Čtení na doma
 
-Pokud chceme provést více různých agregací, použijeme metodu `agg`. Metodě `agg` vložíme jako parametr jako slovním. S tí už jsme se seznámili při přejmenování sloupce. Do slovníku vložíme jako první prvek dvojice název sloupce a jako druhý prvek seznam agregací, které chceme provést. Seznam zapisujeme do hranatých závorek, jak už jsme zvyklí.
+Pokud chceme provést více různých agregací, použijeme metodu `agg`. Metodě `agg` vložíme jako parametr slovník. S tím už jsme se seznámili při přejmenování sloupce. Do slovníku vložíme jako první prvek dvojice název sloupce a jako druhý prvek seznam agregací, které chceme provést. Seznam zapisujeme do hranatých závorek, jak už jsme zvyklí.
 
 V našem případě budeme chtít vedle průměrného množství proteinů vědět i počet potravin, ze kterého je průměr spočítaný. Pokud by byl vypočítaný například pouze z jedné nebo dvou potravin, není to příliš reprezentativní vzorek. V takovém případě by bylo lepší například skupinu z tabulky výsledků vyřadit, získat pro danou kategorii více údajů atd.
 

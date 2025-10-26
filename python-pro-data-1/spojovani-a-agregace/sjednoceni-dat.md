@@ -6,7 +6,7 @@ V předchozí lekci jsme si ukázali, jak v `pandas` načteme data do tabulky (`
 
 V praxi se poměrně často setkáme s tím, že v datovém setu některé hodnoty chybí. Můžeme si například všimnout, že v tabulce `food_nutrient.csv` jsou chybějící hodnoty. Ty jsou při výpisu zobrazovány jako `NaN`.
 
-Při práci s daty, je možné se s chybějícími daty vypořádat různými způsoby. 
+Při práci s daty je možné se s chybějícími daty vypořádat různými způsoby. 
 
 Nejprve bychom si měli uvědomit, zda jsou pro nějaké sloupec chybějící hodnoty vlastně problém. Typický příklad sloupečku, kde to nevadí, je `footnote`. To, že k nějaké hodnotě není poznámka pod čarou, nevadí, zkrátka k měření žádná doplňující poznámka není. Naopak u sloupce `amount` to vadit může. U nějaké konkrétní výživné látky nevíme její obsah v nějaké konkrétní potravině. 
 
@@ -26,7 +26,7 @@ food_nutrient_incomplete = food_nutrient[food_nutrient["amount"].isna()]
 food_nutrient_incomplete.head()
 ```
 
-Metoda `.notna()` funguje obráceně (tj. vrací hodnotu `False` pro řádek s hodnotou nebo `True` pro prázdný řádek).
+Metoda `.notna()` funguje obráceně (tj. vrací hodnotu `True` pro řádek s hodnotou nebo `False` pro prázdný řádek).
 
 ```py
 food_nutrient_complete = food_nutrient[food_nutrient["amount"].notna()]
@@ -39,7 +39,7 @@ Poslední možností je odstranit všechny řádky, které nejsou úplné. Musí
 
 V našem případě použijeme poslední možnost, tj. odstraníme všechny řádky, kde chybí množství výživné látky. K tomu je možné použít metodu `.notna()`, kterou jsme si už ukazovali. Ukážeme si ale ještě jednu metodu, a to `dropna()`. Pokud chceme, aby se metoda řídila pouze některými sloupci, použijeme parametr `subset` (podmnožina). V opačném případě metoda smaže všechny řádky, kde je chybějící hodnota alespoň v jednom sloupci.
 
-Jako hodnotu  můžeme dát název jednoho sloupce jako řetězec nebo seznam názvů sloupců.
+Jako hodnotu můžeme dát název jednoho sloupce jako řetězec nebo seznam názvů sloupců.
 
 ```py
 food_nutrient = food_nutrient.dropna(subset="amount")
@@ -66,5 +66,4 @@ food = pd.concat([food_sample_100, food_other], ignore_index=True)
 
 K čemu je spojování vlastně dobré? Některé programy například ukládají data za každý den do samostatného souboru, takže pokud potřebujeme data za jeden týden, stačí nám stáhnout a spojit 7 souborů a ostatní stovky souborů a gigabajty dat můžeme ignorovat.
 
-Různé typy operace merge si můžeš procvičit na [této stránce](https://pesikj.github.io/Visual-JOIN/).
-
+Různé typy operací merge si můžeš procvičit na [této stránce](https://pesikj.github.io/Visual-JOIN/).

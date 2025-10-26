@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 
 Použijeme funkci `subplots`. První parametr znamená, kolik podgrafů chceme vytvořit na výšku, a druhý parametr, kolik na šířku. Pokud bychom chtěli dva grafy vedle sebe, použijeme hodnoty 1 a 2. Nakonec přidáme parametr `sharey`, aby oba grafy sdílely svislou osu grafu a neopakovaly se nám zbytečně názvy kategorií u obou grafů.
 
-Funkce vrací několik hodnot. `fig` reprezentuje celý obrázek, `ax1` a `ax2` reprezentuje tzv. :term{cs="osy" en="axis"} grafu. Každá z podgrafů má svoji osu, tj. pokud máme dva podgrafy, budeme mít dvě osy.
+Funkce vrací několik hodnot. `fig` reprezentuje celý obrázek, `ax1` a `ax2` reprezentují tzv. :term{cs="osy" en="axis"} grafu. Každý podgraf má svoji osu, tj. pokud máme dva podgrafy, budeme mít dvě osy.
 
 ```py
 fig, (ax1, ax2) = plt.subplots(1, 2, sharey=True)
@@ -28,7 +28,7 @@ ax1.set_xlabel("Množství proteinů (g)")
 
 Vytvoř tabulku `food_merged_brands_carb`, která z tabulky `food_merged_brands` vybere řádky, kde je ve sloupci `nutrient_name` hodnota `Carbohydrate, by difference`. Přidej graf, který zobrazuje průměrné množství karbohydrátů v jednotlivých kategoriích, jako druhý podgraf. Kód bude stejný jako v případě prvního podgrafu, pouze vyměň tabulku a použij osu `ax2`.
 
-::fig[Přiklad výsledku]{src=assets/output.png}
+::fig[Příklad výsledku]{src=assets/output.png}
 
 Pokud ti připadá, že graf data zkresluje tím, že každý podgraf má svůj rozsah vodorovné osy, vyzkoušej parametr `sharex` u funkce `subplots()`.
 

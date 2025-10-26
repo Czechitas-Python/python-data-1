@@ -3,7 +3,7 @@ title: Hlasy
 demand: 3
 ---
 
-V souboru [votes.csv](assets/votes.csv), který obsahuje data o výsledcích voleb ve Spojených státech amerických v období 1976 až 2020. Důležité pro nás budou následující sloupce:
+V souboru [votes.csv](assets/votes.csv) jsou data o výsledcích voleb ve Spojených státech amerických v období 1976 až 2020. Důležité pro nás budou následující sloupce:
 
 - `year` \- rok,
 - `state` \- stát,

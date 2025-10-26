@@ -20,7 +20,7 @@ top_cat_list = ['Candy', 'Popcorn, Peanuts, Seeds & Related Snacks', 'Cheese', '
 food_brands = food_brands[food_brands["branded_food_category"].isin(top_cat_list)]
 ```
 
-Graf vytvoříme pomocí funkce `countplot`. Jako první hodnotu zadáme název tabulku s daty a jako parametr `x` název sloupce, podle kterého se vygenerují sloupce grafu. V předchozí lekci to odpovídalo sloupci, který jsme zadávali do metody `groupby()`. Výsledek uložíme do proměnné `ax`. Jde o zkratku slova axis, která obsahuje odkaz na vytvořený graf. Pomocí metody `tick_params()` otočíme popisky osy *x* o 90 stupňů, protože jinak by se popisy vzájemně překrývaly.
+Graf vytvoříme pomocí funkce `countplot`. Jako první hodnotu zadáme název tabulky s daty a jako parametr `x` název sloupce, podle kterého se vygenerují sloupce grafu. V předchozí lekci to odpovídalo sloupci, který jsme zadávali do metody `groupby()`. Výsledek uložíme do proměnné `ax`. Jde o zkratku slova axis, která obsahuje odkaz na vytvořený graf. Pomocí metody `tick_params()` otočíme popisky osy *x* o 90 stupňů, protože jinak by se popisy vzájemně překrývaly.
 
 ```py
 ax = sns.countplot(food_brands, x="branded_food_category")
@@ -35,7 +35,7 @@ ax = sns.countplot(food_brands, y="branded_food_category")
 
 Pokud píšeme program jako skript, je nutné ještě přidat řádek `plt.show()` a do importů přidat `import matplotlib.pyplot as plt`. Ten zajistí, že se graf zobrazí v samostatném okně. Pozor ale na to, že program se pozastaví, dokud okno s grafem neuzavřeme. Pokud používáme Jupyter notebook, tento řádek přidávat nemusíme.
 
-Vygenerovaný graf je poměrně špatně čitelný. Můžeme ale zkusit názvy kategorií zkrátit. V rámci toho rovnou provedeme překlad do češtiny. K přejmenování použijeme metodu `.replace()`. Hodnoty můžeme vložit jako slovník. Vložíme do něj původní hodnotu a jejích náhradu, obojí opět oddělíme dvojtečkou. Protože chceme přejmenovat více hodnot, vložíme více dvojic, které oddělíme čárkou.
+Vygenerovaný graf je poměrně špatně čitelný. Můžeme ale zkusit názvy kategorií zkrátit. V rámci toho rovnou provedeme překlad do češtiny. K přejmenování použijeme metodu `.replace()`. Hodnoty můžeme vložit jako slovník. Vložíme do něj původní hodnotu a její náhradu, obojí opět oddělíme dvojtečkou. Protože chceme přejmenovat více hodnot, vložíme více dvojic, které oddělíme čárkou.
 
 ```py
 food_brands["branded_food_category"] = food_brands["branded_food_category"].replace({
@@ -110,7 +110,7 @@ Další z oblíbených grafů je krabicový graf :term{cs="krabicový graf" en="
 - Černé čáry jsou označované jako *whisker* (kočičí vousy). V našem případě fungují podobně jako obdélník, ale oddělují vždy 5 % nejmenších a největších hodnot od zbývajících 90 % (tj. od 95 % výše).
 - Zbývajících 10 % hodnot je vykresleno pomocí černých teček.
 
-Aby byl graf celý v jednom jazyce, pojďme nejprve přejmenovat názvy výživných látek do češtiny
+Aby byl graf celý v jednom jazyce, pojďme nejprve přejmenovat názvy výživných látek do češtiny.
 
 ```py
 ax = sns.boxplot(food_merged_brands_protein, y="branded_food_category", x="amount", whis=[5, 95])

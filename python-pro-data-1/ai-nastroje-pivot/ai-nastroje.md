@@ -2,14 +2,14 @@
 
 Generativní AI je část umělé inteligence zaměřená na vytváření nového obsahu, jako jsou texty, obrázky, zvuky a videa, prostřednictvím učení se z existujících dat. Na rozdíl od tradiční AI, která analyzuje a interpretuje data, generativní AI aktivně generuje nové výstupy, často s originálními a kreativními výsledky.
 
-Jedním z nejpoužívanějších nástrojů postavených na generativní AI je Chat GPT. Vedle něj existuje řada dalších (Claude, Google Gemini, Meta Llama atd.). Nástroje fungují na principu konverzace, tj. uchovává si informace, které byly řečeny v předchozích zprávách (postupně ale informace zapomíná). Ideální je vložení příkladu. Prompty je možné zadávat v různých jazycích. Jazyk promptu nemusí být shodný s jazykem výstupu.
+Jedním z nejpoužívanějších nástrojů postavených na generativní AI je ChatGPT. Vedle něj existuje řada dalších (Claude, Google Gemini, Meta Llama atd.). Nástroje fungují na principu konverzace, tj. uchovává si informace, které byly řečeny v předchozích zprávách (postupně ale informace zapomíná). Ideální je vložení příkladu. Prompty je možné zadávat v různých jazycích. Jazyk promptu nemusí být shodný s jazykem výstupu.
 
 Platí dvě obecná pravidla:
 
 * Generativní AI může poskytovat nepravdivé nebo zavádějící informace (ačkoli se jeho výstupy zdají velmi důvěrychodné).
-* Pokud do Generativní AI něco vložíme, může to zobrazit někomu jinému nebo to obecně využít k trénování svého modelu (existuje *Temporary chat*, která dotazy do trénovacích dat nevkládá).
+* Pokud do generativní AI něco vložíme, může to zobrazit někomu jinému nebo to obecně využít k trénování svého modelu (existuje *Temporary chat*, která dotazy do trénovacích dat nevkládá).
 
-Do ChatGPT můžeme vložít reálná data, uměle vytvořená data (např. náhodně vygenerovaná) nebo mu pouze vysvětlíme strukturu našich dat.
+Do ChatGPT můžeme vložit reálná data, uměle vytvořená data (např. náhodně vygenerovaná) nebo mu pouze vysvětlíme strukturu našich dat.
 
 V rámci ChatGPT můžeme použít *Custom GPTs*, což jsou předpřipravené instrukce zaměřené na řešení úloh v nějaké konkrétní oblasti. Vlastní GPT si můžeme vytvořit i sami a sdílet ho s ostatními. Do vlastního GPT můžeme nahrát i data.
 
@@ -34,7 +34,7 @@ Můžeme požádat i o přepis kódu do jiného jazyka, který známe lépe, nap
 
 #### Vysvětlení a oprava kódu a doplnění komentářů
 
-Často se stává, že dlouho editujeme nějaký kód a nevidíme v něm chybu, která by byla někomu jinému jasné. AI nástroj může posloužit jako "druhý pár očí", který nám může pomoc odhalit chybu. Příklad konverzace je [zde](https://chatgpt.com/share/674ddf18-ea18-800d-918a-43b3835c8ced).
+Často se stává, že dlouho editujeme nějaký kód a nevidíme v něm chybu, která by byla někomu jinému jasné. AI nástroj může posloužit jako "druhý pár očí", který nám může pomoci odhalit chybu. Příklad konverzace je [zde](https://chatgpt.com/share/674ddf18-ea18-800d-918a-43b3835c8ced).
 
 Pokud máme nějaký kód (např. najdeme ho na internetu, ve firemním projektu atd.), kterému nerozumíme, můžeme požádat ChatGPT o jeho vysvětlení. ChatGPT umí doplnit do kódu komentáře (obvykle dopíše vysvětlení ke každému řádku) nebo vypíše souvislý text, který vysvětluje, co kód dělá. Příklad konverzace je [zde](https://chatgpt.com/share/674de060-d878-800d-bffa-ddba6f06eac9).
 
