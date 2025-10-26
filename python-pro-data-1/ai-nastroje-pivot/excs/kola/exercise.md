@@ -3,7 +3,7 @@ title: Půjčování kol
 demand: 3
 ---
 
-V souboru [london_merged.csv](assets/london_merged.csv) najdeš informace o počtu vypůjčení jízdních kol v Londýně. Vytvoř kontingenční tabulku, zobrazí průměrný počet reze (sloupec `weather_code` se sloupcem udávající měsíc). Počet vypůjčených kol je ve sloupci `cnt`. V datech je dále sloupec `Hour`, který označuje hodinu, pro který počet máme. Použij kód z předchozí části a rozděl data do kategorií podle denní doby. Vytvoř pivot tabulku, která zobrazí průměrné počty vypůjčených kol v závislosti na typu počasí (sloupec `weather_code`) a denní době.
+V souboru [london_merged.csv](assets/london_merged.csv) najdeš informace o počtu vypůjčení jízdních kol v Londýně. Vytvoř kontingenční tabulku, která zobrazí průměrný počet výpůjček podle typu počasí (`weather_code`) a měsíce (sloupec udávající měsíc). Počet vypůjčených kol je ve sloupci `cnt`. V datech je dále sloupec `Hour`, který označuje hodinu, pro kterou počet máme k dispozici. Použij kód z předchozí části a rozděl data do kategorií podle denní doby. Vytvoř pivot tabulku, která zobrazí průměrné počty vypůjčených kol v závislosti na typu počasí (sloupec `weather_code`) a denní době.
 
 Definice jednotlivých kódů ze sloupce `weather_code` jsou:
 

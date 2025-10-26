@@ -21,7 +21,7 @@ Protože v datech máme obrovské množství různých kategorií i výživných
 - `Sugars, total including NLEA` (cukry, celkem včetně NLEA),
 - `Fatty acids, total saturated` (nasycené mastné kyseliny, celkem),
 - `Cholesterol` (cholesterol),
-- `Fiber, total dietary` (vláknina, celková stravová),
+- `Fiber, total dietary` (vláknina, celková (dietní)),
 - `Calcium, Ca` (vápník, Ca),
 - `Iron, Fe` (železo, Fe).
 
@@ -58,7 +58,7 @@ pd.crosstab(food_merged["branded_food_category"], food_merged["name"], food_merg
 
 #### Relativní počty
 
-Vraťme se ještě ke kategoriím potravin v závislosti na množství cholesterolu. I tato data můžeme zobrazit pomocí pivot tabulky. Pro každou kategorii potravit si můžeme vypočítat, kolik je v kategorii potravin s vysokým, středním a nízkám obsahem cholesterolu. K tomu si nejprve musíme připravit data, tj. zopakujeme postup z předchozí části lekce.
+Vraťme se ještě ke kategoriím potravin v závislosti na množství cholesterolu. I tato data můžeme zobrazit pomocí pivot tabulky. Pro každou kategorii potravin si můžeme vypočítat, kolik je v kategorii potravin s vysokým, středním a nízkým obsahem cholesterolu. K tomu si nejprve musíme připravit data, tj. zopakujeme postup z předchozí části lekce.
 
 ```py
 food_nutrient = food_nutrient.drop_duplicates(subset=["fdc_id", "name"])
@@ -94,7 +94,7 @@ food_pivot_cholesterol_pivot[food_pivot_cholesterol_pivot["Low Cholesterol"] > 0
 
 ### Standardizace a teplotní mapa
 
-Kontingenční tabulka je časově náročná na čtení, především v případě, že má poměrně hodně řádků nebo sloupců. Pro rychlý přehled může být užitečnější typ vizualizace označovaný jako :term{cs="teplotní mapa" en="heat map"}. Ten převede hodnotu na barevnou škálu. V teplotní mapě můžeme rychle nalézt především výrazně nadprůměrné či podprůměrné hodnoty. U našich dat ale může být problém v tom, že máme v různých sloupcích řádově odlišné hodnoty. Je to samozřejmě ovlivněno tím, že některé výživné látky jsou zobrazné v odlišných jednotkách (množství látky v gramech a miligramech na 100 gramů potraviny). Problém bychom nevyřešili ani převodem na stejné jednotky. Vápníku nebo sodíku totiž bude v potravinách většinou řádově méně než proteinů nebo cukrů.
+Kontingenční tabulka je časově náročná na čtení, především v případě, že má poměrně hodně řádků nebo sloupců. Pro rychlý přehled může být užitečnější typ vizualizace označovaný jako :term{cs="teplotní mapa" en="heat map"}. Ten převede hodnotu na barevnou škálu. V teplotní mapě můžeme rychle nalézt především výrazně nadprůměrné či podprůměrné hodnoty. U našich dat ale může být problém v tom, že máme v různých sloupcích řádově odlišné hodnoty. Je to samozřejmě ovlivněno tím, že některé výživné látky jsou zobrazované v odlišných jednotkách (množství látky v gramech a miligramech na 100 gramů potraviny). Problém bychom nevyřešili ani převodem na stejné jednotky. Vápníku nebo sodíku totiž bude v potravinách většinou řádově méně než proteinů nebo cukrů.
 
 Problém ale můžeme vyřešit pomocí procesu označovaného jako :term{cs="normalizace" en="normalization"}. Normalizace dat v kontextu statistiky a zpracování dat znamená převedení různých rozsahů hodnot na společnou škálu, čímž se usnadňuje jejich srovnání a analýza. Tento proces pomáhá odstranit zkreslení v datech způsobená různými měřítky a umožňuje lépe identifikovat vzory a vztahy mezi proměnnými. Normalizace je klíčová pro efektivní algoritmické zpracování, například :term{cs="strojovém učení" en="machine learning"} v datové analýze.
 

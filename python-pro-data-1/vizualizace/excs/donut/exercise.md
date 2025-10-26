@@ -15,9 +15,9 @@ Vyzkoušíme si pomocí prstencového grafu zobrazit poměr výživných látek,
 ["Carbohydrate, by difference", "Total lipid (fat)", "Protein", "Potassium, K", "Iron, Fe", "Calcium, Ca"]
 ```
 
-Aby graf nebyl zkreslený, je potřeba převést všechna data na stejné jednotky, např. na grafy. To uděláme ve třech krocích.
+Aby graf nebyl zkreslený, je potřeba převést všechna data na stejné jednotky, např. na gramy. To uděláme ve třech krocích.
 
-Využijeme strukturu označovanou jako :term{cs="slovník" en="dict"}, do které vložíme dvojice hodnot: označení jednotky a číslo, kterou bychom každou jednotku rádi násobili. Abychom převedli jednotky na grafy, budeme miligramy násobit číslem 0.001. Poté použijeme pro sloupec `unit_name` metodu `map`. Tato metody na základě hodnoty ve sloupci `unit_name` vybere hodnotu ze slovníku, např. pokud je ve sloupci `unit_name` hodnota `MG`, metoda vybere hodnotu 0.001. Nakonec vynásobíme mezi sebou sloupci `amount` a `coefficient`, takže ve sloupci `amount` máme hodnotu v gramech.
+Využijeme strukturu označovanou jako :term{cs="slovník" en="dict"}, do které vložíme dvojice hodnot: označení jednotky a číslo, kterou bychom každou jednotku rádi násobili. Abychom převedli jednotky na gramy, budeme miligramy násobit číslem 0.001. Poté použijeme pro sloupec `unit_name` metodu `map`. Tato metoda na základě hodnoty ve sloupci `unit_name` vybere hodnotu ze slovníku, např. pokud je ve sloupci `unit_name` hodnota `MG`, metoda vybere hodnotu 0.001. Nakonec vynásobíme mezi sebou sloupce `amount` a `coefficient`, takže ve sloupci `amount` máme hodnotu v gramech.
 
 ```py
 # Definujeme převodní koeficienty pro jednotky hmotnosti (z miligramů na gramy)
@@ -43,7 +43,7 @@ Vykreslíme koláčový graf s množstvím jednotlivých živin. Jako první par
 ax.pie(__________, wedgeprops={"width": 0.3})
 ```
 
-Nyní přidáme legendu s názvy živin, umístěnou vlevo od středu grafu. Jako první parametr, tj. texty legendy, vlož sloupec `nutrient_name` z tabulky `data_pie_plot`. Parametr `loc` určuje, kde se bude legendy nacházet. Parametry `loc="center left"` a `bbox_to_anchor=(1, 0.5)` umístí legendu vlevo od středu a mimo osu grafu.
+Nyní přidáme legendu s názvy živin, umístěnou vlevo od středu grafu. Jako první parametr, tj. texty legendy, vlož sloupec `nutrient_name` z tabulky `data_pie_plot`. Parametr `loc` určuje, kde se bude legenda nacházet. Parametry `loc="center left"` a `bbox_to_anchor=(1, 0.5)` umístí legendu vlevo od středu a mimo osu grafu.
 
 ```py
 ax.legend(__________, loc="center left", bbox_to_anchor=(1, 0.5))
@@ -51,7 +51,7 @@ ax.legend(__________, loc="center left", bbox_to_anchor=(1, 0.5))
 
 Nakonec nastav nadpis grafu. Pomocí metody `ax.set_title` nastav nadpis, do volání metody vlož nadpis, který by se ti pro graf líbil. 
 
-::fig[Přiklad výsledku]{src=assets/output.png}
+::fig[Příklad výsledku]{src=assets/output.png}
 
 :::solution
 

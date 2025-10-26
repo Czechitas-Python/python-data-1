@@ -2,7 +2,7 @@
 
 Uvažujme, že bychom chtěli potraviny rozdělit do skupin podle obsahu některé výživné látky, např. podle obsahu soli. Takové rozdělení můžeme najít na obalech některých potravin a umožňuje spotřebitelům získat základní přehled o zdravotních aspektech konzumace potraviny. Uvažujme například následující skupiny.
 
-| Množství soli              | Název skupin            |
+| Množství soli              | Název skupiny           |
 |----------------------------|-------------------------|
 | 0 až 140                   | Low Sodium              |
 | 140 až 400                 | Moderately Low Sodium   |

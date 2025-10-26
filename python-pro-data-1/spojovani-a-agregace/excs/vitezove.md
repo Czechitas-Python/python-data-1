@@ -21,7 +21,6 @@ Následně vytvoř tabulku, která bude obsahovat vítěznou stranu v jednotliv�
 import pandas as pd
 data = pd.read_csv('votes.csv')
 data["rank"] = data.groupby(["state", "year"])["candidatevotes"].rank(ascending=False)
-winners_by_state_2020 = data[(data1["rank"]==1) & (data["year"]==2020)][["state", "party_detailed"]]
+winners_by_state_2020 = data[(data["rank"] == 1) & (data["year"] == 2020)][["state", "party_detailed"]]
 ```
 :::
-

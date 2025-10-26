@@ -24,7 +24,7 @@ Význam sloupců je následující:
 - `food_category_id`: Identifikační číslo kategorie potravin, které pomáhá klasifikovat potravinu do určité skupiny nebo typu.
 - `publication_date`: Datum publikace nebo záznamu dat. Udává, kdy byly informace o potravině zaznamenány nebo aktualizovány.
 
-S tabulkami pracujeme v software Microsoft Excel (soubory mají příponu `.xlsx`), případně v alternativách jako Google Spreadsheet, Libre Office Calc atd. Python umí pracovat přímo se soubory XLSX, slouží k tomu modul `openpyxl` (můžete ho stáhnout [zde](https://openpyxl.readthedocs.io/en/stable/)), případně s nimi lze pracovat i v `pandas`. Práce s nimi je ale poměrně komplexní, proto budeme používat soubory CSV.
+S tabulkami pracujeme v softwaru Microsoft Excel (soubory mají příponu `.xlsx`), případně v alternativách jako Google Spreadsheet, Libre Office Calc atd. Python umí pracovat přímo se soubory XLSX, slouží k tomu modul `openpyxl` (můžete ho stáhnout [zde](https://openpyxl.readthedocs.io/en/stable/)), případně s nimi lze pracovat i v `pandas`. Práce s nimi je ale poměrně komplexní, proto budeme používat soubory CSV.
 
 
 ### CSV
@@ -128,7 +128,7 @@ U obou formátů musíme dodržovat základní pravidla, jinak bude soubor pro p
 
 ### YAML
 
-Nejnovějším z formátů je YAML (YAML Ain't Markup Language), který vznikl v roce 2011. Byl vyvinut s ohledem pro snadnou čtenost člověkem.
+Nejnovějším z formátů je YAML (YAML Ain't Markup Language), který vznikl v roce 2011. Byl vyvinut s ohledem na snadnou čitelnost pro člověka.
 
 ```yaml
 - fdc_id: 2644829

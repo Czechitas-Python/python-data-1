@@ -7,6 +7,6 @@ Uvažuj časy závodníků za ročníky půlmaratonu 2019 a 2020, které jsou ul
 
 Můžeš využít následující postup:
 
-- Převeď sloupec s časem závodníka na typ datetime. Použij stejný postup, jaký jsme si ukázali v minulé v lekci. Protože jde pouze o časový údaj, pandas k němu připojí dnešní datum, aby byly ve sloupci datum i čas. Toho si ale nevšímej, u obou sloupců je datum stejný, takže na porovnání údajů to nebude mít vliv.
-- Pomocí metody `shift()` si dej na jeden řádek výsledky obou závodů. Metodu `shift()` použij tak, aby nový sloupec obsahoval hodnoty posunuté o jeden řádek dolů. Je třeba nahradit X vhodně zvoleným číslem. Poté si nech v datech pouze data, která mají ve sloupci `Rok zavodu` hodnotu 2020. Řádky, které mají ve sloupci `Rok zavodu` hodnotu 2019, totiž obsahují "pomíchané" hodnoty dvou různých závodníků.
-- Vypočítej rozdíl mezi časy závodníka a převeď ho na sekundy (postup jsme si ukazovali v lekci). Dále spočítej průměrnou změnu. Vyšlo i kladné nebo záporné číslo? A co to znamená?
+- Převeď sloupec s časem závodníka na typ datetime. Použij stejný postup, jaký jsme si ukázali v minulé lekci. Protože jde pouze o časový údaj, pandas k němu připojí dnešní datum, aby byly ve sloupci datum i čas. Toho si ale nevšímej, u obou sloupců je datum stejné, takže na porovnání údajů to nebude mít vliv.
+- Pomocí metody `shift()` si dej na jeden řádek výsledky obou závodů. Metodu `shift()` použij tak, aby nový sloupec obsahoval hodnoty posunuté o jeden řádek dolů. Poté si nech v datech pouze řádky, které mají ve sloupci `Rok zavodu` hodnotu 2020. Řádky, které mají ve sloupci `Rok zavodu` hodnotu 2019, totiž obsahují "pomíchané" hodnoty dvou různých závodníků.
+- Vypočítej rozdíl mezi časy závodníka a převeď ho na sekundy (postup jsme si ukazovali v lekci). Dále spočítej průměrnou změnu. Vyšlo ti kladné nebo záporné číslo? A co to znamená?

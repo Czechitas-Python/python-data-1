@@ -8,7 +8,7 @@ Abychom si práci s DataFrame vyzkoušeli, vrátíme se k naší tabulce s potra
 
 ### Načítání dat
 
-Data si můžete stáhnout v souboru [food_sample_100.csv](assets/food_sample_100.csv). Důležité je, že si soubor musíš uložit nebo zkopírovat do **stejného adresáře**, v jakém právě pracuješ ve Visual Studiu! To si ověříš pomocí příkazu `dir` ve Windows nebo `ls` v MacOS nebo Linuxu. Tento příkaz ti vypíše obsah aktuální adresáře. V přehledu souborů bys měla vidět soubor `food_sample_100.csv`.
+Data si můžeš stáhnout v souboru [food_sample_100.csv](assets/food_sample_100.csv). Důležité je, že si soubor musíš uložit nebo zkopírovat do **stejného adresáře**, v jakém právě pracuješ ve Visual Studiu! To si ověříš pomocí příkazu `dir` ve Windows nebo `ls` v MacOS nebo Linuxu. Tento příkaz ti vypíše obsah aktuální adresáře. V přehledu souborů bys měla vidět soubor `food_sample_100.csv`.
 
 Abychom tabulku načetli jako `DataFrame`, vytvoříme si nový Python skript, importujeme modul `pandas` a načteme CSV soubor pomocí funkce `read_csv().`
 
@@ -113,7 +113,7 @@ fdc_id
 322951   sub_sample_food  Hot dogs beef               7.0       2019-04-01
 ```
 
-Metoda `head` má parametr `n`, což je počet řádků, které mají být vypsány. Tento parametr je ale *nepovinný*. Nepovinné parametry mají vždy nějakou výchozí hodnotu, v případě parametru `n` metody `head` je tato výchozí hodnota 5. Můžem ale zvolit libovolnou vlastní, například 20.
+Metoda `head` má parametr `n`, což je počet řádků, které mají být vypsány. Tento parametr je ale *nepovinný*. Nepovinné parametry mají vždy nějakou výchozí hodnotu, v případě parametru `n` metody `head` je tato výchozí hodnota 5. Můžeme ale zvolit libovolnou vlastní, například 20.
 
 Často je užitečné podívat se spíše na konec souboru. Pokud jsou data seřazená podle času, uvidíme na konci souboru nejnovější data, která nás často (např. u kurzu měn nebo akcií) zajímají víc než dávná historie.
 

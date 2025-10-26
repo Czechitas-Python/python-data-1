@@ -9,7 +9,7 @@ signal_monitoring = pd.read_csv("signal_monitoring.csv")
 signal_monitoring["event_date_time"] = pd.to_datetime(signal_monitoring["event_date_time"])
 ```
 
-Nyní použijeme metodu `shift()` na sloupec `event_date_time`. Pomocí metody pak přidáme k tabulce nový sloupec. Nejdůležitějším parametrem metody je parametr periods, který může mít kladnou nebo zápornou hodnotu.
+Nyní použijeme metodu `shift()` na sloupec `event_date_time`. Pomocí metody pak přidáme k tabulce nový sloupec. Nejdůležitějším parametrem metody je parametr `periods`, který může mít kladnou nebo zápornou hodnotu.
 
 - Kladná hodnota parametru periods znamená, že hodnoty budou posunuty směrem dolů.
 - Záporná hodnota parametru periods znamená, že hodnoty budou posunuty směrem nahoru.
@@ -26,7 +26,7 @@ Opět v datech ponecháme pouze řádky, které mají ve sloupci `event_type` ho
 signal_monitoring_signal_lost = signal_monitoring[signal_monitoring["event_type"] == "signal lost"]
 ```
 
-Nyné můžeme spočítat rozdíl mezi začátkem výpadku a koncem výpadku, který udává jeho délku.
+Nyní můžeme spočítat rozdíl mezi začátkem výpadku a koncem výpadku, který udává jeho délku.
 
 ```py
 signal_monitoring["outage_length"] = signal_monitoring["event_end_date_time"] - signal_monitoring["event_date_time"]

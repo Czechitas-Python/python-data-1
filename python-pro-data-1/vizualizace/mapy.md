@@ -30,7 +30,7 @@ data = pd.read_csv("eu.csv")
 world_merged = pd.merge(world, data, on="NAME")
 ```
 
-Dále si přidáme sloupec `color`, který bude obsahovat barvu, pomocí které stát v mapě vykreslíme. K určení barvy můžeme zvolit metodu `map`, se kterou jsme již pracovali. (Její jméno je zde trochu nešťastné, název `map` se nijak nevztahuje k mapám, ale k tomu, že "mapujeme" jednu hodnotu na jinou hodnotu.) Státe v eurozóně (hodnota `eurozone`) vykreslíme zlatou barvou, státy EU mimo eurozónu (`other eu members`) modrou barvou a ostatní státy (`other countries`) šedou.
+Dále si přidáme sloupec `color`, který bude obsahovat barvu, pomocí které stát v mapě vykreslíme. K určení barvy můžeme zvolit metodu `map`, se kterou jsme již pracovali. (Její jméno je zde trochu nešťastné, název `map` se nijak nevztahuje k mapám, ale k tomu, že "mapujeme" jednu hodnotu na jinou hodnotu.) Státy v eurozóně (hodnota `eurozone`) vykreslíme zlatou barvou, státy EU mimo eurozónu (`other eu members`) modrou barvou a ostatní státy (`other countries`) šedou.
 
 ```py
 world_merged["color"] = world_merged["EU"].map({"eurozone": "gold", "other eu members": "blue", "other countries": "grey"})
@@ -57,7 +57,7 @@ freedom = pd.read_csv("economic_freedom_index.csv")
 world_merged = pd.merge(world, freedom, left_on="NAME", right_on="Country")
 ```
 
-Dále vybereme berevnou škálu. Jejich přehled najdeš [v dokumentaci](https://matplotlib.org/stable/users/explain/colors/colormaps.html). Využijeme škálu, kde jsou nízké hodnoty červené a vysoké hodnoty zelené. Škálu si uložíme do proměnné `cmap`.
+Dále vybereme barevnou škálu. Jejich přehled najdeš [v dokumentaci](https://matplotlib.org/stable/users/explain/colors/colormaps.html). Využijeme škálu, kde jsou nízké hodnoty červené a vysoké hodnoty zelené. Škálu si uložíme do proměnné `cmap`.
 
 ```py
 cmap = plt.cm.RdYlGn
@@ -69,7 +69,7 @@ Poté vytvoříme pole `color`. Zatímco v předchozím případě jsme měli sl
 color = cmap(world_merged["Overall Score"] / 100)
 ```
 
-Mapu vytvoříme obdobným způsobem jako v předchozím případě. Tentokrát si namísto Evropy zobrazíme latinskou Ameriku.
+Mapu vytvoříme obdobným způsobem jako v předchozím případě. Tentokrát si namísto Evropy zobrazíme Latinskou Ameriku.
 
 ```py
 fig, ax = plt.subplots(1, 1, figsize=(15, 10))
@@ -86,7 +86,7 @@ import matplotlib as mpl
 sm = mpl.cm.ScalarMappable(cmap=cmap)
 ```
 
-Barevnou legendu přidáme pomocí funkce `colorbar`. Parametr `sm` určuje `ScalarMappable`, který bude použit k vytvoření barevné škály. Svislou orientaci škály zaručuje `orientation='vertical'`. A nakonec `fraction=0.025` nastavuje velikost relativně k velikosti grafu. Pomocí metody `set_ticklabels()` nastavíme popisky osy barevné čáry. Výchozí počet popisek je 6, využijeme tedy funkci `range()`, která vytvoří čísla od 0 do 100 s velikostí kroku 20. Pokud bychom chtěli upravit i počet hodnot, můžeme využít metodu `set_ticks()`.
+Barevnou legendu přidáme pomocí funkce `colorbar`. Parametr `sm` určuje `ScalarMappable`, který bude použit k vytvoření barevné škály. Svislou orientaci škály zaručuje `orientation='vertical'`. A nakonec `fraction=0.025` nastavuje velikost relativně k velikosti grafu. Pomocí metody `set_ticklabels()` nastavíme popisky osy barevné čáry. Výchozí počet popisků je 6, využijeme tedy funkci `range()`, která vytvoří čísla od 0 do 100 s velikostí kroku 20. Pokud bychom chtěli upravit i počet hodnot, můžeme využít metodu `set_ticks()`.
 
 ```py
 cbar = fig.colorbar(sm, ax=ax, orientation='vertical', fraction=0.025)

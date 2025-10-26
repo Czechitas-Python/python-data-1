@@ -6,7 +6,7 @@ Jak bychom pivot tabulky mohli využít pro naše data? Pivot tabulky dokážou 
 
 ### Skupiny
 
-Na zakládě nějaké číselné hodnoty můžeme data rozdělit i do skupin. Každá skupina potřebuje dvě věci:
+Na základě nějaké číselné hodnoty můžeme data rozdělit i do skupin. Každá skupina potřebuje dvě věci:
 
 - číselný interval, který udává rozsah pro zařazení do skupiny,
 - označení skupiny.
@@ -54,13 +54,13 @@ Pro zobrazení součtu řádků a sloupců můžeme využít parametr `margins`.
 pd.crosstab(pivot_cholesterol["branded_food_category"], pivot_cholesterol["cholesterol_category"], margins=True)
 ```
 
-Pokud bychom chtěli hodnoty převést na procenta, můžeme využít parametr `normalizce`. Hodnota `index` zobrazí procentuální podíl jednotlivých skupin z pohledu množství cholesterolu v jednotlivých kategoriích.
+Pokud bychom chtěli hodnoty převést na procenta, můžeme využít parametr `normalize`. Hodnota `index` zobrazí procentuální podíl jednotlivých skupin z pohledu množství cholesterolu v jednotlivých kategoriích.
 
 ```py
 pd.crosstab(pivot_cholesterol["branded_food_category"], pivot_cholesterol["cholesterol_category"], normalize="index")
 ```
 
-Uvažujme nyní, že bychom chtěli použít nějakou agregační funkci. Můžeme například spočítat průměrné množství výživné látky. V datech máme nyní pouze cholesterol, výsledná pivot tabulka by měla jen jeden sloupec a tím pádem by šlo o obdobu klasické agregace. Využijme tedy soubor [pivot_cholesterol_fiber.csv](assets/pivot_cholesterol_fiber.csv)., který vedle dat o cholesterolu obsahuje data o vláknině. Vyšší množství vlákniny totiž může částečně pomoci eliminovat nezdravý efekt cholesterolu. Nezdravé potraviny tedy budou mít vysoké množství cholesterolu a nízké množství vlákniny.
+Uvažujme nyní, že bychom chtěli použít nějakou agregační funkci. Můžeme například spočítat průměrné množství výživné látky. V datech máme nyní pouze cholesterol, výsledná pivot tabulka by měla jen jeden sloupec a tím pádem by šlo o obdobu klasické agregace. Využijme tedy soubor [pivot_cholesterol_fiber.csv](assets/pivot_cholesterol_fiber.csv), který vedle dat o cholesterolu obsahuje data o vláknině. Vyšší množství vlákniny totiž může částečně pomoci eliminovat nezdravý efekt cholesterolu. Nezdravé potraviny tedy budou mít vysoké množství cholesterolu a nízké množství vlákniny.
 
 ```py
 import numpy as np
