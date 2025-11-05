@@ -14,3 +14,13 @@ Pro poslední úkol můžeš využít operátor `|`. Alternativně si můžeš v
 ```python
 tabulka = tabulka[tabulka["sloupec"].isin(["hodnota_1", "hodnota_2"])]
 ```
+
+:::solution
+```py
+# Vypiš všechny řádky se jmény, jejichž nositelé mají průměrný věk vyšší než 60.
+jmena[jmena["prumerny_vek"] > 60]
+# Vypiš pouze jména z těch řádků, kde četnost je mezi 80 000 a 100 000.
+jmena[(jmena["cetnost"] >= 80_000) & (jmena["cetnost"] <= 100_000)]
+# Vypiš jména a četnost pro jména se slovanským nebo hebrejským původem.
+jmena[(jmena["puvod"] == "slovanský") | (jmena["puvod"] == "hebrejský")]
+:::

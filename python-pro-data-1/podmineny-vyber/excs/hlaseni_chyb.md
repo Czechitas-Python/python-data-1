@@ -12,3 +12,10 @@ tabulky.to_csv("nazev_souboru.csv")
 ```
 
 Takto vytvořenou tabulku bychom mohli poslat poskytovateli dat a požádat ho o opravu.
+
+:::solution
+```py
+errors = food_nutrient[(food_nutrient["unit_name"] == "MG") & (food_nutrient["amount"] > 100_000)]
+errors.to_csv("error_reports.csv")
+```
+:::

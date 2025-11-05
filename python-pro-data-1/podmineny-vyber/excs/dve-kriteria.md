@@ -32,3 +32,14 @@ Pokud se úvaze o prioritách chceš vyhnout, je možné to vyřešit přidaným
 food_nutrient_filtered = food_nutrient[((ve sloupci "name" je hodnota "Fatty acids, total saturated") & (ve sloupci "amount" je hodnota menší než 1)) |
                         ((ve sloupci "name" je hodnota "Fiber, total dietary") & (ve sloupci "amount" je hodnota větší než 4))]
 ```
+
+:::solution
+```py
+food_nutrient_filtered = food_nutrient[(food_nutrient["name"] == "Fatty acids, total saturated") 
+                                      & (food_nutrient["amount"] < 1) 
+                                      | (food_nutrient["name"] == "Fiber, total dietary") 
+                                      & (food_nutrient["amount"] > 4)]
+
+food_nutrient_filtered["name"].value_counts()
+```
+:::
