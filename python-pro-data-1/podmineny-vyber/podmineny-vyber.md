@@ -58,7 +58,7 @@ Při zpracovávání dat podmínkám rozhodně neutečeš. Podmínky jsou velmi 
 
 V jazyce SQL píšeme podmínky za klíčové slovo `WHERE`, v Excelu můžeme použít funkce Filtr atd. V `pandas` můžeme použít metodu `query` nebo zápis s využitím hranatých závorek.
 
-Uvažujme například, že nám jde o obsah hořčíku (`Magnesium`), protože naším úkolem je doporučit potraviny lidem s nedostatkem hořčíku. Nejprve potřebujeme formulovat podmínku. Ta bude vypadat takto `food_nutrient["Magnesium"] == "Magnesium, Mg"`. V podmínce máme sloupec, na který se ptáme, a porovnání s řetězcem. Používáme operátor na kontrolu rovnosti (`==`). Zkusme si zadat samotnou podmínku a podívejme se na výsledek.
+Uvažujme například, že nám jde o obsah hořčíku (`Magnesium`), protože naším úkolem je doporučit potraviny lidem s nedostatkem hořčíku. Nejprve potřebujeme formulovat podmínku. Ta bude vypadat takto `food_nutrient["name"] == "Magnesium, Mg"`. V podmínce máme sloupec, na který se ptáme, a porovnání s řetězcem. Používáme operátor na kontrolu rovnosti (`==`). Zkusme si zadat samotnou podmínku a podívejme se na výsledek.
 
 Název zadáváme včetně chemické značky, protože tak je to v původních datech.
 

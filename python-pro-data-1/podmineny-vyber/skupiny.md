@@ -22,5 +22,5 @@ Musíme ale myslet na to, co s potravinami, které neobsahují žádnou sůl. Po
 
 ```py
 food_nutrient = food_nutrient[food_nutrient["name"] == "Sodium, Na"]
-food['Sodium Group'] = pd.cut(food_nutrient["amount"], bins, labels=labels)
+food_nutrient['Sodium Group'] = pd.cut(food_nutrient["amount"], bins, labels=labels)
 ```
