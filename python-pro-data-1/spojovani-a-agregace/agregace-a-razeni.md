@@ -5,6 +5,12 @@ V této části si ukážeme další dvě důležité metody pro práci s daty -
 Data. jsou připravená [zde](assets/food_merged_brands.csv).
 
 ```py
+food_merged_brands = pd.read_csv("food_merged_brands.csv")
+```
+
+Níže je úplný přehled příkazů, kterými bychom tabulku z našich dat vytvořili.
+
+```py
 # Načteme tabulky o potravinách
 food_sample_100 = pd.read_csv("food_sample_100.csv")
 food_other = pd.read_csv("food_other.csv")
