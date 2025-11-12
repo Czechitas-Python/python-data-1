@@ -2,6 +2,8 @@
 
 V této části si ukážeme další dvě důležité metody pro práci s daty - agregaci a řazení. Začneme přípravou dat. V rámci této lekce budeme uvažovat úpravy, které jsme provedli v předchozích lekcích.
 
+Data. jsou připravená [zde](assets/food_merged_brands.csv).
+
 ```py
 # Načteme tabulky o potravinách
 food_sample_100 = pd.read_csv("food_sample_100.csv")
