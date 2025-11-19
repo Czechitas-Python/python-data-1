@@ -56,7 +56,7 @@ food_brands_top["branded_food_category"] = food_brands_top["branded_food_categor
 })
 ```
 
-Po přejmenování kategorií stačí otočit popisky o 45 stupňů, takže budou lépe čitelné.
+Po přejmenování můžeme kategorii umístit na osu `y`, takže budou lépe čitelné.
 
 ```py
 sns.countplot(food_brands_top, y="branded_food_category")
