@@ -17,20 +17,22 @@ food = pd.concat([food_sample_100, food_other])
 food_brands = pd.merge(food, branded_food, on="fdc_id")
 
 top_cat_list = ['Candy', 'Popcorn, Peanuts, Seeds & Related Snacks', 'Cheese', 'Ice Cream & Frozen Yogurt', 'Chips, Pretzels & Snacks', 'Cookies & Biscuits', 'Pickles, Olives, Peppers & Relishes', 'Breads & Buns', 'Fruit & Vegetable Juice, Nectars & Fruit Drinks', 'Snack, Energy & Granola Bars', 'Chocolate', 'Other Snacks']
-food_brands = food_brands[food_brands["branded_food_category"].isin(top_cat_list)]
+food_brands_top = food_brands[food_brands["branded_food_category"].isin(top_cat_list)]
 ```
+
+Hotový soubor si můžeš stáhnout [zde](assets/food_brands_top.csv).
 
 Graf vytvoříme pomocí funkce `countplot`. Jako první hodnotu zadáme název tabulky s daty a jako parametr `x` název sloupce, podle kterého se vygenerují sloupce grafu. V předchozí lekci to odpovídalo sloupci, který jsme zadávali do metody `groupby()`. Výsledek uložíme do proměnné `ax`. Jde o zkratku slova axis, která obsahuje odkaz na vytvořený graf. Pomocí metody `tick_params()` otočíme popisky osy *x* o 90 stupňů, protože jinak by se popisy vzájemně překrývaly.
 
 ```py
-ax = sns.countplot(food_brands, x="branded_food_category")
+ax = sns.countplot(food_brands_top, x="branded_food_category")
 ax.tick_params(axis='x', rotation=90)
 ```
 
 Alternativní možností je zobrazení grafu "naležato".
 
 ```py
-ax = sns.countplot(food_brands, y="branded_food_category")
+ax = sns.countplot(food_brands_top, y="branded_food_category")
 ```
 
 Pokud píšeme program jako skript, je nutné ještě přidat řádek `plt.show()` a do importů přidat `import matplotlib.pyplot as plt`. Ten zajistí, že se graf zobrazí v samostatném okně. Pozor ale na to, že program se pozastaví, dokud okno s grafem neuzavřeme. Pokud používáme Jupyter notebook, tento řádek přidávat nemusíme.
@@ -38,7 +40,7 @@ Pokud píšeme program jako skript, je nutné ještě přidat řádek `plt.show(
 Vygenerovaný graf je poměrně špatně čitelný. Můžeme ale zkusit názvy kategorií zkrátit. V rámci toho rovnou provedeme překlad do češtiny. K přejmenování použijeme metodu `.replace()`. Hodnoty můžeme vložit jako slovník. Vložíme do něj původní hodnotu a její náhradu, obojí opět oddělíme dvojtečkou. Protože chceme přejmenovat více hodnot, vložíme více dvojic, které oddělíme čárkou.
 
 ```py
-food_brands["branded_food_category"] = food_brands["branded_food_category"].replace({
+food_brands_top["branded_food_category"] = food_brands_top["branded_food_category"].replace({
     "Candy": "Cukrovinky",
     "Popcorn, Peanuts, Seeds & Related Snacks": "Slané snacky",
     "Cheese": "Sýry",
@@ -57,7 +59,7 @@ food_brands["branded_food_category"] = food_brands["branded_food_category"].repl
 Po přejmenování kategorií stačí otočit popisky o 45 stupňů, takže budou lépe čitelné.
 
 ```py
-sns.countplot(food_brands, y="branded_food_category")
+sns.countplot(food_brands_top, y="branded_food_category")
 ```
 
 Pokud bychom chtěli graf zveřejnit například v nějakém článku, je vhodné jej doplnit o popisky. K tomu využijeme metodu `set`, které nastavíme následující parametry:
@@ -67,7 +69,7 @@ Pokud bychom chtěli graf zveřejnit například v nějakém článku, je vhodn�
 - `title` nastaví titulek grafu.
 
 ```py
-ax = sns.countplot(food_brands, x="branded_food_category")
+ax = sns.countplot(food_brands_top, x="branded_food_category")
 ax.tick_params(axis='x', rotation=45)
 ax.set(xlabel="Kategorie", ylabel="Počet potravin", title="Počty potravin ve 12 nejpočetnějších kategoriích")
 ```
@@ -75,7 +77,7 @@ ax.set(xlabel="Kategorie", ylabel="Počet potravin", title="Počty potravin ve 1
 Další z oblíbených grafů je histogram. Uvažujme, že se chceme blíže podívat, jak je to s množstvím proteinů v potravinách. Histogram nám umožní komplexnější pohled než průměr. Na vodorovné ose histogramu vidíme množství proteinu a na svislé ose množství potravin, které takovou hodnotu mají. Z histogramu tedy vidíme, že většina potravin má uvedené velmi nízké množství proteinu. Pouze malé množství potravin má více než 10 gramů proteinu.
 
 ```py
-food_merged_brands = pd.merge(food_brands, food_nutrient, on="fdc_id")
+food_merged_brands = pd.merge(food_brands_top, food_nutrient, on="fdc_id")
 food_merged_brands = food_merged_brands.rename(columns={"name": "nutrient_name"})
 food_merged_brands_protein = food_merged_brands[food_merged_brands["nutrient_name"] == "Protein"]
 ax = sns.histplot(food_merged_brands_protein, x="amount")
