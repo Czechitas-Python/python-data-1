@@ -13,3 +13,26 @@ Dále zkus rezervace rozdělit do skupin podle toho, v jakém předstihu byly re
 | 8-30                   | Short-term              |
 | 31-180                 | Medium-term             |
 | 180-inf                | Long-term               |
+
+
+:::solution
+```py
+import pandas as pd
+
+bookings = pd.read_csv("hotel_bookings.csv")
+
+# Kontingenční tabulka s počty zrušených rezervací podle typu hotelu
+pd.crosstab(bookings["hotel"], bookings["is_canceled"], margins=True)
+
+# Filtrujeme pouze městské hotely
+city_hotels = bookings[bookings["hotel"] == "City Hotel"]
+
+# Vytvoříme kategorie podle lead_time
+bins = [0, 7, 30, 180, float('inf')]
+labels = ['Last-minute', 'Short-term', 'Medium-term', 'Long-term']
+city_hotels['reservation_category'] = pd.cut(city_hotels['lead_time'], bins=bins, labels=labels)
+
+# Pivot tabulka s počty rezervací podle kategorií a toho, jestli byly zrušeny
+pd.crosstab(city_hotels["reservation_category"], city_hotels["is_canceled"], margins=True)
+```
+:::
