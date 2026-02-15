@@ -21,3 +21,19 @@ food_merged_brands_protein_agg = food_merged_brands_protein_agg[food_merged_bran
 ```
 
 Nyní máme v tabulce `food_merged_brands_protein_agg` průměrné hodnoty pouze pro kategorie, pro které máme více než 10 údajů o množství proteinu.
+
+### Cross join
+
+Speciálním typem propojení je tzv. cross join, který vytvoří všechny kombinace řádků z obou tabulek. Cross join se hodí v situacích, kdy potřebujeme vytvořit tabulku se všemi kombinacemi hodnot ze dvou množin.
+
+V `pandas` provedeme cross join pomocí funkce `merge` s parametrem `how="cross"`.
+
+```py
+vysledek = pd.merge(tabulka_1, tabulka_2, how="cross")
+```
+
+### Cvičení
+
+::exc[excs/nutricni_porovnani]
+::exc[excs/mistenky]
+
