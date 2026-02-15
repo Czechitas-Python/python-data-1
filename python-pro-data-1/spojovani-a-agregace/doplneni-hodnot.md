@@ -10,3 +10,15 @@ import pandas as pd
 data = pd.read_csv("barcode_reader.csv")
 data['user_name'] = data['user_name'].fillna(method="ffill")
 ```
+
+Výsledek metody `fillna()` nemusíme vždy ukládat do stejného sloupce. Můžeme ho uložit do nového sloupce, pokud chceme zachovat původní data pro porovnání. Například:
+
+```py
+data['user_name_filled'] = data['user_name'].fillna(method="ffill")
+```
+
+Tak máme v tabulce oba sloupce - původní `user_name` s prázdnými hodnotami i nový `user_name_filled` s doplněnými hodnotami.
+
+### Cvičení
+
+::exc[excs/ctecka]
