@@ -24,7 +24,7 @@ import pandas as pd
 data = pd.read_csv('votes.csv')
 
 #Celkový počet odevzdaných hlasů v jednotlivých letech.
-data.groupby('year')['totalvotes'].sum()
+data.groupby('year')['candidatevotes'].sum()
 
 #Celkový počet odevzdaných hlasů pro kandidáty a kandidátky jednotlivých stran pro volby v roce 2020.
 data[data['year']==2020].groupby('party_detailed')['candidatevotes'].sum().sort_values(ascending=False)
