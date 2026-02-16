@@ -18,6 +18,7 @@ Vytvoř tabulky, které budou zobrazovat následující data.
 4. Celkový počet odevzdaných hlasů pro stát `MONTANA` pro všechny roky. 
 
 :::solution
+
 ```py
 import pandas as pd
 
@@ -38,4 +39,5 @@ data[filter].groupby('year')['candidatevotes'].sum().sort_values(ascending=False
 #Celkový počet odevzdaných hlasů pro stát MONTANA pro všechny roky.
 data[data['state']=='MONTANA']['candidatevotes'].sum()
 ```
+
 :::
