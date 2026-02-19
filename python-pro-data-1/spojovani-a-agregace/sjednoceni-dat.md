@@ -19,7 +19,7 @@ import pandas as pd
 food_nutrient = pd.read_csv('food_nutrient.csv')
 ```
 
-Zkusíme si uložit řádky bez množství výživné látky do tabulky `food_nutrient_incomplete`. Použijeme metodu `isna()`, která pro každý řádek vrátí pravdivostní hodnotu (tj. hodnotu `True` pro řádek s hodnotou nebo `False` pro prázdný řádek). Poté můžeme použít dotaz, který jsme si ukázali už v minulé lekci.
+Zkusíme si uložit řádky bez množství výživné látky do tabulky `food_nutrient_incomplete`. Použijeme metodu `isna()`, která pro každý řádek vrátí pravdivostní hodnotu (tj. hodnotu `False` pro řádek s hodnotou nebo `True` pro prázdný řádek). Poté můžeme použít dotaz, který jsme si ukázali už v minulé lekci.
 
 ```py
 food_nutrient_incomplete = food_nutrient[food_nutrient["amount"].isna()]
