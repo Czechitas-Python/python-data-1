@@ -37,6 +37,8 @@ food_merged_brands = food_merged_brands.rename(columns={"name": "nutrient_name"}
 
 ```
 
+Případně si hotový soubor můžeš stáhnout [z tohoto odkazu](assets/food_merged_brands_viz.csv).
+
 ::exc[excs/odstin]
 ::exc[excs/catplot]
 
