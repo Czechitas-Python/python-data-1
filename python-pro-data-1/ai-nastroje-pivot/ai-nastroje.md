@@ -49,9 +49,13 @@ Příklad konverzace je [zde](https://chatgpt.com/share/674cd895-7824-800d-810e-
 
 ### Cvičení
 
-::exc[excs/speedating]
-
-### Bonusy
-
 ::exc[excs/speedating-1]
 ::exc[excs/speedating-2]
+
+### Příklady na doma
+
+Níže najdeš tři úlohy, které můžeš vyřešit s využitím AI nástrojů.
+
+::exc[excs/index-svobody]
+::exc[excs/zeny-ict]
+::exc[excs/nabytek]
