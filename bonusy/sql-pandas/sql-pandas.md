@@ -198,6 +198,5 @@ zname_zeme = logy[logy["zeme"].notna()]
 | nebo | `OR` | `\|` |
 | je v seznamu | `IN (...)` | `df["s"].isin([...])` |
 | není v seznamu | `NOT IN (...)` | `~df["s"].isin([...])` |
-| chybí hodnota | `IS NULL` | `isna()` |
 | hodnota existuje | `IS NOT NULL` | `notna()` nebo `notnull()` |
 | hodnota neexistuje | `IS NULL` | `isna()` nebo `isnull()` |
