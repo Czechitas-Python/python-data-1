@@ -4,3 +4,5 @@ lessons:
   - datum
   - jupyter
   - bonusove-pandas
+  - sql-pandas
+  - python-vs-pandas
