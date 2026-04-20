@@ -8,7 +8,7 @@ Máš CSV s výsledky maturitních zkoušek za celý kraj - třicet tisíc řád
 
 ### Spojování více souborů
 
-Uvažujme, že dostaneš výsledky školního kola olympiády jako tři samostatné soubory - jeden za každý ročník. Chceš je sloučit do jedné tabulky a přidat sloupec s ročníkem. Funkce `concat` sloučí tabulky pod sebe (union), `merge` pak umí tabulky propojit přes společný klíč podobně jako SQL JOIN. Ruční implementace těchto operací v čistém Pythonu by byla náchylná k chybám a zbytečně dlouhá.
+Uvažujme, že dostaneš výsledky školního kola olympiády jako tři samostatné soubory - jeden za každý ročník. Chceš je sloučit do jedné tabulky a přidat sloupec s ročníkem. Funkce `concat` sloučí tabulky pod sebe (přidá řádky za sebou, jako SQL UNION), `merge` pak propojí tabulky přes společný klíč - tedy jako SQL JOIN, kdy každý řádek z jedné tabulky najde odpovídající řádek v druhé. Ruční implementace těchto operací v čistém Pythonu by byla náchylná k chybám a zbytečně dlouhá.
 
 ### Klasické analytické úlohy
 
@@ -21,7 +21,7 @@ vydaje["castka"] = vydaje["castka"].fillna(0)
 vydaje["datum"] = pandas.to_datetime(vydaje["datum"], format="%d.%m.%Y")
 vydaje = vydaje.rename(columns={"castka": "kc", "popis": "kategorie"})
 
-print(vydaje.dtypes)
+vydaje.dtypes
 ```
 
 ```shell

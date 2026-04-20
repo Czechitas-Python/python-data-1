@@ -106,6 +106,87 @@ rizikove
 
 **Poznámka:** Závorky kolem každé dílčí podmínky jsou povinné. Bez nich by Python špatně vyhodnotil prioritu operátorů a výsledek by byl chybný.
 
+### Podmínka IN a NOT IN
+
+Zatím jsme porovnávali hodnotu vždy s jednou konkrétní hodnotou. Pokud chceme porovnat s více hodnotami najednou, v SQL použijeme `IN` se seznamem:
+
+```sql
+SELECT *
+FROM logy
+WHERE zeme IN ('CZ', 'SK', 'DE');
+```
+
+V pandas k tomu slouží metoda `isin()`:
+
+```py
+domaci = logy[logy["zeme"].isin(["CZ", "SK", "DE"])]
+domaci
+```
+
+```shell
+   uzivatel zeme  pocet_pokusu  uspesne
+0     novak   CZ             1     True
+1     novak   CZ             1     True
+2   svoboda   CZ             3    False
+4     novak   DE             1     True
+5    kratky   CZ             2     True
+7     mares   CZ             1     True
+9    martin   DE             2     True
+10  svoboda   CZ            15    False
+11 novakova   SK             1     True
+```
+
+Opačný případ - `NOT IN` - zapíšeme přidáním operátoru `~`, který celou sérii `True`/`False` obrátí:
+
+```sql
+SELECT *
+FROM logy
+WHERE zeme NOT IN ('CZ', 'SK', 'DE');
+```
+
+```py
+bezpecne_zeme = ["CZ", "SK", "DE"]
+zahranicni = logy[~logy["zeme"].isin(bezpecne_zeme)]
+zahranicni
+```
+
+```shell
+   uzivatel zeme  pocet_pokusu  uspesne
+3   hackerx   RU            47    False
+6   bot2024   CN           120    False
+8   bot2024   CN            98    False
+12  neznamy  NaN             3    False
+13    kpbot   KP            88    False
+```
+
+### Chybějící hodnoty: IS NULL a IS NOT NULL
+
+V datech se občas stane, že hodnota chybí úplně - třeba systém nezaznamenal, ze které země přihlášení přišlo. V SQL takové řádky najdeme přes `IS NULL`:
+
+```sql
+SELECT *
+FROM logy
+WHERE zeme IS NULL;
+```
+
+V pandas použijeme metodu `isna()`:
+
+```py
+neznama_zeme = logy[logy["zeme"].isna()]
+neznama_zeme
+```
+
+```shell
+   uzivatel zeme  pocet_pokusu  uspesne
+12  neznamy  NaN             3    False
+```
+
+Opačný dotaz - záznamy, kde země je vyplněná - zapíšeme pomocí `notna()`, což odpovídá SQL `IS NOT NULL`:
+
+```py
+zname_zeme = logy[logy["zeme"].notna()]
+```
+
 ### Přehled odpovídajících zápisů
 
 | Operace | SQL | pandas |
@@ -115,3 +196,8 @@ rizikove
 | větší než | `> 10` | `> 10` |
 | a zároveň | `AND` | `&` |
 | nebo | `OR` | `\|` |
+| je v seznamu | `IN (...)` | `df["s"].isin([...])` |
+| není v seznamu | `NOT IN (...)` | `~df["s"].isin([...])` |
+| chybí hodnota | `IS NULL` | `isna()` |
+| hodnota existuje | `IS NOT NULL` | `notna()` nebo `notnull()` |
+| hodnota neexistuje | `IS NULL` | `isna()` nebo `isnull()` |
